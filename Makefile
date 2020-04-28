@@ -11,4 +11,4 @@ stop:
 	docker rm --force ${CONTAINERNAME}
 
 install:
-	brew install docker
+	open -a Safari "https://hub.docker.com/editions/community/docker-ce-desktop-mac/"
