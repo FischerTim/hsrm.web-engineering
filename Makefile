@@ -10,5 +10,5 @@ run: build
 stop: 
 	docker rm --force ${CONTAINERNAME}
 
-installed:
+install:
 	brew install docker
