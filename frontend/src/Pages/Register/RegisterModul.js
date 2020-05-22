@@ -3,9 +3,11 @@ import { useForm } from "react-hook-form";
 
 export function RegisterModul(){
 
-    const { register, handleSubmit, watch, errors } = useForm();
+    const { register, handleSubmit, errors } = useForm();
     const onSubmit = data => {console.log("hi")}
-    return (<div><form onSubmit={handleSubmit(onSubmit)}>
+    return (<div>
+      
+      <form onSubmit={handleSubmit(onSubmit)}>
    
     <input name="Username" defaultValue="Enter your Username" ref={register} />
     

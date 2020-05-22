@@ -1,6 +1,6 @@
 import React from 'react'
-import { useContext ,useEffect} from 'react'
-import { BrowserRouter as Router, Switch, Route, useHistory } from "react-router-dom"
+import { useContext } from 'react'
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import { createBrowserHistory } from 'history';
 
 import { UserContext } from './Context/UserContext'
@@ -9,16 +9,18 @@ import { RegisterModul } from './Pages/Register/RegisterModul'
 
 import { Home } from './Pages/Home/Home'
 
-function App() {
-  useEffect(() => {
-    if (user.isLogedIn() && ! history.location.pathname.startsWith('/register')){
-      console.log( history.location.pathname)
-      history.push('/login')
-    }
-  })
-  const { user, setUser } = useContext(UserContext)
-  let history = createBrowserHistory()
 
+function App() {
+  
+  const { user } = useContext(UserContext)
+  let history = createBrowserHistory()
+  
+  //if (! user.isLogedIn() && ! history.location.pathname.startsWith('/register')){
+    
+    //history.pushState(null,'/login')
+    //window.location.reload()
+  //}
+ 
   return (
     <div className="src/App">
       <Router>

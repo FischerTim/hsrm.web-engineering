@@ -1,36 +1,32 @@
-import React ,{useContext,useState} from 'react'
+import React ,{useContext} from 'react'
 
 import { BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import { createBrowserHistory } from 'history';
 import { useForm } from "react-hook-form";
 
 import { UserContext } from '../../Context/UserContext'
+
 export function LoginModul(){
-
-
     const { user, setUser } = useContext(UserContext)
+    
+    const { register, handleSubmit, errors } = useForm();
+    let history = createBrowserHistory()
 
-    const { register, handleSubmit, watch, errors } = useForm();
-
-    const onSubmit = data => {
-        console.log(data.Username)
+    const onLogin = data => {
         user.login(data.Username,data.Password).then( (newUser) =>{
             if (newUser.isLogedIn()){
-                console.log("login")
+                history.push('/home')
                 setUser(newUser) 
             }  
         })
     }
 
-    let history = createBrowserHistory()
-    
-    if (user.isLogedIn()){
-       history.push('/home')
-       window.location.reload();
-    }
+    console.log("current User State: "+user.isLogedIn())
+    console.log("current path : "+history.location.pathname)
 
     return (<div>
-    <form onSubmit={handleSubmit(onSubmit)}>
+      
+    <form onSubmit={handleSubmit(onLogin)}>
    
       <input name="Username" defaultValue="Enter your Username" ref={register} />
       
@@ -40,7 +36,16 @@ export function LoginModul(){
       
       <input type="submit" />
     </form>
+
     <Link to="/register">iwas</Link>
+    {user.isLogedIn()}
+    <Router>
+        <Switch>
+          <Route path="/home">
+            <label>es wird das gemalt wenn path aktuallisiert</label>
+          </Route>
+        </Switch>
+    </Router>
     </div>
     )
 } 
