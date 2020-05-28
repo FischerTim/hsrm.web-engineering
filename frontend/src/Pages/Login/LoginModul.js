@@ -1,34 +1,37 @@
 import React ,{useContext} from 'react'
 
 import { BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
-import { createBrowserHistory } from 'history';
 import { useForm } from "react-hook-form";
-
+import { useHistory } from "react-router-dom";
 import { UserContext } from '../../Context/UserContext'
+import { SpracheContext } from '../../Context/SprachContext'
+import { iwasDE,iwasEN } from '../../Propertys/Iwas';
 
-export function LoginModul(){
+export function LoginModul(props){
     const { user, setUser } = useContext(UserContext)
-    
+    const {sprache} = useContext(SpracheContext)
+    const kp = sprache == "DE" ? iwasDE : iwasEN
+
+    console.log(kp)
+    const hist = useHistory()
     const { register, handleSubmit, errors } = useForm();
-    let history = createBrowserHistory()
 
     const onLogin = data => {
+      
         user.login(data.Username,data.Password).then( (newUser) =>{
-            if (newUser.isLogedIn()){
-                history.push('/home')
-                setUser(newUser) 
+
+            if (newUser.isLogedIn()){         
+              setUser(newUser) 
+              hist.push('/home')
             }  
         })
-    }
 
-    console.log("current User State: "+user.isLogedIn())
-    console.log("current path : "+history.location.pathname)
+      }
 
     return (<div>
-      
     <form onSubmit={handleSubmit(onLogin)}>
    
-      <input name="Username" defaultValue="Enter your Username" ref={register} />
+      <input name="Username" defaultValue={kp["hallo"]} ref={register} />
       
       <input name="Password" defaultValue="Enter your Password" ref={register({ required: true })} />
 
@@ -38,14 +41,7 @@ export function LoginModul(){
     </form>
 
     <Link to="/register">iwas</Link>
-    {user.isLogedIn()}
-    <Router>
-        <Switch>
-          <Route path="/home">
-            <label>es wird das gemalt wenn path aktuallisiert</label>
-          </Route>
-        </Switch>
-    </Router>
+  
     </div>
     )
 } 

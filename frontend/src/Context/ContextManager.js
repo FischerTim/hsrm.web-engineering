@@ -1,5 +1,6 @@
 import React, {createContext} from 'react';
 import { UserContextProvider } from './UserContext';
+import { SpracheContextProvider } from './SprachContext';
 
 export const ContextManager = createContext()
 export const ContextManagerProvider = ({children}) => {
@@ -7,7 +8,9 @@ export const ContextManagerProvider = ({children}) => {
  return (
    <ContextManager.Provider>
       <UserContextProvider>
-         {children}
+         <SpracheContextProvider>
+            {children}
+         </SpracheContextProvider>
       </UserContextProvider>
    </ContextManager.Provider>
  );
