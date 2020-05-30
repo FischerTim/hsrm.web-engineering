@@ -4,6 +4,6 @@ export const iwasDE = {
 export const iwasEN = {
     hallo: "hallEN"
 }
-export const Sprachen ={
+export const Sprachen = {
     DE: "de"
 }
