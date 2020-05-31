@@ -1,46 +1,31 @@
-import React from 'react'
-import { useContext } from 'react'
-import { BrowserRouter as Router, Switch,Route, useHistory } from "react-router-dom"
+import React, { useContext } from 'react'
 
-import { UserContext } from './Context/UserContext'
-import { LoginModul } from './Pages/Login/LoginModul'
-import { RegisterModul } from './Pages/Register/RegisterModul'
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
-import { Home } from './Pages/Home/Home'
-import { SpracheContext } from './Context/SprachContext'
+import { LoginPage } from './Pages/LoginPage'
+import { RegisterPage } from './Pages/RegisterPage'
+import { CorePage } from './Pages/CorePage'
 
+import { RessourcenContext } from './Context/RessourcenContext'
 
 function App() {
-  
-  const { user } = useContext(UserContext)
-  const { sprache ,setSprache} = useContext(SpracheContext)
-  const history = useHistory()
-  const myFunction = () => {
-    console.log(sprache)
-    if (sprache == "DE"){
-      setSprache("EN")
-    }else{
-      setSprache("DE")
-    }
-  }
+
+  const ressourcen = useContext(RessourcenContext).ressourcen
+
   return (
     <div className="src/App">
-      <button onClick={myFunction}>Sprache</button>
       <Router>
         <Switch>
-          <Route path="/login">
-            <LoginModul/>
+          <Route path={ressourcen.Path.Login}>
+            <LoginPage />
           </Route>
-          <Route path="/home">
-            <Home/>
+          <Route path={ressourcen.Path.Register}>
+            <RegisterPage />
           </Route>
-          <Route path="/register">
-            <RegisterModul/>
+          <Route path={ressourcen.Path.Core}>
+            <CorePage />
           </Route>
-          <Route path="/">
-            <Home/>
-          </Route>
-          </Switch>
+        </Switch>
       </Router>
     </div>
   )

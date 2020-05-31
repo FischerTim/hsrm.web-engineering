@@ -1,17 +1,28 @@
-import React, {createContext} from 'react';
-import { UserContextProvider } from './UserContext';
-import { SpracheContextProvider } from './SprachContext';
+import React, { createContext } from 'react'
+
+import { UserContextProvider } from './UserContext'
+import { UserServiceContextProvider } from './UserServiceContext'
+import { LanguageContextProvider } from './LanguageContext'
+import { RessourcenContextProvider } from './RessourcenContext'
+import { RessourcenServiceContextProvider } from './RessourcenServiceContext'
+
 
 export const ContextManager = createContext()
-export const ContextManagerProvider = ({children}) => {
+export const ContextManagerProvider = ({ children }) => {
 
- return (
-   <ContextManager.Provider>
-      <UserContextProvider>
-         <SpracheContextProvider>
-            {children}
-         </SpracheContextProvider>
-      </UserContextProvider>
-   </ContextManager.Provider>
- );
-};
+   return (
+      <ContextManager.Provider>
+         <LanguageContextProvider>
+            <RessourcenServiceContextProvider>
+               <RessourcenContextProvider>
+                  <UserServiceContextProvider>
+                     <UserContextProvider>
+                        {children}
+                     </UserContextProvider>
+                  </UserServiceContextProvider>
+               </RessourcenContextProvider>
+            </RessourcenServiceContextProvider>
+         </LanguageContextProvider>
+      </ContextManager.Provider>
+   )
+}
