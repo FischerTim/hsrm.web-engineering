@@ -1,36 +1,42 @@
-import React, { useContext, useState , useEffect } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 
 import { useHistory } from 'react-router-dom'
 
 import { UserContext } from '../Context/UserContext'
-import { RessourceContext } from '../Context/RessourceContext'
-
+import { RessourcenContext } from '../Context/RessourcenContext';
+import { UserServiceContext } from '../Context/UserServiceContext';
 
 export function CorePage() {
 
     const pathHistory = useHistory()
 
     const { user, setUser } = useContext(UserContext)
-    const ressource = useContext(RessourceContext)
-//------- start
-    const SERVER_ADDRESS = "server.bykovski.de"
+    const { userService } = useContext(UserServiceContext)
+    const { ressourcen } = useContext(RessourcenContext)
 
-  const [clicks, setClicks] = useState(0);
-  let clickSocket
-  let balanceSocket
-//-------end 
-    if (! user.isLogedIn()) {
-        pathHistory.push(ressource.Path.Login)
+    //------- start
+
+    const [clicks, setClicks] = useState(0);
+    let clickSocket
+    let balanceSocket
+    //-------end 
+    if (!user.logedIn) {
+        pathHistory.push(ressourcen.Path.Login)
     }
 
     const logout = () => {
-        if (user.isLogedIn()) {
-            setUser(user.logout())
-            pathHistory.push(ressource.Path.Login)
+        if (user.logedIn) {
+            const result = userService.logout()
+            setUser(result)
+            pathHistory.push(ressourcen.Path.Login)
+
         }
+
     }
     //----- start
+
     useEffect(() => {
+        /*
         if (user.isLogedIn() ){
             
             clickSocket = new WebSocket(`ws://${SERVER_ADDRESS}:8000/game/click?token=${user.getToken()}`)
@@ -44,24 +50,26 @@ export function CorePage() {
         }
         
         return () => {
-          clickSocket.close()
-          balanceSocket.close()
-        }
-      })
+            if (typeof clickSocket == WebSocket){
+                clickSocket.close()
+                balanceSocket.close()
+            }
+          
+        }*/
+    })
 
-      const oniwas = () =>{
-          if(clickSocket == undefined){
-            console.log("hier")
+    const oniwas = () => {
+        if (clickSocket == undefined) {
             return
-          }
-        if (clickSocket.readyState !== 1){
+        }
+        if (clickSocket.readyState !== 1) {
             clickSocket.onopen = function () {
                 clickSocket.send(' '); // Send the message 'Ping' to the server
-              };
-        }else{
+            };
+        } else {
             clickSocket.send(" ")
         }
-      }
+    }
     // ------end 
     return (
         <div>

@@ -6,23 +6,23 @@ import { LoginPage } from './Pages/LoginPage'
 import { RegisterPage } from './Pages/RegisterPage'
 import { CorePage } from './Pages/CorePage'
 
-import { RessourceContext } from './Context/RessourceContext'
+import { RessourcenContext } from './Context/RessourcenContext'
 
 function App() {
-  
-  const {ressource} = useContext(RessourceContext)
+
+  const ressourcen = useContext(RessourcenContext).ressourcen
 
   return (
     <div className="src/App">
       <Router>
         <Switch>
-          <Route path={ressource.Path.Login}>
+          <Route path={ressourcen.Path.Login}>
             <LoginPage />
           </Route>
-          <Route path={ressource.Path.Register}>
+          <Route path={ressourcen.Path.Register}>
             <RegisterPage />
           </Route>
-          <Route path={ressource.Path.Core}>
+          <Route path={ressourcen.Path.Core}>
             <CorePage />
           </Route>
         </Switch>

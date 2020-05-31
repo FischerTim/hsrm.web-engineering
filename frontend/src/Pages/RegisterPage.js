@@ -5,6 +5,7 @@ export function RegisterPage() {
 
   const { register, handleSubmit, errors } = useForm();
   const onSubmit = data => { console.log("hi") }
+  
   return (<div>
 
     <form onSubmit={handleSubmit(onSubmit)}>

@@ -1,45 +1,35 @@
-export class User {
-    _username = null
-    _token = null
-    _isLogedIn = false
-    _SERVER_ADDRESS = "server.bykovski.de"
-    _LOGIN_PATH = "/users/token"
+import { UserState } from '../States/UserState'
 
-    getUsername() {
-        return this._username
+export class UserService {
+
+    constructor(serverData) {
+        this._serverData = serverData
     }
-    getToken() {
-        return this._token
-    }
-    isLogedIn() {
-        return this._isLogedIn
-    }
-    logout() {
-        return new User()
-    }
+
     login(username, password) {
-        return fetch(`http://${this._SERVER_ADDRESS}:8000${this._LOGIN_PATH}`, {
+        return fetch(`http://${this._serverData.ServerAdresse}:${this._serverData.Port}${this._serverData.Endpoint.Token}`, {
             method: 'POST',
             headers: {
                 "Accept": "application/json",
                 "Content-Type": 'application/x-www-form-urlencoded'
             },
             body: JSON.stringify(`&username=${username}&password=${password}&`),
-        }).then(response => response.json()).then(data => {
-
-            const newuser = this.logout()
-
-            this._token = data.access_token
-
-            if (this._token != null) {
-                newuser._token = this._token
-                newuser.username = username
-                newuser._isLogedIn = true
-            }
-
-            return newuser
-        })
+        }).then(response => response.json())
+            .then(data => {
+                if (data.access_token != null) {
+                    const user = UserState
+                    user.logedIn = true
+                    user.token = data.access_token
+                    user.username = username
+                    return user
+                } else {
+                    return UserState
+                }
+            })
     }
 
+    logout() {
+        return UserState
+    }
 
 }
