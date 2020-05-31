@@ -12,8 +12,7 @@ export function LoginPage(props) {
   const { register, handleSubmit, errors } = useForm();
 
   const { user, setUser } = useContext(UserContext)
-  const ressource = useContext(RessourceContext)
-  
+  const { ressource } = useContext(RessourceContext)
 
   const onLogin = (data) => {
 
@@ -21,12 +20,12 @@ export function LoginPage(props) {
 
       if (newUser.isLogedIn()) {
         setUser(newUser)
-        pathHistory.push(ressource.Path("Core"))
+        pathHistory.push(ressource.Path().Core)
       }
     })
 
   }
-
+  // change to Ressource ...
   return (<div>
     <form onSubmit={handleSubmit(onLogin)}>
 

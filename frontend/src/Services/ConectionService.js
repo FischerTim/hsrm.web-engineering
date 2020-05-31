@@ -1,5 +1,8 @@
 import { ServerRessource } from "../Resources/ServerRessource";
 
+
+
+//---- not used -----
 export class ConnectionService{
     _serverAdresse = ServerRessource["ServerAdresse"]
     _clickSocket

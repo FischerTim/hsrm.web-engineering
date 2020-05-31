@@ -1,14 +1,15 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext, useContext} from 'react';
 
 import { RessourceService } from '../Services/RessourceService';
-
+import { Languages } from '../Resources/LanguageResource';
+ 
 export const RessourceContext = createContext()
 export const RessourceContextProvider = ({ children }) => {
+    const [ressource,setRessource] = useState(new RessourceService(Languages.DEFAULT))
+    const ressourceValue = {ressource,setRessource}
 
-    const [ressource] = useState(new RessourceService())
-    
     return (
-        <RessourceContext.Provider value={ressource}>
+        <RessourceContext.Provider value={ressourceValue}>
             {children}
         </RessourceContext.Provider>
     );

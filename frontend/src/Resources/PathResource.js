@@ -1,5 +1,5 @@
-export const Path = {
-    "Core": "/",
-    "Login": "/sign-in",
-    "Register": "/sign-up"
+export const Paths = {
+    Core: "/",
+    Login: "/sign-in",
+    Register: "/sign-up"
 }

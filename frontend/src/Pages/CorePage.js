@@ -12,28 +12,24 @@ export function CorePage() {
 
     const { user, setUser } = useContext(UserContext)
     const ressource = useContext(RessourceContext)
-//-------
+//------- start
     const SERVER_ADDRESS = "server.bykovski.de"
-    const PASSWORD = "pw123"
-    const USERNAME = "post1mantest"
 
   const [clicks, setClicks] = useState(0);
   let clickSocket
   let balanceSocket
-//-------
+//-------end 
     if (! user.isLogedIn()) {
-        pathHistory.push(ressource.Path("Login"))
-    }else{
-        
-        
+        pathHistory.push(ressource.Path.Login)
     }
 
     const logout = () => {
         if (user.isLogedIn()) {
             setUser(user.logout())
-            pathHistory.push(ressource.Path("Login"))
+            pathHistory.push(ressource.Path.Login)
         }
     }
+    //----- start
     useEffect(() => {
         if (user.isLogedIn() ){
             
@@ -66,6 +62,7 @@ export function CorePage() {
             clickSocket.send(" ")
         }
       }
+    // ------end 
     return (
         <div>
             <p><label>{clicks}</label></p>

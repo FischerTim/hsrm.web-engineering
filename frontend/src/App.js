@@ -8,24 +8,21 @@ import { CorePage } from './Pages/CorePage'
 
 import { RessourceContext } from './Context/RessourceContext'
 
-
 function App() {
-
   
-  const ressource = useContext(RessourceContext)
+  const {ressource} = useContext(RessourceContext)
 
-  
   return (
     <div className="src/App">
       <Router>
         <Switch>
-          <Route path={ressource.Path("Login")}>
+          <Route path={ressource.Path.Login}>
             <LoginPage />
           </Route>
-          <Route path={ressource.Path("Register")}>
+          <Route path={ressource.Path.Register}>
             <RegisterPage />
           </Route>
-          <Route path={ressource.Path("Core")}>
+          <Route path={ressource.Path.Core}>
             <CorePage />
           </Route>
         </Switch>
