@@ -36,8 +36,7 @@ export function CorePage() {
 
         if (user.LogedIn) {
             setUser(userService.logout())
-            console.log()
-            setConnection(connectionService.disconnected())
+            setConnection(connectionService.disconnected(connection))
             pathHistory.push(ressourcen.Path.Login)
 
         }
