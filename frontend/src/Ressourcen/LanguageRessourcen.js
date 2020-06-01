@@ -4,10 +4,15 @@ export const Languages = {
             Username: "username",
             Password: "password",
             PasswordField: "Enter your password",
-            UsernameField: "Enter your username"
+            UsernameField: "Enter your username",
+            RegisterData: "not registered jet?"
         },
         RegisterData: {
-
+            LoginLink: "already registered?"
+        },
+        LanguageData:{
+            Id: "EN",
+            Repressentation: "English"
         }
 
     },
@@ -16,10 +21,16 @@ export const Languages = {
             Username: "Benutzername",
             Password: "Passwort",
             PasswordFeld: "Passwort",
-            UsernameField: "Benutzername"
+            UsernameField: "Benutzername",
+            RegisterData: "Noch nicht Registiert?"
         },
         RegisterData: {
-
+            LoginLink: "Schon Regisiteriet?"
+        },
+        LanguageData:{
+            Id: "DE",
+            Repressentation: "Deutsch"
         }
+       
     },
 }

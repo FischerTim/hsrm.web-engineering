@@ -7,10 +7,15 @@ import { RegisterPage } from './Pages/RegisterPage'
 import { CorePage } from './Pages/CorePage'
 
 import { RessourcenContext } from './Context/RessourcenContext'
+import { LanguageSwitch } from './Components/LanguageSwitch'
+import { RessourcenServiceContext } from './Context/RessourcenServiceContext'
+import { LanguageContext } from './Context/LanguageContext'
 
 function App() {
 
-  const ressourcen = useContext(RessourcenContext).ressourcen
+  const { language, setLanguage } = useContext(LanguageContext)
+  const { ressourcen, setRessourcen } = useContext(RessourcenContext)
+  const { ressourcenService } = useContext(RessourcenServiceContext)
 
   return (
     <div className="src/App">
@@ -27,6 +32,7 @@ function App() {
           </Route>
         </Switch>
       </Router>
+      <LanguageSwitch ressourcenService={ressourcenService} setRessourcen={setRessourcen} language={language} setLanguage={setLanguage} ></LanguageSwitch>
     </div>
   )
 }

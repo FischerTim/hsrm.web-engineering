@@ -5,5 +5,6 @@ export const RessourcenState = {
     Path: Paths,
     Backend: BackendServer,
     LoginData: null,
-    RegisterData: null
+    RegisterData: null,
+    LanguageData: null
 }

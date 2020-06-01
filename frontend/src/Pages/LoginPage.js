@@ -16,7 +16,7 @@ export function LoginPage(props) {
   const { userService } = useContext(UserServiceContext)
   const { ressourcen } = useContext(RessourcenContext)
 
-  const onLogin = (data) => {
+  const onSendButtonPressed = (data) => {
     
     userService.login(data.Username, data.Password).then((user) => {
       if (user.logedIn) {
@@ -28,7 +28,7 @@ export function LoginPage(props) {
   }
 
   return (<div>
-    <form onSubmit={handleSubmit(onLogin)}>
+    <form onSubmit={handleSubmit(onSendButtonPressed)}>
 
       <input name="Username" defaultValue="post1mantest" ref={register} />
 
@@ -39,7 +39,7 @@ export function LoginPage(props) {
       <input type="submit" />
     </form>
 
-    <Link to="/register">iwas</Link>
+    <Link to={ressourcen.Path.Register}>{ressourcen.LoginData.RegisterData}</Link>
 
   </div>
   )
