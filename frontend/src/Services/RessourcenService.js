@@ -5,7 +5,7 @@ import { Languages } from '../Ressourcen/LanguageRessourcen'
 export class RessourcenService {
 
     getRessourcen(languageState) {
-        const tmpRessourcenState = {...RessourcenState}
+        const tmpRessourcenState = { ...RessourcenState }
         tmpRessourcenState.LoginData = Languages[languageState].LoginData
         tmpRessourcenState.RegisterData = Languages[languageState].RegisterData
         tmpRessourcenState.LanguageData = Languages[languageState].LanguageData

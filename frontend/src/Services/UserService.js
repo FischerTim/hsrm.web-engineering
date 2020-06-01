@@ -18,9 +18,9 @@ export class UserService {
             .then(data => {
                 if (data.access_token != null) {
                     const user = UserState
-                    user.logedIn = true
-                    user.token = data.access_token
-                    user.username = username
+                    user.LogedIn = true
+                    user.Token = data.access_token
+                    user.Username = username
                     return user
                 } else {
                     return UserState

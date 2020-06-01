@@ -5,6 +5,8 @@ import { UserServiceContextProvider } from './UserServiceContext'
 import { LanguageContextProvider } from './LanguageContext'
 import { RessourcenContextProvider } from './RessourcenContext'
 import { RessourcenServiceContextProvider } from './RessourcenServiceContext'
+import { ConnectionContextProvider } from './ConnectionContext'
+import { ConnectionServiceContextProvider } from './ConnectionServiceContext'
 
 export const ContextManager = createContext()
 export const ContextManagerProvider = ({ children }) => {
@@ -14,14 +16,18 @@ export const ContextManagerProvider = ({ children }) => {
          <LanguageContextProvider>
             <RessourcenServiceContextProvider>
                <RessourcenContextProvider>
-                  <UserServiceContextProvider>
-                     <UserContextProvider>
-                        {children}
-                     </UserContextProvider>
-                  </UserServiceContextProvider>
+                  <ConnectionServiceContextProvider>
+                     <ConnectionContextProvider>
+                        <UserServiceContextProvider>
+                           <UserContextProvider>
+                              {children}
+                           </UserContextProvider>
+                        </UserServiceContextProvider>
+                     </ConnectionContextProvider>
+                  </ConnectionServiceContextProvider>
                </RessourcenContextProvider>
             </RessourcenServiceContextProvider>
          </LanguageContextProvider>
-      </ContextManager.Provider>
+      </ContextManager.Provider >
    )
 }

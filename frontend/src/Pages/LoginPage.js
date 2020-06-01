@@ -6,6 +6,8 @@ import { useForm } from "react-hook-form";
 import { UserContext } from '../Context/UserContext'
 import { RessourcenContext } from '../Context/RessourcenContext';
 import { UserServiceContext } from '../Context/UserServiceContext';
+import { ConnectionServiceContext } from '../Context/ConnectionServiceContext';
+import { ConnectionContext } from '../Context/ConnectionContext';
 
 export function LoginPage(props) {
 
@@ -15,12 +17,16 @@ export function LoginPage(props) {
   const { setUser } = useContext(UserContext)
   const { userService } = useContext(UserServiceContext)
   const { ressourcen } = useContext(RessourcenContext)
+  const { connectionService } = useContext(ConnectionServiceContext)
+  const { setConnection } = useContext(ConnectionContext)
+
 
   const onSendButtonPressed = (data) => {
-    
+
     userService.login(data.Username, data.Password).then((user) => {
-      if (user.logedIn) {
+      if (user.LogedIn) {
         setUser(user)
+        setConnection(connectionService.getConnection(user))
         pathHistory.push(ressourcen.Path.Core)
       }
     })

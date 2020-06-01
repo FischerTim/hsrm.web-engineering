@@ -5,6 +5,8 @@ import { useHistory } from 'react-router-dom'
 import { UserContext } from '../Context/UserContext'
 import { RessourcenContext } from '../Context/RessourcenContext';
 import { UserServiceContext } from '../Context/UserServiceContext';
+import { ConnectionContext } from '../Context/ConnectionContext';
+import { ConnectionServiceContext } from '../Context/ConnectionServiceContext';
 
 export function CorePage() {
 
@@ -13,22 +15,29 @@ export function CorePage() {
     const { user, setUser } = useContext(UserContext)
     const { userService } = useContext(UserServiceContext)
     const { ressourcen } = useContext(RessourcenContext)
-
+    const { connectionService } = useContext(ConnectionServiceContext)
+    const { connection, setConnection } = useContext(ConnectionContext)
     //------- start
 
     // const [clicks, setClicks] = useState(0);
     //let clickSocket
     //et balanceSocket
     //-------end 
-    console.log(user)
-    if (!user.logedIn) {
+    console.log()
+    if (!user.LogedIn) {
         pathHistory.push(ressourcen.Path.Login)
+    } else {
+        connection.Click.addEventListener('message', function (event) {
+            console.log("test")
+        });
     }
 
     const logout = () => {
 
-        if (user.logedIn) {
+        if (user.LogedIn) {
             setUser(userService.logout())
+            console.log()
+            setConnection(connectionService.disconnected())
             pathHistory.push(ressourcen.Path.Login)
 
         }
@@ -59,6 +68,10 @@ export function CorePage() {
     //})
 
     const oniwas = () => {
+        if (connection.Click != null && connection.Click.readyState === 1) {
+            connection.Click.send("")
+        }
+
         /*
         if (clickSocket == undefined) {
             return
