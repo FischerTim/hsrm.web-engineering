@@ -7,7 +7,8 @@ export const BackendServer = {
     Endpoint: {
         Token: "/users/token",
         Click: "/click",
-        CurrentClicks: "/balance"
+        CurrentClicks: "/balance",
+        GPPS: "/generators"
 
     }
 }

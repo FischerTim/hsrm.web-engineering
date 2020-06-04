@@ -20,6 +20,7 @@ export function LanguageSwitch({ ressourcenService, setRessourcen, language, set
 
         if (LanguageState[key] !== undefined) {
             setLanguage(LanguageState[key])
+
             setRessourcen(ressourcenService.getRessourcen(LanguageState[key]))
         }
     }

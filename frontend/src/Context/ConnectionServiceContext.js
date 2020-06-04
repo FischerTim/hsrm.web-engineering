@@ -1,12 +1,14 @@
-import React, { useState, createContext } from 'react'
+import React, { useState, createContext, useContext } from 'react'
 
-import { BackendServer } from '../Ressourcen/BackendServerRessourcen'
 import { ConnectionService } from '../Services/ConnectionService'
+import { RessourcenContext } from './RessourcenContext'
 
 export const ConnectionServiceContext = createContext()
 export const ConnectionServiceContextProvider = ({ children }) => {
 
-  const [connectionService] = useState(new ConnectionService(BackendServer))
+  const { ressourcen } = useContext(RessourcenContext)
+
+  const [connectionService] = useState(new ConnectionService(ressourcen.Backend))
   const connectionServiceValue = { connectionService }
 
   return (

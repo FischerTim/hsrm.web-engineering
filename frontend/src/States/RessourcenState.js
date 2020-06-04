@@ -1,5 +1,5 @@
 import { Paths } from "../Ressourcen/PathRessourcen"
-import { BackendServer} from "../Ressourcen/BackendServerRessourcen"
+import { BackendServer } from "../Ressourcen/BackendServerRessourcen"
 
 export const RessourcenState = {
     Path: Paths,

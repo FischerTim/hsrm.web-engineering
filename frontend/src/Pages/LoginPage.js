@@ -8,6 +8,8 @@ import { RessourcenContext } from '../Context/RessourcenContext';
 import { UserServiceContext } from '../Context/UserServiceContext';
 import { ConnectionServiceContext } from '../Context/ConnectionServiceContext';
 import { ConnectionContext } from '../Context/ConnectionContext';
+import { PointsContext } from '../Context/PointsContext';
+import { GPPSContext } from '../Context/GPPSContext';
 
 export function LoginPage(props) {
 
@@ -19,14 +21,29 @@ export function LoginPage(props) {
   const { ressourcen } = useContext(RessourcenContext)
   const { connectionService } = useContext(ConnectionServiceContext)
   const { setConnection } = useContext(ConnectionContext)
-
+  const { setPoints } = useContext(PointsContext)
+  const { setGPPS } = useContext(GPPSContext)
 
   const onSendButtonPressed = (data) => {
-
+    //TODO logout
     userService.login(data.Username, data.Password).then((user) => {
+
       if (user.LogedIn) {
         setUser(user)
-        setConnection(connectionService.getConnection(user))
+        const newConnection = connectionService.getConnection(user)
+
+        newConnection.Click.addEventListener('message', function (event) {
+          console.log("test")
+        });
+        newConnection.GPPS.addEventListener('message', function (event) {
+          setGPPS(JSON.parse(event.data)["points"])
+        });
+        newConnection.Points.addEventListener('message', function (event) {
+          setPoints(JSON.parse(event.data)["points"])
+        });
+
+        setConnection(newConnection)
+
         pathHistory.push(ressourcen.Path.Core)
       }
     })

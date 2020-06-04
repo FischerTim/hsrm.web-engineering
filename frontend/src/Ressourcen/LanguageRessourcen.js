@@ -10,7 +10,7 @@ export const Languages = {
         RegisterData: {
             LoginLink: "already registered?"
         },
-        LanguageData:{
+        LanguageData: {
             Id: "EN",
             Repressentation: "English"
         }
@@ -27,10 +27,10 @@ export const Languages = {
         RegisterData: {
             LoginLink: "Schon Regisiteriet?"
         },
-        LanguageData:{
+        LanguageData: {
             Id: "DE",
             Repressentation: "Deutsch"
         }
-       
+
     },
 }

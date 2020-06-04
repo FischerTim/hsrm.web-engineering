@@ -7,6 +7,8 @@ import { RessourcenContextProvider } from './RessourcenContext'
 import { RessourcenServiceContextProvider } from './RessourcenServiceContext'
 import { ConnectionContextProvider } from './ConnectionContext'
 import { ConnectionServiceContextProvider } from './ConnectionServiceContext'
+import { PointsContextProvider } from './PointsContext'
+import { GPPSContextProvider } from './GPPSContext'
 
 export const ContextManager = createContext()
 export const ContextManagerProvider = ({ children }) => {
@@ -20,7 +22,11 @@ export const ContextManagerProvider = ({ children }) => {
                      <ConnectionContextProvider>
                         <UserServiceContextProvider>
                            <UserContextProvider>
-                              {children}
+                              <PointsContextProvider>
+                                 <GPPSContextProvider>
+                                    {children}
+                                 </GPPSContextProvider>
+                              </PointsContextProvider>
                            </UserContextProvider>
                         </UserServiceContextProvider>
                      </ConnectionContextProvider>

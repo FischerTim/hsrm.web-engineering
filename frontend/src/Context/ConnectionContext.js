@@ -1,10 +1,13 @@
-import React, { useState, createContext } from 'react'
-import { ConnectionState } from '../States/ConnectionState'
+import React, { useState, createContext, useContext } from 'react'
+
+import { ConnectionServiceContext } from './ConnectionServiceContext'
 
 export const ConnectionContext = createContext()
 export const ConnectionContextProvider = ({ children }) => {
 
-  const [connection, setConnection] = useState(ConnectionState)
+  const { connectionService } = useContext(ConnectionServiceContext)
+
+  const [connection, setConnection] = useState(connectionService.getConnection(null))
   const connectionValue = { connection, setConnection }
 
   return (
