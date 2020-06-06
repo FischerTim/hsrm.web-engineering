@@ -47,7 +47,7 @@ export class GeneratorService {
 
                 })
         } else {
-            return tmpGeneratorsState
+            return new Promise(() => {return tmpGeneratorsState})
         }
     }
     _getEventFunctionForId(id) {

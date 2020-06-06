@@ -1,13 +1,11 @@
-import React, { useState, createContext, useContext } from 'react'
+import React, { useState, createContext } from 'react'
 
-import { GeneratorServiceContext } from './GeneratorServiceContext'
+import { GeneratorsState } from '../States/GeneratorState'
 
 export const GeneratorsContext = createContext()
 export const GeneratorsContextProvider = ({ children }) => {
 
-  const { generatorService } = useContext(GeneratorServiceContext)
-
-  const [generators, setGenerators] = useState(generatorService.getGenerators(null))
+  const [generators, setGenerators] = useState({...GeneratorsState})
   const generatorsValue = { generators, setGenerators }
 
   return (

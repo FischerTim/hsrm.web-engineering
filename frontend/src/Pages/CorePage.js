@@ -35,6 +35,9 @@ export function CorePage() {
 
         setUser(userService.logout())
         setConnection(connectionService.disconnected(connection))
+        generatorService.getGenerators(null).then(NewGenerator => {
+            setGenerators(NewGenerator)
+        })
         pathHistory.push(ressourcen.Path.Login)
 
     }

@@ -11,6 +11,7 @@ export class ConnectionService {
             tmpConnectionState.Click = new WebSocket(`${this._serverRessourcen.SocketPrefix}${this._serverRessourcen.ServerAdresse}:${this._serverRessourcen.Port}${this._serverRessourcen.BasePath}${this._serverRessourcen.Endpoint.Click}?${this._serverRessourcen.AuthentificationParam}=${user.Token}`)
             tmpConnectionState.Points = new WebSocket(`${this._serverRessourcen.SocketPrefix}${this._serverRessourcen.ServerAdresse}:${this._serverRessourcen.Port}${this._serverRessourcen.BasePath}${this._serverRessourcen.Endpoint.CurrentClicks}?${this._serverRessourcen.AuthentificationParam}=${user.Token}`)
             tmpConnectionState.GPPS = new WebSocket(`${this._serverRessourcen.SocketPrefix}${this._serverRessourcen.ServerAdresse}:${this._serverRessourcen.Port}${this._serverRessourcen.BasePath}${this._serverRessourcen.Endpoint.GPPS}?${this._serverRessourcen.AuthentificationParam}=${user.Token}`)
+
         }
         return tmpConnectionState
     }
