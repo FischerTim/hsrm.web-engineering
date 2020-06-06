@@ -1,8 +1,8 @@
 import React from 'react'
 
-import { Languages } from '../Ressourcen/LanguageRessourcen'
+import { Languages } from '../../Ressourcen/LanguageRessourcen'
 import { LanguageOption } from './LanguageOption'
-import { LanguageState } from '../States/LanguageState'
+import { LanguageState } from '../../States/LanguageState'
 
 export function LanguageSwitch({ ressourcenService, setRessourcen, language, setLanguage }) {
 

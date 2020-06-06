@@ -7,6 +7,9 @@ import { RessourcenContextProvider } from './RessourcenContext'
 import { RessourcenServiceContextProvider } from './RessourcenServiceContext'
 import { ConnectionContextProvider } from './ConnectionContext'
 import { ConnectionServiceContextProvider } from './ConnectionServiceContext'
+import { GeneratorServiceContextProvider } from './GeneratorServiceContext'
+import { GeneratorsContextProvider } from './GeneratorsContext'
+
 import { PointsContextProvider } from './PointsContext'
 import { GPPSContextProvider } from './GPPSContext'
 
@@ -18,19 +21,23 @@ export const ContextManagerProvider = ({ children }) => {
          <LanguageContextProvider>
             <RessourcenServiceContextProvider>
                <RessourcenContextProvider>
-                  <ConnectionServiceContextProvider>
-                     <ConnectionContextProvider>
-                        <UserServiceContextProvider>
-                           <UserContextProvider>
-                              <PointsContextProvider>
-                                 <GPPSContextProvider>
-                                    {children}
-                                 </GPPSContextProvider>
-                              </PointsContextProvider>
-                           </UserContextProvider>
-                        </UserServiceContextProvider>
-                     </ConnectionContextProvider>
-                  </ConnectionServiceContextProvider>
+                  <GeneratorServiceContextProvider>
+                     <GeneratorsContextProvider>
+                        <ConnectionServiceContextProvider>
+                           <ConnectionContextProvider>
+                              <UserServiceContextProvider>
+                                 <UserContextProvider>
+                                    <PointsContextProvider>
+                                       <GPPSContextProvider>
+                                          {children}
+                                       </GPPSContextProvider>
+                                    </PointsContextProvider>
+                                 </UserContextProvider>
+                              </UserServiceContextProvider>
+                           </ConnectionContextProvider>
+                        </ConnectionServiceContextProvider>
+                     </GeneratorsContextProvider>
+                  </GeneratorServiceContextProvider>
                </RessourcenContextProvider>
             </RessourcenServiceContextProvider>
          </LanguageContextProvider>

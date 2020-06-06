@@ -16,15 +16,15 @@ export class UserService {
             body: JSON.stringify(`&username=${username}&password=${password}&`),
         }).then(response => response.json())
             .then(data => {
+                
+                const user = { ...UserState }
                 if (data.access_token != null) {
-                    const user = UserState
                     user.LogedIn = true
                     user.Token = data.access_token
                     user.Username = username
-                    return user
-                } else {
-                    return UserState
                 }
+                return user
+
             })
     }
 

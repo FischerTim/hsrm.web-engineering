@@ -7,7 +7,7 @@ import { RegisterPage } from './Pages/RegisterPage'
 import { CorePage } from './Pages/CorePage'
 
 import { RessourcenContext } from './Context/RessourcenContext'
-import { LanguageSwitch } from './Components/LanguageSwitch'
+import { LanguageSwitch } from './Components/Language/LanguageSwitch'
 import { RessourcenServiceContext } from './Context/RessourcenServiceContext'
 import { LanguageContext } from './Context/LanguageContext'
 

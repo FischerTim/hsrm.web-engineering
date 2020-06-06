@@ -33,7 +33,7 @@ export function LoginPage(props) {
         const newConnection = connectionService.getConnection(user)
 
         newConnection.Click.addEventListener('message', function (event) {
-          console.log("test")
+          console.log("Click Response To check if click works. in LoginPage")
         });
         newConnection.GPPS.addEventListener('message', function (event) {
           setGPPS(JSON.parse(event.data)["points"])
