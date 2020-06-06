@@ -1,10 +1,10 @@
 export const GeneratorBaseState = { 
-    id : null,
-    income_rate: 0, 
-    amount: 0, 
-    price: null 
-
+    Id : null,
+    Income_rate: 0, 
+    Amount: 0, 
+    Price: null, 
+    Buy: null
 }
 export const GeneratorsState = {
-    
+
 }

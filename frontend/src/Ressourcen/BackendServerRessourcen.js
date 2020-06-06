@@ -13,7 +13,8 @@ export const BackendServer = {
         Generators:{
             Available: "/generators/available",
             Owned: "/generators/current-user",
-            PriceOf: "/next-price"
+            PriceOf: "/next-price",
+            Buy: "/buy"
         }
        
     }

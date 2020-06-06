@@ -7,10 +7,11 @@ export function GeneratorList({ generatorsList }) {
             const tmpEle = generatorsList[ele]
             generators.push(<Generator
                 key={ele}
-                CPS={tmpEle.income_rate}
-                id={ele} 
-                price = {tmpEle.price}
-                amount = {tmpEle.amount}/>)
+                CPS={tmpEle.Income_rate}
+                id={tmpEle.Id} 
+                price = {tmpEle.Price}
+                amount = {tmpEle.Amount}
+                buy = {tmpEle.Buy}/>)
 
         }
 
