@@ -32,12 +32,9 @@ export function LanguageSwitch({ ressourcenService, setRessourcen, language, set
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-                <select id="languageSelector" onChange={onLanguageChanged} value={language}>
-                    {languageList}
-                </select>
             </Nav>
             <Form inline>
-                <NavDropdown title={language} id="basic-nav-dropdown" onChange={onLanguageChanged}>
+                <NavDropdown title={language} id="basic-nav-dropdown" onClick={onLanguageChanged}>
                     {languageList}
                 </NavDropdown>
             </Form>
