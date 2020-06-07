@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { Navbar, Form, Nav, NavDropdown } from 'react-bootstrap';
+
 import { Languages } from '../../Ressourcen/LanguageRessourcen'
 import { LanguageOption } from './LanguageOption'
 import { LanguageState } from '../../States/LanguageState'
@@ -25,9 +27,20 @@ export function LanguageSwitch({ ressourcenService, setRessourcen, language, set
         }
     }
 
-    return (<div>
-        <select id="languageSelector" onChange={onLanguageChanged} value={language}>
-            {languageList}
-        </select>
-    </div>)
+    return (<Navbar bg="light" expand="lg">
+        <Navbar.Brand href="#home">Web-Engineering</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mr-auto">
+                <select id="languageSelector" onChange={onLanguageChanged} value={language}>
+                    {languageList}
+                </select>
+            </Nav>
+            <Form inline>
+                <NavDropdown title={language} id="basic-nav-dropdown" onChange={onLanguageChanged}>
+                    {languageList}
+                </NavDropdown>
+            </Form>
+        </Navbar.Collapse>
+    </Navbar>)
 }

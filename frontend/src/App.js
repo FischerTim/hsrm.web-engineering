@@ -19,6 +19,7 @@ function App() {
 
   return (
     <div className="src/App">
+      <LanguageSwitch ressourcenService={ressourcenService} setRessourcen={setRessourcen} language={language} setLanguage={setLanguage} ></LanguageSwitch>
       <Router>
         <Switch>
           <Route path={ressourcen.Path.Login}>
@@ -32,7 +33,6 @@ function App() {
           </Route>
         </Switch>
       </Router>
-      <LanguageSwitch ressourcenService={ressourcenService} setRessourcen={setRessourcen} language={language} setLanguage={setLanguage} ></LanguageSwitch>
     </div>
   )
 }

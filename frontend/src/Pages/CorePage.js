@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 
 import { useHistory } from 'react-router-dom'
+import { Jumbotron, Button, Container, Row, Col, Form } from 'react-bootstrap';
 
 import { UserContext } from '../Context/UserContext'
 import { RessourcenContext } from '../Context/RessourcenContext';
@@ -63,14 +64,20 @@ export function CorePage() {
 
     return (
         <div>
-            <label>{points}</label> <br></br>
-            <label>{gPPS}</label>
-
-            <button onClick={newClick}>click mich pls</button>
-            <button onClick={logout}>logout</button>
-            <button onClick={gen}>generators</button>
-
-            <GeneratorList generatorsList={generators} />
+            <Container>
+                <Jumbotron>
+                    <h1>{ressourcen.LoginData.Points} {points}</h1>
+                    <p>
+                    {ressourcen.LoginData.PointsPC} {gPPS}
+                    </p><br />
+                    <p>
+                        <Button variant="success">{ressourcen.LoginData.ClickButton}</Button>
+                    </p>
+                </Jumbotron><br />
+                <Button variant="primary" onClick={gen}>{ressourcen.LoginData.Generators}</Button>
+                <GeneratorList generatorsList={generators} /><br />
+                <Button variant="danger" onClick={logout}>Logout</Button><br /><br />
+            </Container>
         </div>
     )
 }
