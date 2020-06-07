@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useForm } from "react-hook-form";
-import { Navbar, Form, Nav, NavDropdown } from 'react-bootstrap';
+import { Navbar, Form, Nav, NavDropdown, Button } from 'react-bootstrap';
 
 import { Link } from 'react-router-dom';
+import { RessourcenContext } from '../../Context/RessourcenContext';
 
 import { Languages } from '../../Ressourcen/LanguageRessourcen'
 import { LanguageOption } from './LanguageOption'
@@ -11,7 +12,8 @@ import { LanguageState } from '../../States/LanguageState'
 export function LanguageSwitch({ ressourcenService, setRessourcen, language, setLanguage }) {
 
     const { register, handleSubmit, errors } = useForm();
-    
+    const { ressourcen } = useContext(RessourcenContext)
+
     const languageList = []
 
     for (const e in Languages) {
@@ -38,8 +40,11 @@ export function LanguageSwitch({ ressourcenService, setRessourcen, language, set
             <Nav className="mr-auto">
             </Nav>
             <Form inline>
+                <Button variant="primary" type="submit">
+                    {ressourcen.LoginData.LoginButton}
+                </Button>
                 <NavDropdown title={language} id="basic-nav-dropdown" onClick={onLanguageChanged}>
-                <NavDropdown.Item >{languageList}</NavDropdown.Item>
+                    <NavDropdown.Item >{languageList}</NavDropdown.Item>
                 </NavDropdown>
             </Form>
         </Navbar.Collapse>

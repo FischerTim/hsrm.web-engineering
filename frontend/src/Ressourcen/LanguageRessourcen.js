@@ -21,7 +21,7 @@ export const Languages = {
             PasswordField: "Password",
             PasswordConfirm: "Confirm Password",
             RegisterButton: "Register Now",
-            LoginLink: "Already registered?"
+            LoginLink: "To the login"
         },
         CorePage: {
            Points: "Your Points: "
@@ -54,7 +54,7 @@ export const Languages = {
             PasswordField: "Passwort",
             PasswordConfirm: "Passwort wiederholen",
             RegisterButton: "Registrieren",
-            LoginLink: "Schon registriert?"
+            LoginLink: "Zum Login"
         },
         CorePage: {
             Points: "Deine Punkte: "
