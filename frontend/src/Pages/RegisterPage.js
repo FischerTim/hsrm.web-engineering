@@ -1,13 +1,13 @@
 import React, { useContext } from 'react'
 import { useForm } from "react-hook-form";
-import { Container, Row, Col, Form, Button, FormControl } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 
 import { Link } from 'react-router-dom';
 import { RessourcenContext } from '../Context/RessourcenContext';
 
 export function RegisterPage() {
 
-  const { register, handleSubmit, errors } = useForm();
+  const { handleSubmit } = useForm();
   const { ressourcen } = useContext(RessourcenContext)
   let registerEmail = React.useRef(null)
   let registerPassword = React.useRef(null)
@@ -16,7 +16,7 @@ export function RegisterPage() {
   const onRegister = data => {
     console.log('Email: ' + registerEmail.current.value)
     
-    if (registerPassword.current.value != confirmPassword.current.value) {
+    if (registerPassword.current.value !== confirmPassword.current.value) {
       // TODO ERROR
       console.log('Password: ' + registerPassword.current.value)
       console.log('not same: ' + confirmPassword.current.value)

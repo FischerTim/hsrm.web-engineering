@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 
 import { useHistory, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { Container, Row, Col, Form, Button, FormControl } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 
 import { UserContext } from '../Context/UserContext'
 import { RessourcenContext } from '../Context/RessourcenContext';
@@ -15,7 +15,7 @@ import { GPPSContext } from '../Context/GPPSContext';
 export function LoginPage(props) {
 
   const pathHistory = useHistory()
-  const { register, handleSubmit, errors } = useForm();
+  const { handleSubmit } = useForm();
 
   const { setUser } = useContext(UserContext)
   const { userService } = useContext(UserServiceContext)

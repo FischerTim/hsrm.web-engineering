@@ -1,8 +1,6 @@
 import React, { useContext } from 'react'
-import { useForm } from "react-hook-form";
 import { Navbar, Form, Nav, NavDropdown, Button } from 'react-bootstrap';
 
-import { Link } from 'react-router-dom';
 import { RessourcenContext } from '../../Context/RessourcenContext';
 
 import { Languages } from '../../Ressourcen/LanguageRessourcen'
@@ -11,7 +9,6 @@ import { LanguageState } from '../../States/LanguageState'
 
 export function LanguageSwitch({ ressourcenService, setRessourcen, language, setLanguage }) {
 
-    const { register, handleSubmit, errors } = useForm();
     const { ressourcen } = useContext(RessourcenContext)
 
     const languageList = []
