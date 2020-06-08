@@ -1,4 +1,4 @@
 export const StatisticState = {
-    GeneralPoint: null,
-    GPPS: null
+    GeneralPoint: 0,
+    GPPS: 0
 }

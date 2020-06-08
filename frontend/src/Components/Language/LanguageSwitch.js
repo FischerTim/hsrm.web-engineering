@@ -4,7 +4,7 @@ import { Languages } from '../../Ressourcen/LanguageRessourcen'
 import { LanguageOption } from './LanguageOption'
 import { LanguageState } from '../../States/LanguageState'
 
-export function LanguageSwitch({ ressourcenService, setRessourcen, language, setLanguage }) {
+export function LanguageSwitch({ressources}) {
 
     const languageList = []
 
@@ -19,14 +19,12 @@ export function LanguageSwitch({ ressourcenService, setRessourcen, language, set
         const key = e.target.value
 
         if (LanguageState[key] !== undefined) {
-            setLanguage(LanguageState[key])
-
-            setRessourcen(ressourcenService.getRessourcen(LanguageState[key]))
+            ressources.setLanguage(LanguageState[key]) 
         }
     }
 
     return (<div>
-        <select id="languageSelector" onChange={onLanguageChanged} value={language}>
+        <select id="languageSelector" onChange={onLanguageChanged} value={ressources._language}>
             {languageList}
         </select>
     </div>)

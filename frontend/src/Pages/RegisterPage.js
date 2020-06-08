@@ -3,13 +3,12 @@ import React, { useContext } from 'react'
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
-import { RessourcenContext } from '../Context/RessourcenContext';
+import { Ressources } from '../Services/Ressources';
 
 export function RegisterPage() {
 
   const { register, handleSubmit, errors } = useForm();
-
-  const { ressourcen } = useContext(RessourcenContext)
+  const ressources = new Ressources().get()
 
   const onSubmit = data => { console.log("hi") }
 
@@ -26,6 +25,6 @@ export function RegisterPage() {
       {errors.exampleRequired && <span>This field is required</span>}
 
       <input type="submit" />
-      <Link to={ressourcen.Path.Login}>{ressourcen.RegisterData.LoginLink}</Link>
+      <Link to={ressources.Path.Login}>{ressources.RegisterData.LoginLink}</Link>
     </form></div>)
 }

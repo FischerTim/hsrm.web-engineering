@@ -1,19 +1,23 @@
 import React from 'react'
 import { Generator } from './Generator'
 
-export function GeneratorList({ generatorsList }) {
+export function GeneratorList({ points, generatorsList, onBuy }) {
     const generators = []
-        for (const ele in generatorsList) {
-            const tmpEle = generatorsList[ele]
-            generators.push(<Generator
-                key={ele}
-                CPS={tmpEle.Income_rate}
-                id={tmpEle.Id} 
-                price = {tmpEle.Price}
-                amount = {tmpEle.Amount}
-                buy = {tmpEle.Buy}/>)
 
+    for (const ele in generatorsList) {
+        const tmpEle = generatorsList[ele]
+        const buyFunction = () => {
+            tmpEle.Buy()
+            onBuy()
         }
+        generators.push(<Generator
+            key={ele}
+            CPS={tmpEle.Income_rate}
+            id={tmpEle.Id}
+            price={tmpEle.Price}
+            amount={tmpEle.Amount}
+            buy={points>=tmpEle.Price? buyFunction:null} />)
+    }
 
 
     return (<div>

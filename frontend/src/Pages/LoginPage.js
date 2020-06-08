@@ -1,54 +1,24 @@
-import React, { useContext } from 'react'
+import React from 'react'
 
 import { useHistory, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
-import { UserContext } from '../Context/UserContext'
-import { RessourcenContext } from '../Context/RessourcenContext';
-import { UserServiceContext } from '../Context/UserServiceContext';
-import { ConnectionServiceContext } from '../Context/ConnectionServiceContext';
-import { ConnectionContext } from '../Context/ConnectionContext';
-import { PointsContext } from '../Context/PointsContext';
-import { GPPSContext } from '../Context/GPPSContext';
+import { UserManger } from '../Services/UserManger';
+import { Ressources } from '../Services/Ressources';
 
 export function LoginPage(props) {
 
   const pathHistory = useHistory()
   const { register, handleSubmit, errors } = useForm();
 
-  const { setUser } = useContext(UserContext)
-  const { userService } = useContext(UserServiceContext)
-  const { ressourcen } = useContext(RessourcenContext)
-  const { connectionService } = useContext(ConnectionServiceContext)
-  const { setConnection } = useContext(ConnectionContext)
-  const { setPoints } = useContext(PointsContext)
-  const { setGPPS } = useContext(GPPSContext)
-
+  const ressources = new Ressources().get()
+  const userManger = new UserManger(ressources.Backend)
   const onSendButtonPressed = (data) => {
-    //TODO logout
-    userService.login(data.Username, data.Password).then((user) => {
-
-      if (user.LogedIn) {
-        setUser(user)
-        const newConnection = connectionService.getConnection(user)
-
-        newConnection.Click.addEventListener('message', function (event) {
-          console.log("Click Response To check if click works. in LoginPage")
-        });
-        newConnection.GPPS.addEventListener('message', function (event) {
-          setGPPS(JSON.parse(event.data)["points"])
-        });
-        newConnection.Points.addEventListener('message', function (event) {
-          setPoints(JSON.parse(event.data)["points"])
-        });
-
-        setConnection(newConnection)
-
-        pathHistory.push(ressourcen.Path.Core)
-      }
-    })
-
+    userManger.login(data.Username, data.Password)
+      .then(() => { pathHistory.push(ressources.Path.Core) })
+      .catch()
   }
+
 
   return (<div>
     <form onSubmit={handleSubmit(onSendButtonPressed)}>
@@ -62,7 +32,7 @@ export function LoginPage(props) {
       <input type="submit" />
     </form>
 
-    <Link to={ressourcen.Path.Register}>{ressourcen.LoginData.RegisterData}</Link>
+    <Link to={ressources.Path.Register}>{ressources.LoginData.RegisterData}</Link>
 
   </div>
   )

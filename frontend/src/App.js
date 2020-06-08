@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
@@ -6,33 +6,30 @@ import { LoginPage } from './Pages/LoginPage'
 import { RegisterPage } from './Pages/RegisterPage'
 import { CorePage } from './Pages/CorePage'
 
-import { RessourcenContext } from './Context/RessourcenContext'
+
 import { LanguageSwitch } from './Components/Language/LanguageSwitch'
-import { RessourcenServiceContext } from './Context/RessourcenServiceContext'
-import { LanguageContext } from './Context/LanguageContext'
+import { Ressources } from './Services/Ressources'
 
 function App() {
 
-  const { language, setLanguage } = useContext(LanguageContext)
-  const { ressourcen, setRessourcen } = useContext(RessourcenContext)
-  const { ressourcenService } = useContext(RessourcenServiceContext)
+  const ressources = new Ressources()
 
   return (
     <div className="src/App">
       <Router>
         <Switch>
-          <Route path={ressourcen.Path.Login}>
+          <Route path={ressources.get().Path.Login}>
             <LoginPage />
           </Route>
-          <Route path={ressourcen.Path.Register}>
+          <Route path={ressources.get().Path.Register}>
             <RegisterPage />
           </Route>
-          <Route path={ressourcen.Path.Core}>
+          <Route path={ressources.get().Path.Core}>
             <CorePage />
           </Route>
         </Switch>
       </Router>
-      <LanguageSwitch ressourcenService={ressourcenService} setRessourcen={setRessourcen} language={language} setLanguage={setLanguage} ></LanguageSwitch>
+      <LanguageSwitch ressources={ressources}></LanguageSwitch>
     </div>
   )
 }

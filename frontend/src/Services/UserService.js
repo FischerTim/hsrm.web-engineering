@@ -1,3 +1,5 @@
+import { useContext } from 'react'
+
 import { UserState } from '../States/UserState'
 
 export class UserService {
@@ -7,6 +9,7 @@ export class UserService {
     }
 
     login(username, password) {
+        console.log(`http://${this._serverData.ServerAdresse}:${this._serverData.Port}${this._serverData.Endpoint.Token}`)
         return fetch(`http://${this._serverData.ServerAdresse}:${this._serverData.Port}${this._serverData.Endpoint.Token}`, {
             method: 'POST',
             headers: {
@@ -16,7 +19,7 @@ export class UserService {
             body: JSON.stringify(`&username=${username}&password=${password}&`),
         }).then(response => response.json())
             .then(data => {
-                
+
                 const user = { ...UserState }
                 if (data.access_token != null) {
                     user.LogedIn = true
