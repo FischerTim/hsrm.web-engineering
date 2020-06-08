@@ -1,15 +1,16 @@
-import React, { useState, createContext, useContext } from 'react'
+import React, { useState, createContext } from 'react'
 
-import { RessourcenServiceContext } from './RessourcenServiceContext'
-import { LanguageContext } from './LanguageContext'
+import { Languages } from '../States/LanguageState'
+import { LanguageRessourcen } from '../Ressourcen/LanguageRessourcen'
+import { RessourcenState } from '../States/RessourcenState'
 
 export const RessourcenContext = createContext()
 export const RessourcenContextProvider = ({ children }) => {
-
-    const { ressourcenService } = useContext(RessourcenServiceContext)
-    const { language } = useContext(LanguageContext)
-
-    const [ressourcen, setRessourcen] = useState(ressourcenService.getRessourcen(language))
+    const initValue = { ...RessourcenState }
+    initValue.LoginData = LanguageRessourcen[Languages.DEFAULT].LoginData
+    initValue.RegisterData = LanguageRessourcen[Languages.DEFAULT].RegisterData
+    initValue.LanguageData = LanguageRessourcen[Languages.DEFAULT].LanguageData
+    const [ressourcen, setRessourcen] = useState(initValue)
     const ressourcenValue = { ressourcen, setRessourcen }
 
     return (

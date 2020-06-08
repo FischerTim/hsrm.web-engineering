@@ -1,5 +1,5 @@
 import React from 'react'
-export function LanguageOption({LanguageId, LanguageRepresentation}){
+export function LanguageOption({ LanguageId, LanguageRepresentation }) {
 
-return(<option value={LanguageId}>{LanguageRepresentation}</option>)
+    return (<option value={LanguageId}>{LanguageRepresentation}</option>)
 }

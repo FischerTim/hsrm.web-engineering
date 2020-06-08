@@ -59,17 +59,17 @@ export class UserManger {
         this._user = { ...UserState }
         this._setPoints(0)
         this._setGPPS(0)
-        return new Promise(() =>"")
+        return new Promise(() => "")
     }
 
-    click(){
-        const clickEndpoind = this._connectionManager.getConnection("Click") 
-        if (clickEndpoind!== null){
+    click() {
+        const clickEndpoind = this._connectionManager.getConnection("Click")
+        if (clickEndpoind !== null) {
             clickEndpoind.send("")
         }
     }
 
-    updateGenerators(){
+    updateGenerators() {
         this._connectionManager.updateGenerators()
     }
 }

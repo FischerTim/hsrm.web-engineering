@@ -1,25 +1,25 @@
 import React from 'react'
 
-import { Languages } from '../../Ressourcen/LanguageRessourcen'
+import { LanguageRessourcen } from '../../Ressourcen/LanguageRessourcen'
 import { LanguageOption } from './LanguageOption'
-import { LanguageState } from '../../States/LanguageState'
+import { Languages } from '../../States/LanguageState'
 
-export function LanguageSwitch({ressources}) {
+export function LanguageSwitch({ ressources }) {
 
     const languageList = []
 
-    for (const e in Languages) {
+    for (const e in LanguageRessourcen) {
         languageList.push(<LanguageOption
-            key={Languages[e].LanguageData.Id}
-            LanguageId={Languages[e].LanguageData.Id}
-            LanguageRepresentation={Languages[e].LanguageData.Repressentation} />)
+            key={LanguageRessourcen[e].LanguageData.Id}
+            LanguageId={LanguageRessourcen[e].LanguageData.Id}
+            LanguageRepresentation={LanguageRessourcen[e].LanguageData.Repressentation} />)
     }
 
     const onLanguageChanged = (e) => {
         const key = e.target.value
 
-        if (LanguageState[key] !== undefined) {
-            ressources.setLanguage(LanguageState[key]) 
+        if (Languages[key] !== undefined) {
+            ressources.setLanguage(Languages[key])
         }
     }
 

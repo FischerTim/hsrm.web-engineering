@@ -16,7 +16,7 @@ export function GeneratorList({ points, generatorsList, onBuy }) {
             id={tmpEle.Id}
             price={tmpEle.Price}
             amount={tmpEle.Amount}
-            buy={points>=tmpEle.Price? buyFunction:null} />)
+            buy={points >= tmpEle.Price ? buyFunction : null} />)
     }
 
 

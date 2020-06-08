@@ -10,12 +10,12 @@ export const BackendServer = {
         Click: "/click",
         CurrentClicks: "/balance",
         GPPS: "/generators",
-        Generators:{
+        Generators: {
             Available: "/generators/available",
             Owned: "/generators/current-user",
             PriceOf: "/next-price",
             Buy: "/buy"
         }
-       
+
     }
 }

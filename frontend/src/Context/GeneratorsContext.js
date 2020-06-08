@@ -5,7 +5,7 @@ import { GeneratorsState } from '../States/GeneratorState'
 export const GeneratorsContext = createContext()
 export const GeneratorsContextProvider = ({ children }) => {
 
-  const [generators, setGenerators] = useState({...GeneratorsState})
+  const [generators, setGenerators] = useState({ ...GeneratorsState })
   const generatorsValue = { generators, setGenerators }
 
   return (
