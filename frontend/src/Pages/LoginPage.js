@@ -67,7 +67,7 @@ export function LoginPage(props) {
               <h2>{ressourcen.LoginData.LoginHeader}</h2>
               <Form.Text className="text-muted">
               </Form.Text><br /><br />
-              <Form.Control type="text" placeholder={ressourcen.LoginData.EmailField} className="text-center" ref={loginEmail} />
+              <Form.Control type="text" placeholder={ressourcen.LoginData.UserField} className="text-center" ref={loginEmail} />
               <Form.Control type="password" placeholder={ressourcen.LoginData.PasswordField} className="text-center" ref={loginPassword} />
             </Form.Group><br />
             <Button variant="primary" type="submit">

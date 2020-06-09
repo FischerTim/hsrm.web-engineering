@@ -35,7 +35,7 @@ export function RegisterPage() {
               <Form.Text className="text-muted">
                 {ressourcen.RegisterData.RegisterText}
               </Form.Text><br /><br />
-              <Form.Control type="email" placeholder={ressourcen.RegisterData.EmailField} className="text-center" ref={registerEmail} />
+              <Form.Control type="email" placeholder={ressourcen.RegisterData.UserField} className="text-center" ref={registerEmail} />
               <Form.Text className="text-muted">
                 {ressourcen.RegisterData.EmailText}
               </Form.Text>

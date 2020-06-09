@@ -2,7 +2,7 @@ export const Languages = {
     "EN": {
         LoginData: {
             LoginHeader : "Welcome!",
-            EmailField: "Username",
+            UserField: "Username",
             PasswordField: "Password",
             LoginButton: "Login",
             LoginWarning: "Login failed.",
@@ -35,7 +35,7 @@ export const Languages = {
     "DE": {
         LoginData: {
             LoginHeader : "Wilkommen!",
-            EmailField: "Benutzername",
+            UserField: "Benutzername",
             PasswordField: "Passwort",
             LoginButton: "Anmelden",
             LoginWarning: "Login fehlgeschlagen.",
