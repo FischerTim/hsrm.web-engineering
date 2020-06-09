@@ -16,7 +16,7 @@ export const Languages = {
         RegisterData: {
             RegisterHeader: "Register",
             RegisterText: "Create your Account. It's free and only takes a minute.",
-            EmailField: "Email",
+            UserField: "Username",
             EmailText: "We'll never share your email with anyone else.",
             PasswordField: "Password",
             PasswordConfirm: "Confirm Password",
@@ -49,7 +49,7 @@ export const Languages = {
         RegisterData: {
             RegisterHeader: "Registrieren",
             RegisterText: "Erstelle deinen Account. Es ist kostenlos und dauert nur eine Minute!",
-            EmailField: "Email",
+            UserField: "Benutzername",
             EmailText: "Wir teilen deine Email mit niemandem sonst.",
             PasswordField: "Passwort",
             PasswordConfirm: "Passwort wiederholen",
