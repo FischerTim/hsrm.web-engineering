@@ -57,6 +57,7 @@ export class UserService {
         }
         this._connectionService.addEvents(gPPSEvent, pointEvent)
         this._connectionService.updateGenerators()
+        this._connectionService.updateUpdates()
     }
 
     logout() {
@@ -76,6 +77,9 @@ export class UserService {
 
     updateGenerators() {
         this._connectionService.updateGenerators()
+    }
+    updateUpdates(){
+        this._connectionService.updateUpdates()
     }
 }
 

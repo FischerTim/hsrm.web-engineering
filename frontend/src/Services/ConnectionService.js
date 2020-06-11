@@ -1,7 +1,10 @@
 import { ConnectionState } from '../States/ConnectionState'
 import { GeneratorState, GeneratorsState } from '../States/GeneratorState';
+import { UpdateState, UpdatesState } from '../States/UpdateState';
+
 import { useContext } from 'react';
 import { GeneratorsContext } from '../Context/GeneratorsContext';
+import { UpdatesContext } from '../Context/UpdatesContext';
 
 export class ConnectionService {
     static instance;
@@ -14,6 +17,7 @@ export class ConnectionService {
         this._serverRessource = serverRessource
         this._currentConnections = { ...ConnectionState }
         this._setGenerators = useContext(GeneratorsContext).setGenerators
+        this._setUpdates = useContext(UpdatesContext).setUpdates
     }
 
     getToken(username, password) {
@@ -25,11 +29,11 @@ export class ConnectionService {
             .then(response => response.json())
             .then(data => { return data.access_token })
     }
-    
+
     register(username, password) {
         const method = 'POST'
         const header = { "Accept": "application/json", "Content-Type": 'application/json' }
-        const body = `{\"username\":\"${username}\",\"password\":\"${password}\"}`
+        const body = `{"username":"${username}","password":"${password}"}`
         const url = `${this._serverRessource.HttpPrefix}${this._serverRessource.ServerAdresse}:${this._serverRessource.Port}${this._serverRessource.Endpoint.Register}`
         return fetch(url, { method: method, headers: header, body: body, })
     }
@@ -67,7 +71,8 @@ export class ConnectionService {
                 .then(availableGenerators => {
                     for (var i = 0; i < availableGenerators.length; i++) {
                         const currentId = availableGenerators[i].id
-                        const url = `${baseServerPath}/generators/${currentId}${this._serverRessource.Endpoint.Generators.Buy}`
+
+                        const url = `${baseServerPath}${this._serverRessource.Endpoint.Generators.Base}/${currentId}${this._serverRessource.Endpoint.Generators.Buy}`
                         const buyFunction = (update) => {
                             fetch(url, header)
                         }
@@ -78,7 +83,7 @@ export class ConnectionService {
                             Buy: buyFunction
                         }
                         if (i === availableGenerators.length - 1) {
-                            const url = `${baseServerPath}/generators/${currentId}${this._serverRessource.Endpoint.Generators.PriceOf}`
+                            const url = `${baseServerPath}${this._serverRessource.Endpoint.Generators.Base}/${currentId}${this._serverRessource.Endpoint.Generators.PriceOf}`
                             return fetch(url, header)
                                 .then(response => response.json())
                                 .then(priceOfGen => {
@@ -94,7 +99,7 @@ export class ConnectionService {
                                         })
                                 })
                         } else {
-                            const url = `${baseServerPath}/generators/${currentId}${this._serverRessource.Endpoint.Generators.PriceOf}`
+                            const url = `${baseServerPath}${this._serverRessource.Endpoint.Generators.Base}/${currentId}${this._serverRessource.Endpoint.Generators.PriceOf}`
                             fetch(url, header)
                                 .then(response => response.json())
                                 .then(priceOfGen => {
@@ -111,14 +116,68 @@ export class ConnectionService {
         }
 
     }
+    updateUpdates() {
+
+        if (this._token !== null) {
+            const header = { method: 'GET', headers: { "Accept": "application/json", "Content-Type": 'application/x-www-form-urlencoded', "Authorization": `Bearer ${this._token}` } }
+            const baseServerPath = `${this._serverRessource.HttpPrefix}${this._serverRessource.ServerAdresse}:${this._serverRessource.Port}`
+            const url = `${baseServerPath}${this._serverRessource.Endpoint.Updates.Available}`
+
+            const newUpdates = { ...UpdatesState }
+            fetch(url, header)
+                .then(response => response.json())
+                .then(availableUpdates => {
+                    for (var i = 0; i < availableUpdates.length; i++) {
+                        const currentId = availableUpdates[i].id
+                        const url = `${baseServerPath}${this._serverRessource.Endpoint.Updates.Base}/${currentId}${this._serverRessource.Endpoint.Updates.Buy}`
+                        const buyFunction = (update) => {
+                            fetch(url, header)
+                        }
+                        newUpdates[currentId] = {
+                            ...UpdateState,
+                            Multiplier: availableUpdates[i].multiplier,
+                            Id: currentId,
+                            Price: availableUpdates[i].cost,
+                            Buy: buyFunction
+                        }
+                    }
+                        const newUrl = `${baseServerPath}${this._serverRessource.Endpoint.Updates.Owned}`
+                        return fetch(newUrl, header)
+                            .then(response => response.json())
+                            .then(ownedUpdates => {
+                                for (var i = 0; i < ownedUpdates.length; i++) {
+                                    
+                                    const currentId = ownedUpdates[i].upgrade.id
+                                    newUpdates[currentId] = {
+                                        ...UpdateState,
+                                        Multiplier:  ownedUpdates[i].upgrade.multiplier,
+                                        Id: currentId,
+                                        Price: ownedUpdates[i].upgrade.cost,
+                                        Buy: null
+                                    }
+                                }
+                            })
+
+                }).then(() => {
+                    this._setUpdates(newUpdates)
+                })
+        }
+
+    }
+
     disconnect() {
         this._disconnectWebSocket()
         this._disconnectGenerators()
+        this._disconnectUpdates()
         this._token = null
     }
     _disconnectGenerators() {
         const newGenerators = { ...GeneratorsState }
         this._setGenerators(newGenerators)
+    }
+    _disconnectUpdates() {
+        const newUpdates = { ...UpdatesState }
+        this._setUpdates(newUpdates)
     }
 
     getConnection(connectionKey) {

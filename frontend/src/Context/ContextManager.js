@@ -6,6 +6,7 @@ import { GeneratorsContextProvider } from './GeneratorsContext'
 
 import { PointsContextProvider } from './PointsContext'
 import { GPPSContextProvider } from './GPPSContext'
+import { UpdatesContextProvider } from './UpdatesContext'
 
 export const ContextManager = createContext()
 export const ContextManagerProvider = ({ children }) => {
@@ -14,11 +15,13 @@ export const ContextManagerProvider = ({ children }) => {
       <ContextManager.Provider>
          <RessourcenContextProvider>
             <GeneratorsContextProvider>
-               <PointsContextProvider>
-                  <GPPSContextProvider>
-                     {children}
-                  </GPPSContextProvider>
-               </PointsContextProvider>
+               <UpdatesContextProvider>
+                  <PointsContextProvider>
+                     <GPPSContextProvider>
+                        {children}
+                     </GPPSContextProvider>
+                  </PointsContextProvider>
+               </UpdatesContextProvider>
             </GeneratorsContextProvider>
          </RessourcenContextProvider>
       </ContextManager.Provider >

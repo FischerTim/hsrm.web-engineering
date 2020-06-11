@@ -15,7 +15,14 @@ export const ServerRessource = {
             Available: "/generators/available",
             Owned: "/generators/current-user",
             PriceOf: "/next-price",
-            Buy: "/buy"
+            Buy: "/buy",
+            Base: "/generators"
+        },
+        Updates: {
+            Available: "/upgrades/available",
+            Owned: "/upgrades/current-user",
+            Buy: "/buy",
+            Base: "/upgrades"
         }
 
     }
