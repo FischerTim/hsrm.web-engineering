@@ -17,6 +17,7 @@ function App() {
 
   return (
     <div className="src/App">
+      <LanguageSwitch ressourceService={ressourceService}></LanguageSwitch>
       <Router>
         <Switch>
           <Route path={ressources.Path.Login}>
@@ -30,7 +31,7 @@ function App() {
           </Route>
         </Switch>
       </Router>
-      <LanguageSwitch ressourceService={ressourceService}></LanguageSwitch>
+
     </div>
   )
 }

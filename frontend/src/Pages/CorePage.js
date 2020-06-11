@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 
 import { useHistory } from 'react-router-dom'
+import { Jumbotron, Button, Container} from 'react-bootstrap';
 
 import { PointsContext } from '../Context/PointsContext';
 import { GPPSContext } from '../Context/GPPSContext';
@@ -40,14 +41,19 @@ export function CorePage() {
 
     return (
         <div>
-            <label>{points}</label> <br></br>
-            <label>{gPPS}</label>
-
-            <button onClick={pointclick}>click mich pls</button>
-            <button onClick={logout}>logout</button>
-
-
-            <GeneratorList points={points} onBuy={updateGenerators} generatorsList={generators} />
+            <Container>
+                <Jumbotron>
+                    <h1>{ressources.Login.Points} {points}</h1>
+                    <p>
+                    {ressources.Login.PointsPC} {gPPS}
+                    </p><br />
+                    <p>
+                        <Button variant="success" onClick={pointclick}>{ressources.Login.ClickButton}</Button>
+                    </p>
+                </Jumbotron><br />
+                <GeneratorList points={points} onBuy={updateGenerators} generatorsList={generators} /> <br/>
+                <Button variant="danger" onClick={logout}>Logout</Button><br /><br />
+            </Container>
         </div>
     )
 }
