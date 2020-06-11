@@ -6,8 +6,8 @@ import { PointsContext } from '../Context/PointsContext';
 import { GPPSContext } from '../Context/GPPSContext';
 import { GeneratorList } from '../Components/Generator/GeneratorList';
 import { GeneratorsContext } from '../Context/GeneratorsContext';
-import { Ressources } from '../Services/Ressources';
-import { UserManger } from '../Services/UserManger';
+import { RessourceService } from '../Services/RessourceService';
+import { UserService } from '../Services/UserService';
 
 export function CorePage() {
 
@@ -17,25 +17,25 @@ export function CorePage() {
     const { points } = useContext(PointsContext)
     const { gPPS } = useContext(GPPSContext)
 
-    const ressources = new Ressources().get()
-    const userManger = new UserManger(ressources.Backend)
+    const ressources = new RessourceService().get()
+    const userService = new UserService(ressources.Server)
 
-    if (!userManger.logedIn()) {
+    if (!userService.logedIn()) {
         pathHistory.push(ressources.Path.Login)
     }
 
     const logout = () => {
-        userManger.logout()
+        userService.logout()
             .then(pathHistory.push(ressources.Path.Login))
             .catch()
     }
 
     const updateGenerators = () => {
-        userManger.updateGenerators()
+        userService.updateGenerators()
     }
 
     const pointclick = () => {
-        userManger.click()
+        userService.click()
     }
 
     return (

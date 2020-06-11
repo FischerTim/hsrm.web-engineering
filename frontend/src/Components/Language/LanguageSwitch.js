@@ -1,30 +1,29 @@
 import React from 'react'
 
-import { LanguageRessourcen } from '../../Ressourcen/LanguageRessourcen'
+import { LanguageRessources,Languages } from '../../Ressourcen/LanguageRessource'
 import { LanguageOption } from './LanguageOption'
-import { Languages } from '../../States/LanguageState'
 
-export function LanguageSwitch({ ressources }) {
+export function LanguageSwitch({ ressourceService }) {
 
     const languageList = []
 
-    for (const e in LanguageRessourcen) {
+    for (const e in LanguageRessources) {
         languageList.push(<LanguageOption
-            key={LanguageRessourcen[e].LanguageData.Id}
-            LanguageId={LanguageRessourcen[e].LanguageData.Id}
-            LanguageRepresentation={LanguageRessourcen[e].LanguageData.Repressentation} />)
+            key={LanguageRessources[e].LanguageRessource.Id}
+            LanguageId={LanguageRessources[e].LanguageRessource.Id}
+            LanguageRepresentation={LanguageRessources[e].LanguageRessource.Repressentation} />)
     }
 
     const onLanguageChanged = (e) => {
         const key = e.target.value
 
         if (Languages[key] !== undefined) {
-            ressources.setLanguage(Languages[key])
+            ressourceService.setLanguage(Languages[key])
         }
     }
 
     return (<div>
-        <select id="languageSelector" onChange={onLanguageChanged} value={ressources._language}>
+        <select id="languageSelector" onChange={onLanguageChanged} value={ressourceService._language}>
             {languageList}
         </select>
     </div>)

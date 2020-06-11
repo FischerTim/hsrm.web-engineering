@@ -1,17 +1,17 @@
 import { ConnectionState } from '../States/ConnectionState'
-import { GeneratorBaseState, GeneratorsState } from '../States/GeneratorState';
+import { GeneratorState, GeneratorsState } from '../States/GeneratorState';
 import { useContext } from 'react';
 import { GeneratorsContext } from '../Context/GeneratorsContext';
 
-export class ConnectionManager {
+export class ConnectionService {
     static instance;
 
-    constructor(backendData) {
-        if (ConnectionManager.instance) {
-            return ConnectionManager.instance;
+    constructor(serverRessource) {
+        if (ConnectionService.instance) {
+            return ConnectionService.instance;
         }
-        ConnectionManager.instance = this;
-        this._backendData = backendData
+        ConnectionService.instance = this;
+        this._serverRessource = serverRessource
         this._currentConnections = { ...ConnectionState }
         this._setGenerators = useContext(GeneratorsContext).setGenerators
     }
@@ -20,7 +20,7 @@ export class ConnectionManager {
         const method = 'POST'
         const header = { "Accept": "application/json", "Content-Type": 'application/x-www-form-urlencoded' }
         const body = JSON.stringify(`&username=${username}&password=${password}&`)
-        const url = `${this._backendData.HttpPrefix}${this._backendData.ServerAdresse}:${this._backendData.Port}${this._backendData.Endpoint.Token}`
+        const url = `${this._serverRessource.HttpPrefix}${this._serverRessource.ServerAdresse}:${this._serverRessource.Port}${this._serverRessource.Endpoint.Token}`
         return fetch(url, { method: method, headers: header, body: body, })
             .then(response => response.json())
             .then(data => { return data.access_token })
@@ -31,9 +31,9 @@ export class ConnectionManager {
         this._disconnectWebSocket()
         const newSocketConnections = { ...ConnectionState }
         if (token !== undefined) {
-            newSocketConnections.Click = new WebSocket(`${this._backendData.SocketPrefix}${this._backendData.ServerAdresse}:${this._backendData.Port}${this._backendData.BasePath}${this._backendData.Endpoint.Click}?${this._backendData.AuthentificationParam}=${token}`)
-            newSocketConnections.Points = new WebSocket(`${this._backendData.SocketPrefix}${this._backendData.ServerAdresse}:${this._backendData.Port}${this._backendData.BasePath}${this._backendData.Endpoint.CurrentClicks}?${this._backendData.AuthentificationParam}=${token}`)
-            newSocketConnections.GPPS = new WebSocket(`${this._backendData.SocketPrefix}${this._backendData.ServerAdresse}:${this._backendData.Port}${this._backendData.BasePath}${this._backendData.Endpoint.GPPS}?${this._backendData.AuthentificationParam}=${token}`)
+            newSocketConnections.Click = new WebSocket(`${this._serverRessource.SocketPrefix}${this._serverRessource.ServerAdresse}:${this._serverRessource.Port}${this._serverRessource.BasePath}${this._serverRessource.Endpoint.Click}?${this._serverRessource.AuthentificationParam}=${token}`)
+            newSocketConnections.Points = new WebSocket(`${this._serverRessource.SocketPrefix}${this._serverRessource.ServerAdresse}:${this._serverRessource.Port}${this._serverRessource.BasePath}${this._serverRessource.Endpoint.CurrentClicks}?${this._serverRessource.AuthentificationParam}=${token}`)
+            newSocketConnections.GPPS = new WebSocket(`${this._serverRessource.SocketPrefix}${this._serverRessource.ServerAdresse}:${this._serverRessource.Port}${this._serverRessource.BasePath}${this._serverRessource.Endpoint.GPPS}?${this._serverRessource.AuthentificationParam}=${token}`)
         }
         this._currentConnections = newSocketConnections
     }
@@ -50,8 +50,8 @@ export class ConnectionManager {
 
         if (this._token !== null) {
             const header = { method: 'GET', headers: { "Accept": "application/json", "Content-Type": 'application/x-www-form-urlencoded', "Authorization": `Bearer ${this._token}` } }
-            const baseServerPath = `${this._backendData.HttpPrefix}${this._backendData.ServerAdresse}:${this._backendData.Port}`
-            const url = `${baseServerPath}${this._backendData.Endpoint.Generators.Available}`
+            const baseServerPath = `${this._serverRessource.HttpPrefix}${this._serverRessource.ServerAdresse}:${this._serverRessource.Port}`
+            const url = `${baseServerPath}${this._serverRessource.Endpoint.Generators.Available}`
 
             const newGenerators = { ...GeneratorsState }
             fetch(url, header)
@@ -59,23 +59,23 @@ export class ConnectionManager {
                 .then(availableGenerators => {
                     for (var i = 0; i < availableGenerators.length; i++) {
                         const currentId = availableGenerators[i].id
-                        const url = `${baseServerPath}/generators/${currentId}${this._backendData.Endpoint.Generators.Buy}`
+                        const url = `${baseServerPath}/generators/${currentId}${this._serverRessource.Endpoint.Generators.Buy}`
                         const buyFunction = (update) => {
                             fetch(url, header)
                         }
                         newGenerators[currentId] = {
-                            ...GeneratorBaseState,
+                            ...GeneratorState,
                             Income_rate: availableGenerators[i].income_rate,
                             Id: currentId,
                             Buy: buyFunction
                         }
                         if (i === availableGenerators.length - 1) {
-                            const url = `${baseServerPath}/generators/${currentId}${this._backendData.Endpoint.Generators.PriceOf}`
+                            const url = `${baseServerPath}/generators/${currentId}${this._serverRessource.Endpoint.Generators.PriceOf}`
                             return fetch(url, header)
                                 .then(response => response.json())
                                 .then(priceOfGen => {
                                     newGenerators[currentId].Price = priceOfGen
-                                    const url = `${baseServerPath}${this._backendData.Endpoint.Generators.Owned}`
+                                    const url = `${baseServerPath}${this._serverRessource.Endpoint.Generators.Owned}`
                                     return fetch(url, header)
                                         .then(response => response.json())
                                         .then(ownedGenerators => {
@@ -86,7 +86,7 @@ export class ConnectionManager {
                                         })
                                 })
                         } else {
-                            const url = `${baseServerPath}/generators/${currentId}${this._backendData.Endpoint.Generators.PriceOf}`
+                            const url = `${baseServerPath}/generators/${currentId}${this._serverRessource.Endpoint.Generators.PriceOf}`
                             fetch(url, header)
                                 .then(response => response.json())
                                 .then(priceOfGen => {

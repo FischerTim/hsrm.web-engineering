@@ -1,36 +1,42 @@
-export const LanguageRessourcen = {
+export const LanguageRessources = {
     EN: {
-        LoginData: {
+        LoginRessource: {
             Username: "username",
             Password: "password",
             PasswordField: "Enter your password",
             UsernameField: "Enter your username",
-            RegisterData: "not registered jet?"
+            Register: "not registered jet?"
         },
-        RegisterData: {
+        RegisterRessource: {
             LoginLink: "already registered?"
         },
-        LanguageData: {
+        LanguageRessource: {
             Id: "EN",
             Repressentation: "English"
         }
 
     },
     DE: {
-        LoginData: {
+        LoginRessource: {
             Username: "Benutzername",
             Password: "Passwort",
             PasswordFeld: "Passwort",
             UsernameField: "Benutzername",
-            RegisterData: "Noch nicht Registiert?"
+            Register: "Noch nicht Registiert?"
         },
-        RegisterData: {
+        RegisterRessource: {
             LoginLink: "Schon Regisiteriet?"
         },
-        LanguageData: {
+        LanguageRessource: {
             Id: "DE",
             Repressentation: "Deutsch"
         }
 
     },
+}
+
+export const Languages = {
+    DE: "DE",
+    EN: "EN",
+    DEFAULT: "DE",
 }

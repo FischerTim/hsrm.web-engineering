@@ -1,29 +1,28 @@
-import { Languages } from '../States/LanguageState';
 import { useContext } from 'react';
-import { LanguageRessourcen } from '../Ressourcen/LanguageRessourcen';
+import { LanguageRessources,Languages } from '../Ressourcen/LanguageRessource';
 import { RessourcenContext } from '../Context/RessourcenContext';
-import { RessourcenState } from '../States/RessourcenState';
+import { RessourceState } from '../States/RessourceState';
 
-export class Ressources {
+export class RessourceService {
 
     static instance;
 
     constructor() {
-        if (Ressources.instance) {
-            return Ressources.instance;
+        if (RessourceService.instance) {
+            return RessourceService.instance;
         }
 
-        Ressources.instance = this;
+        RessourceService.instance = this;
 
         this._language = Languages.DEFAULT
         this._setRessourcen = useContext(RessourcenContext).setRessourcen
     }
 
     _updateRessource() {
-        const newRessource = { ...RessourcenState }
-        newRessource.LoginData = LanguageRessourcen[this._language].LoginData
-        newRessource.RegisterData = LanguageRessourcen[this._language].RegisterData
-        newRessource.LanguageData = LanguageRessourcen[this._language].LanguageData
+        const newRessource = { ...RessourceState }
+        newRessource.Login = LanguageRessources[this._language].LoginRessource
+        newRessource.Register = LanguageRessources[this._language].RegisterRessource
+        newRessource.Language = LanguageRessources[this._language].LanguageRessource
         this._setRessourcen(newRessource)
     }
 

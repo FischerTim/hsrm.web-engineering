@@ -1,30 +1,30 @@
 import { useContext } from 'react'
 import { UserState } from '../States/UserState';
-import { ConnectionManager } from './ConnectionManager';
+import { ConnectionService } from './ConnectionService';
 import { PointsContext } from '../Context/PointsContext';
 import { GPPSContext } from '../Context/GPPSContext';
 
-export class UserManger {
+export class UserService {
 
     static instance;
 
-    constructor(backendData) {
-        if (UserManger.instance) {
-            return UserManger.instance;
+    constructor(serverRessource) {
+        if (UserService.instance) {
+            return UserService.instance;
         }
-        UserManger.instance = this;
-        this._backendData = backendData
+        UserService.instance = this;
+        this._serverRessource = serverRessource
 
         this._setPoints = useContext(PointsContext).setPoints
         this._setGPPS = useContext(GPPSContext).setGPPS
-        this._connectionManager = new ConnectionManager(this._backendData)
+        this._connectionService = new ConnectionService(this._serverRessource)
         this._user = { ...UserState }
     }
     logedIn() {
         return this._user.LogedIn
     }
     login(username, password) {
-        return this._connectionManager.getToken(username, password).then(token => {
+        return this._connectionService.getToken(username, password).then(token => {
             const newUser = { ...UserState }
             if (token != null) {
                 newUser.LogedIn = true
@@ -41,7 +41,7 @@ export class UserManger {
     }
 
     _buildConnection(token) {
-        this._connectionManager.connectWebSockets(token)
+        this._connectionService.connectWebSockets(token)
         const tmpSetGPPS = this._setGPPS
         const tmpSetPoints = this._setPoints
         const gPPSEvent = function (event) {
@@ -50,12 +50,12 @@ export class UserManger {
         const pointEvent = function (event) {
             tmpSetPoints(JSON.parse(event.data)["points"])
         }
-        this._connectionManager.addEvents(gPPSEvent, pointEvent)
-        this._connectionManager.updateGenerators()
+        this._connectionService.addEvents(gPPSEvent, pointEvent)
+        this._connectionService.updateGenerators()
     }
 
     logout() {
-        this._connectionManager.disconnect()
+        this._connectionService.disconnect()
         this._user = { ...UserState }
         this._setPoints(0)
         this._setGPPS(0)
@@ -63,14 +63,14 @@ export class UserManger {
     }
 
     click() {
-        const clickEndpoind = this._connectionManager.getConnection("Click")
+        const clickEndpoind = this._connectionService.getConnection("Click")
         if (clickEndpoind !== null) {
             clickEndpoind.send("")
         }
     }
 
     updateGenerators() {
-        this._connectionManager.updateGenerators()
+        this._connectionService.updateGenerators()
     }
 }
 

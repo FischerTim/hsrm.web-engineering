@@ -1,4 +1,4 @@
-export const BackendServer = {
+export const ServerRessource = {
     ServerAdresse: "server.bykovski.de",
     Port: "8000",
     BasePath: "/game",

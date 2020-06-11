@@ -3,12 +3,12 @@ import React from 'react'
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
-import { Ressources } from '../Services/Ressources';
+import { RessourceService } from '../Services/RessourceService';
 
 export function RegisterPage() {
 
   const { register, handleSubmit, errors } = useForm();
-  const ressources = new Ressources().get()
+  const ressources = new RessourceService().get()
 
   const onSubmit = data => { console.log("hi") }
 
