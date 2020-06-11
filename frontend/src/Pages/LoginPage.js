@@ -18,7 +18,7 @@ export function LoginPage(props) {
   let loginEmail = React.useRef(null)
   let loginPassword = React.useRef(null)
 
-  const onSendButtonPressed = (data) => {
+  const onSendButtonPressed = () => {
     userService.login(loginEmail.current.value, loginPassword.current.value)
       .then(() => { pathHistory.push(ressources.Path.Core) })
       .catch()

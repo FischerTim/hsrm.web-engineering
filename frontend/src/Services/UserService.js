@@ -39,6 +39,11 @@ export class UserService {
         })
 
     }
+    register(username, password) {
+        return this._connectionService.register(username, password).then(() => {
+            return this.login(username,password)
+        })
+    }
 
     _buildConnection(token) {
         this._connectionService.connectWebSockets(token)

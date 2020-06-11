@@ -25,6 +25,14 @@ export class ConnectionService {
             .then(response => response.json())
             .then(data => { return data.access_token })
     }
+    
+    register(username, password) {
+        const method = 'POST'
+        const header = { "Accept": "application/json", "Content-Type": 'application/json' }
+        const body = `{\"username\":\"${username}\",\"password\":\"${password}\"}`
+        const url = `${this._serverRessource.HttpPrefix}${this._serverRessource.ServerAdresse}:${this._serverRessource.Port}${this._serverRessource.Endpoint.Register}`
+        return fetch(url, { method: method, headers: header, body: body, })
+    }
 
     connectWebSockets(token) {
         this._token = token

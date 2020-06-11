@@ -7,6 +7,7 @@ export const ServerRessource = {
     AuthentificationParam: "token",
     Endpoint: {
         Token: "/users/token",
+        Register: "/users/register",
         Click: "/click",
         CurrentClicks: "/balance",
         GPPS: "/generators",
