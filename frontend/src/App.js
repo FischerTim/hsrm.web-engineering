@@ -6,8 +6,7 @@ import { LoginPage } from './Pages/LoginPage'
 import { RegisterPage } from './Pages/RegisterPage'
 import { CorePage } from './Pages/CorePage'
 
-
-import { LanguageSwitch } from './Components/Language/LanguageSwitch'
+import { CustomNavBar } from './Components/NavBar/CustomNavBar'
 import { RessourceService } from './Services/RessourceService'
 
 function App() {
@@ -17,7 +16,7 @@ function App() {
 
   return (
     <div className="src/App">
-      <LanguageSwitch ressourceService={ressourceService}></LanguageSwitch>
+      <CustomNavBar ressourceService={ressourceService} />
       <Router>
         <Switch>
           <Route path={ressources.Path.Login}>

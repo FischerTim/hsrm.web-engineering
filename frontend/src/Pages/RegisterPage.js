@@ -47,7 +47,7 @@ export function RegisterPage() {
               </Form.Text><br /><br />
               <Form.Control type="email" placeholder={ressources.Register.UserField} className="text-center" ref={registerEmail} />
               <Form.Text className="text-muted">
-                {ressources.Register.EmailText}
+                {ressources.Register.InfoText}
               </Form.Text>
             </Form.Group>
             <Form.Group controlId="formBasicPassword">

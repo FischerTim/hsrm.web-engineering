@@ -32,7 +32,7 @@ export function LoginPage(props) {
           <Col xs={6} md={4}></Col>
 
           <Col xs={6} md={4}>
-            <Form.Group controlId="formBasicEmail"><br />
+            <Form.Group><br />
               <h2>{ressources.Login.LoginHeader}</h2>
               <Form.Text className="text-muted">
               </Form.Text><br /><br />

@@ -8,6 +8,7 @@ export const RessourcenContextProvider = ({ children }) => {
     const initValue = { ...RessourceState }
     initValue.Login = LanguageRessources[Languages.DEFAULT].LoginRessource
     initValue.Register = LanguageRessources[Languages.DEFAULT].RegisterRessource
+    initValue.Core = LanguageRessources[Languages.DEFAULT].CorePageRessource
     initValue.Language = LanguageRessources[Languages.DEFAULT].LanguageRessource
     const [ressourcen, setRessourcen] = useState(initValue)
     const ressourcenValue = { ressourcen, setRessourcen }

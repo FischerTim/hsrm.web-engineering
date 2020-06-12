@@ -49,12 +49,12 @@ export function CorePage() {
         <div>
             <Container>
                 <Jumbotron>
-                    <h1>{ressources.Login.Points} {points}</h1>
+                    <h1>{ressources.Core.Points} {points}</h1>
                     <p>
-                    {ressources.Login.PointsPC} {gPPS}
+                    {ressources.Core.PointsPC} {gPPS}
                     </p><br />
                     <p>
-                        <Button variant="success" onClick={pointclick}>{ressources.Login.ClickButton}</Button>
+                        <Button variant="success" onClick={pointclick}>{ressources.Core.ClickButton}</Button>
                     </p>
                 </Jumbotron><br />
                 <GeneratorList points={points} onBuy={updateGenerators} generatorsList={generators} /> <br/>

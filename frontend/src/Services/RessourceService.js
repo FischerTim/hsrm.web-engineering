@@ -22,6 +22,7 @@ export class RessourceService {
         const newRessource = { ...RessourceState }
         newRessource.Login = LanguageRessources[this._language].LoginRessource
         newRessource.Register = LanguageRessources[this._language].RegisterRessource
+        newRessource.Core = LanguageRessources[this._language].CorePageRessource
         newRessource.Language = LanguageRessources[this._language].LanguageRessource
         this._setRessourcen(newRessource)
     }
