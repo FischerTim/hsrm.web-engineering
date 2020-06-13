@@ -51,7 +51,7 @@ export function CorePage() {
             <Container>
                 <Row>
                     <Col>
-                        <GeneratorList points={points} onBuy={updateGenerators} generatorsList={generators} />
+                        <GeneratorList points={points} onBuy={updateGenerators} generatorsList={generators} gameRessources={ressources.Game} />
                     </Col>
                     <Col xs={5}>
                         <Jumbotron className="text-center">
@@ -61,7 +61,7 @@ export function CorePage() {
                         <h1 className="text-center">TESTBILD FOLGT</h1>
                     </Col>
                     <Col>
-                        <UpdateList points={points} onBuy={updateUpdates} updatesList={updates} />
+                        <UpdateList points={points} onBuy={updateUpdates} updatesList={updates} gameRessources={ressources.Game} />
                     </Col>
                 </Row>
                 <br /><br />
