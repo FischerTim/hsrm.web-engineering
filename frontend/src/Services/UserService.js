@@ -41,7 +41,7 @@ export class UserService {
     }
     register(username, password) {
         return this._connectionService.register(username, password).then(() => {
-            return this.login(username,password)
+            return this.login(username, password)
         })
     }
 
@@ -78,7 +78,7 @@ export class UserService {
     updateGenerators() {
         this._connectionService.updateGenerators()
     }
-    updateUpdates(){
+    updateUpdates() {
         this._connectionService.updateUpdates()
     }
 }

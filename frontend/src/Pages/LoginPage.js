@@ -21,7 +21,7 @@ export function LoginPage(props) {
   const onSendButtonPressed = () => {
     userService.login(loginEmail.current.value, loginPassword.current.value)
       .then(() => { pathHistory.push(ressources.Path.Core) })
-      .catch() 
+      .catch()
   }
 
 

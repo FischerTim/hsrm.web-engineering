@@ -142,26 +142,26 @@ export class ConnectionService {
                             Buy: buyFunction
                         }
                     }
-                        const newUrl = `${baseServerPath}${this._serverRessource.Endpoint.Updates.Owned}`
-                        return fetch(newUrl, header)
-                            .then(response => response.json())
-                            .then(ownedUpdates => {
-                                for (var i = 0; i < ownedUpdates.length; i++) {
-                                    
-                                    const currentId = ownedUpdates[i].upgrade.id
-                                    newUpdates[currentId] = {
-                                        ...UpdateState,
-                                        Multiplier:  ownedUpdates[i].upgrade.multiplier,
-                                        Id: currentId,
-                                        Price: ownedUpdates[i].upgrade.cost,
-                                        Bought: true,
-                                        Buy: null
-                                    }
-                                    if (newUpdates.SelectImage < currentId){
-                                        newUpdates.SelectImage = currentId
-                                    }
+                    const newUrl = `${baseServerPath}${this._serverRessource.Endpoint.Updates.Owned}`
+                    return fetch(newUrl, header)
+                        .then(response => response.json())
+                        .then(ownedUpdates => {
+                            for (var i = 0; i < ownedUpdates.length; i++) {
+
+                                const currentId = ownedUpdates[i].upgrade.id
+                                newUpdates[currentId] = {
+                                    ...UpdateState,
+                                    Multiplier: ownedUpdates[i].upgrade.multiplier,
+                                    Id: currentId,
+                                    Price: ownedUpdates[i].upgrade.cost,
+                                    Bought: true,
+                                    Buy: null
                                 }
-                            })
+                                if (newUpdates.SelectImage < currentId) {
+                                    newUpdates.SelectImage = currentId
+                                }
+                            }
+                        })
 
                 }).then(() => {
                     this._setUpdates(newUpdates)

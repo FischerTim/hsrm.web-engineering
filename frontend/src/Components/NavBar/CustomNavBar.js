@@ -3,6 +3,7 @@ import { Form, Navbar, Nav, Button } from 'react-bootstrap';
 
 import { LanguageSwitch } from '../Language/LanguageSwitch'
 import { UserService } from '../../Services/UserService';
+import { GameSwitch } from '../Game/GameSwitch';
 
 export function CustomNavBar({ ressourceService }) {
 
@@ -34,6 +35,7 @@ export function CustomNavBar({ ressourceService }) {
                     {buttonText}
                 </Button>
                 <LanguageSwitch ressourceService={ressourceService} />
+                <GameSwitch ressourceService={ressourceService} />
             </Form>
         </Navbar.Collapse>
     </Navbar>)

@@ -34,7 +34,7 @@ export const LanguageRessources = {
     },
     DE: {
         LoginRessource: {
-            LoginHeader : "Wilkommen!",
+            LoginHeader: "Wilkommen!",
             UserField: "Benutzername",
             PasswordField: "Passwort",
             LoginButton: "Anmelden",
@@ -55,7 +55,7 @@ export const LanguageRessources = {
             Points: "Punkte",
             PointsPC: "Punkte die du per Klick bekommst: ",
             ClickButton: "Klick mich!",
-            Generators: "Generatoren", 
+            Generators: "Generatoren",
             LogoutButton: "Abmelden"
         },
         LanguageRessource: {

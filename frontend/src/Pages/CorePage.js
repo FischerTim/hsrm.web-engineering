@@ -11,6 +11,7 @@ import { GeneratorsContext } from '../Context/GeneratorsContext';
 import { RessourceService } from '../Services/RessourceService';
 import { UserService } from '../Services/UserService';
 import { UpdatesContext } from '../Context/UpdatesContext';
+import { Games } from '../Ressourcen/GameRessource';
 
 export function CorePage() {
 
@@ -20,7 +21,8 @@ export function CorePage() {
     const { updates } = useContext(UpdatesContext)
     const { points } = useContext(PointsContext)
     const { gPPS } = useContext(GPPSContext)
-    const ressources = new RessourceService().get()
+    const ressourceService = new RessourceService()
+    const ressources = ressourceService.get()
     const userService = new UserService(ressources.Server)
 
     if (!userService.logedIn()) {
@@ -59,7 +61,7 @@ export function CorePage() {
                             <h1>{points}</h1>
                             {ressources.Core.Points}<br />
                         </Jumbotron><br />
-                        <Image src={ressources.Game.ImagePath+"/Image"+updates.SelectImage+".png"} thumbnail />
+                        <Image src={ressources.Game.ImagePath + "/Image" + updates.SelectImage + ".png"} thumbnail />
                     </Col>
                     <Col>
                         <UpdateList points={points} onBuyHook={updateUpdates} updatesList={updates} gameRessources={ressources.Game} />

@@ -1,6 +1,10 @@
 export const GameRessources = {
     EN: {
         EggFarm: {
+            GameRessource: {
+                id: "EggFarm",
+                Repressentation: "Egg Farm"
+            },
             ImagePath: "EggFarmImg",
             Updates: {
                 MultiplierText: "Egg Value Multiplier: ",
@@ -44,12 +48,62 @@ export const GameRessources = {
             ClickButtonText: "lay eggs",
 
         },
-        PizzaDelivery: {}
+        PizzaDelivery: {
+            GameRessource: {
+                id: "PizzaDelivery",
+                Repressentation: "Pizza Delivery"
+            },
+            ImagePath: "PizzaDeliveryImg",
+            Updates: {
+                MultiplierText: "cook Value Multiplier: ",
+                IdText: "cook No.: ",
+                PriceText: "Costs: ",
+                BuyText: "Buy cook: ",
+                HeadText: "Your cook Updates",
+                List: {
+                    0: "Chicken0",
+                    1: "Chicken1",
+                    2: "Chicken2",
+                    3: "Chicken3",
+                    4: "Chicken4",
+                    5: "Chicken5",
+                    6: "Chicken6",
+                    7: "Chicken7"
+                },
+            },
+            Generators: {
+                CpsText: "Money Per Second: ",
+                IdText: "Delivery No.: ",
+                PriceText: "Costs: ",
+                AmountText: "Owned: ",
+                BuyText: "Buy Delicery: ",
+                HeadText: "Welcomen in to the Delicery store, hier you can buy new Delicerys",
+                List: {
+                    0: "Farm0",
+                    1: "Farm1",
+                    2: "Farm2",
+                    3: "Farm3",
+                    4: "Farm4",
+                    5: "Farm5",
+                    6: "Farm6",
+                    7: "Farm7",
+                    8: "Farm8",
+                    9: "Farm9",
+                    10: "Farm10",
+                    11: "Farm11"
+                }
+            },
+            ClickButtonText: "Back Pizza",
+        }
     },
     DE: {
         EggFarm: {
+            GameRessource: {
+                id: "EggFarm",
+                Repressentation: "Eier Farm"
+            },
             ImagePath: "EggFarmImg",
-            
+
             Updates: {
                 MultiplierText: "Ei Wert Multipikator: ",
                 IdText: "Huhn Nr.: ",
@@ -73,7 +127,7 @@ export const GameRessources = {
                 PriceText: "Kosten: ",
                 AmountText: "In Besitz: ",
                 BuyText: "Farm kaufen",
-                HeadText: "Welcomen in to the Farm store, hier you can buy new Farms",
+                HeadText: "Wilkomen im Farm Store, hier kannst du new Farms kaufen",
                 List: {
                     0: "Farm0",
                     1: "Farm1",
@@ -89,10 +143,56 @@ export const GameRessources = {
                     11: "Farm11"
                 }
             },
-            ClickButtonText: "lay eggs",
+            ClickButtonText: "Eier Legen",
 
         },
-        PizzaDelivery: {}
+        PizzaDelivery: {
+            GameRessource: {
+                id: "PizzaDelivery",
+                Repressentation: "Pizza Lieferdienst"
+            },
+            ImagePath: "PizzaDeliveryImg",
+            Updates: {
+                MultiplierText: "Koch Multiplikator: ",
+                IdText: "Koch Nr.: ",
+                PriceText: "Costs: ",
+                BuyText: "Koch kaufen: ",
+                HeadText: "deine Kochkurse oder sowas ?",
+                List: {
+                    0: "Chicken0",
+                    1: "Chicken1",
+                    2: "Chicken2",
+                    3: "Chicken3",
+                    4: "Chicken4",
+                    5: "Chicken5",
+                    6: "Chicken6",
+                    7: "Chicken7"
+                },
+            },
+            Generators: {
+                CpsText: "Pizza Lieferungen pro Sekunde: ",
+                IdText: "Liefrant Nr.: ",
+                PriceText: "Kosten: ",
+                AmountText: "In besitz: ",
+                BuyText: "Anstellen: ",
+                HeadText: "wilkommen bei der Jobbörse hier kannst du neue Lieferanten kaufen",
+                List: {
+                    0: "Farm0",
+                    1: "Farm1",
+                    2: "Farm2",
+                    3: "Farm3",
+                    4: "Farm4",
+                    5: "Farm5",
+                    6: "Farm6",
+                    7: "Farm7",
+                    8: "Farm8",
+                    9: "Farm9",
+                    10: "Farm10",
+                    11: "Farm11"
+                }
+            },
+            ClickButtonText: "Pizzen machen",
+        }
     }
 }
 

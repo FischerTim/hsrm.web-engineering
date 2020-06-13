@@ -1,5 +1,5 @@
 
-import React  from 'react'
+import React from 'react'
 
 import { useForm } from "react-hook-form";
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
@@ -21,15 +21,15 @@ export function RegisterPage() {
   let confirmPassword = React.useRef(null)
 
   const onRegister = () => {
-    
+
     if (registerPassword.current.value !== confirmPassword.current.value) {
       // TODO ERROR
       console.log('Password: ' + registerPassword.current.value)
       console.log('not same: ' + confirmPassword.current.value)
-    }else{
+    } else {
       userService.register(registerEmail.current.value, registerPassword.current.value)
-      .then(() => { pathHistory.push(ressources.Path.Core) })
-      .catch()
+        .then(() => { pathHistory.push(ressources.Path.Core) })
+        .catch()
     }
   }
 

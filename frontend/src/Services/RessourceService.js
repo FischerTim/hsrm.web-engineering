@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { LanguageRessources,Languages } from '../Ressourcen/LanguageRessource';
+import { LanguageRessources, Languages } from '../Ressourcen/LanguageRessource';
 import { RessourcenContext } from '../Context/RessourcenContext';
 import { RessourceState } from '../States/RessourceState';
 import { Games, GameRessources } from '../Ressourcen/GameRessource';
@@ -37,6 +37,14 @@ export class RessourceService {
     setLanguage(newLanguage) {
         if (Languages[newLanguage] !== undefined) {
             this._language = newLanguage
+            this._updateRessource()
+        } else {
+            //TODO Exception
+        }
+    }
+    setGame(newGame) {
+        if (Games[newGame] !== undefined) {
+            this._game = newGame
             this._updateRessource()
         } else {
             //TODO Exception
