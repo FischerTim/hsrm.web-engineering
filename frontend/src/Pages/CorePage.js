@@ -57,7 +57,7 @@ export function CorePage() {
                         <Button variant="success" onClick={pointclick}>{ressources.Core.ClickButton}</Button>
                     </p>
                 </Jumbotron><br />
-                <GeneratorList points={points} onBuyHook={updateGenerators} generatorsList={generators} gameRessources={ressources.Game}/> <br/>
+                <GeneratorList points={points} onBuyHook={updateGenerators} generatorsList={generators} gameRessources={ressources.Game}/>
                 <UpdateList points={points} onBuyHook={updateUpdates} updatesList={updates} gameRessources={ressources.Game}/> <br/>
                 <Button variant="danger" onClick={logout}>Logout</Button><br /><br />
             </Container>

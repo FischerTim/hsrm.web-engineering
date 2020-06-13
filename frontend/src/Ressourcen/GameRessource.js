@@ -7,6 +7,7 @@ export const GameRessources = {
                 IdText: "Chicken No.: ",
                 PriceText: "Costs: ",
                 BuyText: "Buy Chicken: ",
+                HeadText: "Welcomen in to the Farm store, hier you can buy new Farms",
                 List: {
                     0: "Chicken0",
                     1: "Chicken1",
@@ -24,6 +25,7 @@ export const GameRessources = {
                 PriceText: "Costs: ",
                 AmountText: "Owned: ",
                 BuyText: "Buy Farm: ",
+                HeadText: "Welcomen in to the Farm store, hier you can buy new Farms",
                 List: {
                     0: "Farm0",
                     1: "Farm1",
@@ -47,11 +49,13 @@ export const GameRessources = {
     DE: {
         EggFarm: {
             ImagePath: "frontend/src/Ressourcen/EggFarmImg",
+            
             Updates: {
                 MultiplierText: "Ei Wert Multipikator: ",
                 IdText: "Huhn Nr.: ",
                 PriceText: "Kosten: ",
                 BuyText: "Huhn Kaufen: ",
+                HeadText: "Wilkomen Im Farm Store, hier kannst du neue Farmen Erwerben",
                 List: {
                     0: "Chicken0",
                     1: "Chicken1",
@@ -69,6 +73,7 @@ export const GameRessources = {
                 PriceText: "Kosten: ",
                 AmountText: "In Besitz: ",
                 BuyText: "Farm kaufen",
+                HeadText: "Welcomen in to the Farm store, hier you can buy new Farms",
                 List: {
                     0: "Farm0",
                     1: "Farm1",
