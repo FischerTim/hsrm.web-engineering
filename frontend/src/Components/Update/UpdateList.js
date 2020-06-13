@@ -1,33 +1,32 @@
 import React from 'react'
 import { Update } from './Update'
 
-export function UpdateList({ points, updatesList, onBuy }) {
+export function UpdateList({ points, updatesList, onBuyHook , gameRessources}) {
     const updates = []
 
     for (const ele in updatesList) {
-        const tmpEle = updatesList[ele]
-        let buyFunction = () => {
-            tmpEle.Buy()
-            onBuy()
-        }
-        if (tmpEle.Buy == null){
-            buyFunction = null
+
+        const currentUpdate = {...updatesList[ele]}
+        if (points >= currentUpdate.Price && currentUpdate.Buy !== null) {
+            const rawBuy = currentUpdate.Buy
+            const buyFunction = () => {
+                rawBuy()
+                onBuyHook()
+            }
+            currentUpdate.Buy = buyFunction
+        } else {
+            currentUpdate.Buy = null
         }
         updates.push(<Update
             key={ele}
-            CPS={tmpEle.Multiplier}
-            id={tmpEle.Id}
-            price={tmpEle.Price}
-            amount={tmpEle.Amount}
-            buy={points >= tmpEle.Price ? buyFunction : null} />)
+            update={currentUpdate}
+            ressource={gameRessources}
+            />)
     }
 
 
     return (<div>
         <table>
-            <thead>
-
-            </thead>
             <tbody>
                 {updates}
             </tbody>

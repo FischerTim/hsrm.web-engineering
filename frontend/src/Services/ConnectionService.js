@@ -138,6 +138,7 @@ export class ConnectionService {
                             Multiplier: availableUpdates[i].multiplier,
                             Id: currentId,
                             Price: availableUpdates[i].cost,
+                            Bought: false,
                             Buy: buyFunction
                         }
                     }
@@ -153,6 +154,7 @@ export class ConnectionService {
                                         Multiplier:  ownedUpdates[i].upgrade.multiplier,
                                         Id: currentId,
                                         Price: ownedUpdates[i].upgrade.cost,
+                                        Bought: true,
                                         Buy: null
                                     }
                                 }

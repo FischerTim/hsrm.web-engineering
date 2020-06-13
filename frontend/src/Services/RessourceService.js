@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { LanguageRessources,Languages } from '../Ressourcen/LanguageRessource';
 import { RessourcenContext } from '../Context/RessourcenContext';
 import { RessourceState } from '../States/RessourceState';
+import { Games, GameRessources } from '../Ressourcen/GameRessource';
 
 export class RessourceService {
 
@@ -15,6 +16,7 @@ export class RessourceService {
         RessourceService.instance = this;
 
         this._language = Languages.DEFAULT
+        this._game = Games.DEFAULT
         this._setRessourcen = useContext(RessourcenContext).setRessourcen
     }
 
@@ -24,6 +26,7 @@ export class RessourceService {
         newRessource.Register = LanguageRessources[this._language].RegisterRessource
         newRessource.Core = LanguageRessources[this._language].CorePageRessource
         newRessource.Language = LanguageRessources[this._language].LanguageRessource
+        newRessource.Game = GameRessources[this._language][this._game]
         this._setRessourcen(newRessource)
     }
 

@@ -1,10 +1,36 @@
 import React from 'react'
 
-export function Generator({ CPS, id, price, amount, buy }) {
-    const buybutton = buy !== null ? <button onClick={buy}>Buy</button> : <button disabled={true}>Buy</button>
-    const cpsLabel = <label>{CPS}</label>
-    const idLabel = <label>{id}</label>
-    const priceLabel = <label>{price}</label>
-    const amountLabel = <label>{amount}</label>
-    return (<tr><td>CPS:  {cpsLabel} |  id:  {idLabel} |  price: {priceLabel} |  amount:  {amountLabel} {buybutton}</td></tr>)
+export function Generator({ generator, ressource }) {
+    return (<tr>
+        <td>
+            {ressource.Generators.CpsText}
+            <label>
+                {generator.Income_rate}
+            </label>
+        </td>
+        <td>
+            {ressource.Generators.IdText}
+            <label>
+                {generator.Id}
+            </label>
+        </td>
+        <td>
+            {ressource.Generators.PriceText}
+            <label>
+                {generator.Price}
+            </label>
+        </td>
+        <td>
+            {ressource.Generators.AmountText}
+            <label>
+                {generator.Amount}
+            </label>
+        </td>
+        <td>
+            <button disabled={generator.Buy == null} onClick={generator.Buy}>
+                {ressource.Generators.BuyText}
+            </button>
+        </td>
+
+    </tr>)
 }
