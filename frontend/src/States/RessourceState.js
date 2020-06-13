@@ -6,5 +6,7 @@ export const RessourceState = {
     Server: ServerRessource,
     Login: null,
     Register: null,
-    Language: null
+    Language: null,
+    Core: null,
+    Game: null,
 }
