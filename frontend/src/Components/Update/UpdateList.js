@@ -1,12 +1,12 @@
 import React from 'react'
 import { Update } from './Update'
 
-export function UpdateList({ points, updatesList, onBuyHook , gameRessources}) {
+export function UpdateList({ points, updatesList, onBuyHook, gameRessources }) {
     const updates = []
 
     for (const ele in updatesList) {
-        if (ele !== "SelectImage" ){
-            const currentUpdate = {...updatesList[ele]}
+        if (ele !== "SelectImage") {
+            const currentUpdate = { ...updatesList[ele] }
             if (points >= currentUpdate.Price && currentUpdate.Buy !== null) {
                 const rawBuy = currentUpdate.Buy
                 const buyFunction = () => {
@@ -17,20 +17,18 @@ export function UpdateList({ points, updatesList, onBuyHook , gameRessources}) {
             } else {
                 currentUpdate.Buy = null
             }
-            
+
             updates.push(<Update
                 key={ele}
                 update={currentUpdate}
                 ressource={gameRessources}
-                />)
+            />)
         }
-     
     }
-
 
     return (<div>
         <table>
-        <thead>
+            <thead>
                 <tr>
                     <td colSpan="10" >{gameRessources.Updates.HeadText}</td>
                 </tr>
