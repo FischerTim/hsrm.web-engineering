@@ -23,7 +23,7 @@ export function LanguageSwitch({ ressourceService }) {
     }
 
     return (
-        <NavDropdown title={ressourceService._language} id="basic-nav-dropdown" onClick={onLanguageChanged}>
+        <NavDropdown title={ressourceService._language} id="basic-nav-dropdown" onClick={onLanguageChanged} alignRight>
             <NavDropdown.Item >{languageList}</NavDropdown.Item>
         </NavDropdown>
     )
