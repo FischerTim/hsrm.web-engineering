@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 
 import { useHistory } from 'react-router-dom'
-import { Jumbotron, Button, Container, Row, Col } from 'react-bootstrap';
+import { Jumbotron, Button, Container, Row, Col, Image } from 'react-bootstrap';
 
 import { PointsContext } from '../Context/PointsContext';
 import { GPPSContext } from '../Context/GPPSContext';
@@ -46,7 +46,6 @@ export function CorePage() {
     const pointclick = () => {
         userService.click()
     }
-
     return (
         <div>
             <br /><br />
@@ -60,7 +59,7 @@ export function CorePage() {
                             <h1>{points}</h1>
                             {ressources.Core.Points}<br />
                         </Jumbotron><br />
-                        <h1 className="text-center">TESTBILD FOLGT</h1>
+                        <Image src={ressources.Game.ImagePath+"/Image"+updates.SelectImage+".png"} thumbnail />
                     </Col>
                     <Col>
                         <UpdateList points={points} onBuyHook={updateUpdates} updatesList={updates} gameRessources={ressources.Game} />

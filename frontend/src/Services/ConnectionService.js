@@ -157,6 +157,9 @@ export class ConnectionService {
                                         Bought: true,
                                         Buy: null
                                     }
+                                    if (newUpdates.SelectImage < currentId){
+                                        newUpdates.SelectImage = currentId
+                                    }
                                 }
                             })
 
