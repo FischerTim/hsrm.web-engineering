@@ -40,17 +40,17 @@ export function RegisterPage() {
           <Col xs={6} md={4}></Col>
 
           <Col xs={6} md={4}>
-            <Form.Group controlId="formBasicEmail"><br />
+            <Form.Group><br />
               <h2>{ressources.Register.RegisterHeader}</h2>
               <Form.Text className="text-muted">
                 {ressources.Register.RegisterText}
               </Form.Text><br /><br />
-              <Form.Control type="email" placeholder={ressources.Register.UserField} className="text-center" ref={registerEmail} />
+              <Form.Control type="text" placeholder={ressources.Register.UserField} className="text-center" ref={registerEmail} />
               <Form.Text className="text-muted">
                 {ressources.Register.InfoText}
               </Form.Text>
             </Form.Group>
-            <Form.Group controlId="formBasicPassword">
+            <Form.Group>
               <Form.Control type="password" placeholder={ressources.Register.PasswordField} className="text-center" ref={registerPassword} />
               <Form.Control type="password" placeholder={ressources.Register.PasswordConfirm} className="text-center" ref={confirmPassword} />
             </Form.Group><br />

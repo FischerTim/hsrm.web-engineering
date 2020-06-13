@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 
 import { useHistory } from 'react-router-dom'
-import { Jumbotron, Button, Container} from 'react-bootstrap';
+import { Jumbotron, Button, Container, Row, Col, Image } from 'react-bootstrap';
 
 import { PointsContext } from '../Context/PointsContext';
 import { GPPSContext } from '../Context/GPPSContext';
@@ -44,21 +44,30 @@ export function CorePage() {
     const pointclick = () => {
         userService.click()
     }
-
     return (
         <div>
+            <br /><br />
             <Container>
-                <Jumbotron>
-                    <h1>{ressources.Core.Points} {points}</h1>
-                    <p>
-                    {ressources.Core.PointsPC} {gPPS}
-                    </p><br />
-                    <p>
-                        <Button variant="success" onClick={pointclick}>{ressources.Core.ClickButton}</Button>
-                    </p>
-                </Jumbotron><br />
-                <GeneratorList points={points} onBuyHook={updateGenerators} generatorsList={generators} gameRessources={ressources.Game}/>
-                <UpdateList points={points} onBuyHook={updateUpdates} updatesList={updates} gameRessources={ressources.Game}/> <br/>
+                <Row>
+                    <Col>
+                        <GeneratorList points={points} onBuyHook={updateGenerators} generatorsList={generators} gameRessources={ressources.Game} />
+                    </Col>
+                    <Col xs={5}>
+                        <Jumbotron className="text-center">
+                            <h1>{points}</h1>
+                            {ressources.Core.Points}<br />
+                        </Jumbotron><br />
+                        <Image src={ressources.Game.ImagePath+"/Image"+updates.SelectImage+".png"} thumbnail />
+                    </Col>
+                    <Col>
+                        <UpdateList points={points} onBuyHook={updateUpdates} updatesList={updates} gameRessources={ressources.Game} />
+                    </Col>
+                </Row>
+                <br /><br />
+                <p>
+                    <Button variant="secondary" size="lg" block onClick={pointclick}>{ressources.Core.ClickButton}</Button>
+                </p>
+                <h6 className="text-center">{ressources.Core.PointsPC} {gPPS}</h6>
                 <Button variant="danger" onClick={logout}>Logout</Button><br /><br />
             </Container>
         </div>

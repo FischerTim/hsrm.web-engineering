@@ -6,5 +6,5 @@ export const UpdateState = {
     Buy: null
 }
 export const UpdatesState = {
-
+    SelectImage: 0
 }

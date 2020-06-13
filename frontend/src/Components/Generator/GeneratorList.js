@@ -21,7 +21,6 @@ export function GeneratorList({ points, generatorsList, onBuyHook, gameRessource
             generator={currentGenerator}
             ressource={gameRessources} />)
     }
-    console.log(gameRessources.Generators)
     return (<div>
         <table>
             <thead>
