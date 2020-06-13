@@ -27,11 +27,13 @@ export function CorePage() {
         pathHistory.push(ressources.Path.Login)
     }
 
+    /*
     const logout = () => {
         userService.logout()
             .then(pathHistory.push(ressources.Path.Login))
             .catch()
     }
+    */
 
     const updateGenerators = () => {
         userService.updateGenerators()
@@ -69,7 +71,6 @@ export function CorePage() {
                     <Button variant="secondary" size="lg" block onClick={pointclick}>{ressources.Core.ClickButton}</Button>
                 </p>
                 <h6 className="text-center">{ressources.Core.PointsPC} {gPPS}</h6>
-                <Button variant="danger" onClick={logout}>Logout</Button><br /><br />
             </Container>
         </div>
     )

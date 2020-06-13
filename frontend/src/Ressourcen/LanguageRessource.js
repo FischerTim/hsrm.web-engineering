@@ -23,7 +23,8 @@ export const LanguageRessources = {
             Points: "Points",
             PointsPC: "Points you get per click: ",
             ClickButton: "CLick me!",
-            Generators: "Generators"
+            Generators: "Generators",
+            LogoutButton: "Logout"
         },
         LanguageRessource: {
             Id: "EN",
@@ -54,7 +55,8 @@ export const LanguageRessources = {
             Points: "Punkte",
             PointsPC: "Punkte die du per Klick bekommst: ",
             ClickButton: "Klick mich!",
-            Generators: "Generatoren"
+            Generators: "Generatoren", 
+            LogoutButton: "Abmelden"
         },
         LanguageRessource: {
             Id: "DE",
