@@ -20,7 +20,7 @@ export const LanguageRessources = {
             LoginLink: "To the login"
         },
         CorePageRessource: {
-            Points: "Your Points: ",
+            Points: "Points",
             PointsPC: "Points you get per click: ",
             ClickButton: "CLick me!",
             Generators: "Generators"
@@ -51,7 +51,7 @@ export const LanguageRessources = {
             LoginLink: "Zum Login"
         },
         CorePageRessource: {
-            Points: "Deine Punkte: ",
+            Points: "Punkte",
             PointsPC: "Punkte die du per Klick bekommst: ",
             ClickButton: "Klick mich!",
             Generators: "Generatoren"
