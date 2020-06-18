@@ -20,9 +20,11 @@ export class UserService {
         this._connectionService = new ConnectionService(this._serverRessource)
         this._user = { ...UserState }
     }
+
     logedIn() {
         return this._user.LogedIn
     }
+
     login(username, password) {
         return this._connectionService.getToken(username, password).then(token => {
             const newUser = { ...UserState }
@@ -82,4 +84,3 @@ export class UserService {
         this._connectionService.updateUpdates()
     }
 }
-

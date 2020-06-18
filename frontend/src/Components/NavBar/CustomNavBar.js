@@ -1,21 +1,21 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Form, Navbar, Nav, Button } from 'react-bootstrap';
 
 import { LanguageSwitch } from '../Language/LanguageSwitch'
 import { UserService } from '../../Services/UserService';
 import { GameSwitch } from '../Game/GameSwitch';
+import { UserContext } from '../../Context/UserContext';
 
 export function CustomNavBar({ ressourceService }) {
 
     const ressources = ressourceService.get()
-    const userService = new UserService(ressources.Server)
-
+    const {user} = useContext(UserContext)
     // TODO -> Global 
 
     let buttonText = ''
     let buttonColor = ''
 
-    if (!userService.logedIn()) {
+    if (!user.LogedIn) {
         buttonText = ressources.Login.LoginButton
         buttonColor = 'primary'
     } else {

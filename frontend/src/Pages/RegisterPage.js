@@ -6,7 +6,7 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
 
 import { RessourceService } from '../Services/RessourceService';
-import { UserService } from '../Services/UserService';
+import { UserService0 } from '../Services/UserService0';
 
 export function RegisterPage() {
 
@@ -14,22 +14,32 @@ export function RegisterPage() {
   const { handleSubmit } = useForm();
 
   const ressources = new RessourceService().get()
-  const userService = new UserService(ressources.Server)
 
-  let registerEmail = React.useRef(null)
+  let registerUsername = React.useRef(null)
   let registerPassword = React.useRef(null)
   let confirmPassword = React.useRef(null)
 
-  const onRegister = () => {
+  const onRegister = async () => {
 
-    if (registerPassword.current.value !== confirmPassword.current.value) {
-      // TODO ERROR
-      console.log('Password: ' + registerPassword.current.value)
-      console.log('not same: ' + confirmPassword.current.value)
+    if (registerPassword.current.value == confirmPassword.current.value) {
+      try {
+
+        // register account
+        UserService0.register(registerUsername.current.value, registerPassword.current.value)
+
+        // go to login page
+        pathHistory.push(ressources.Path.Login)
+      
+      } catch (e) {
+
+        //TODO error handling !!!
+        console.log(await e)
+      }
+
     } else {
-      userService.register(registerEmail.current.value, registerPassword.current.value)
-        .then(() => { pathHistory.push(ressources.Path.Core) })
-        .catch()
+ 
+       // TODO error handlinh 
+
     }
   }
 
@@ -45,7 +55,7 @@ export function RegisterPage() {
               <Form.Text className="text-muted">
                 {ressources.Register.RegisterText}
               </Form.Text><br /><br />
-              <Form.Control type="text" placeholder={ressources.Register.UserField} className="text-center" ref={registerEmail} />
+              <Form.Control type="text" placeholder={ressources.Register.UserField} className="text-center" ref={registerUsername} />
               <Form.Text className="text-muted">
                 {ressources.Register.InfoText}
               </Form.Text>
