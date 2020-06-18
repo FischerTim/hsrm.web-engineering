@@ -30,7 +30,7 @@ export function UpdateList({ points, updatesList, onBuyHook, gameRessources }) {
         <table>
             <thead>
                 <tr>
-                    <td colSpan="10" >{gameRessources.Updates.HeadText}</td>
+                    <h4><td colSpan="10" >{gameRessources.Updates.HeadText}</td></h4>
                 </tr>
             </thead>
             <tbody>

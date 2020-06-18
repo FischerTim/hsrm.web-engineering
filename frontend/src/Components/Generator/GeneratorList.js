@@ -25,11 +25,11 @@ export function GeneratorList({ points, generatorsList, onBuyHook, gameRessource
         <table>
             <thead>
                 <tr>
-                    <td colSpan="10" >{gameRessources.Generators.HeadText}</td>
+                    <h4><td  colSpan="10" >{gameRessources.Generators.HeadText}</td></h4>
                 </tr>
             </thead>
             <tbody>
-                {generators}
+                {generators} 
             </tbody>
         </table>
     </div>)
