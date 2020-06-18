@@ -1,11 +1,7 @@
 import { ConnectionState } from '../States/ConnectionState'
 import { GeneratorState, GeneratorsState } from '../States/GeneratorState';
 import { UpdateState, UpdatesState } from '../States/UpdateState';
-
-import { useContext } from 'react';
-import { GeneratorsContext } from '../Context/GeneratorsContext';
-import { UpdatesContext } from '../Context/UpdatesContext';
-import { ServerRessource } from '../Ressourcen/ServerRessource'
+import { ServerRessource } from '../Ressources/ServerRessource'
 export class ConnectionService0 {
     static serverRessource = { ...ServerRessource }
 

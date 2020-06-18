@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
@@ -7,16 +7,15 @@ import { RegisterPage } from './Pages/RegisterPage'
 import { CorePage } from './Pages/CorePage'
 
 import { CustomNavBar } from './Components/NavBar/CustomNavBar'
-import { RessourceService } from './Services/RessourceService'
+import { RessourcesContext } from './Context/RessourcesContext'
 
 function App() {
 
-  const ressourceService = new RessourceService()
-  const ressources = ressourceService.get()
+  const {ressources} = useContext(RessourcesContext)
 
   return (
     <div className="src/App">
-      <CustomNavBar ressourceService={ressourceService} />
+      <CustomNavBar/>
       <Router>
         <Switch>
           <Route path={ressources.Path.Login}>

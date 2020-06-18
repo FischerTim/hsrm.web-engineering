@@ -8,21 +8,21 @@ import { UserService0 } from '../Services/UserService0';
 import { ConnectionService0 } from '../Services/ConnectionService0';
 import { PointsContext } from '../Context/PointsContext';
 import { GPPSContext } from '../Context/GPPSContext';
-import { RessourceService } from '../Services/RessourceService';
 import { UserContext } from '../Context/UserContext'
 import { GeneratorsContext } from '../Context/GeneratorsContext';
 import { UpdatesContext } from '../Context/UpdatesContext';
+import { RessourcesContext } from '../Context/RessourcesContext';
 
 export function LoginPage() {
-  const { user, setUser } = useContext(UserContext)
-  const { generators, setGenerators } = useContext(GeneratorsContext)
-  const { updates, setUpdates } = useContext(UpdatesContext)
-  const { points, setPoints } = useContext(PointsContext)
-  const { gPPS, setGPPS } = useContext(GPPSContext)
+  const { setUser } = useContext(UserContext)
+  const { setGenerators } = useContext(GeneratorsContext)
+  const { setUpdates } = useContext(UpdatesContext)
+  const { setPoints } = useContext(PointsContext)
+  const { setGPPS } = useContext(GPPSContext)
   const pathHistory = useHistory()
   const { handleSubmit } = useForm();
 
-  const ressources = new RessourceService().get()
+  const {ressources} =useContext(RessourcesContext)
 
   let loginUserName = React.useRef(null)
   let loginPassword = React.useRef(null)

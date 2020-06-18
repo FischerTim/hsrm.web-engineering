@@ -1,27 +1,26 @@
 
-import React from 'react'
+import React, { useContext } from 'react'
 
 import { useForm } from "react-hook-form";
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
 
-import { RessourceService } from '../Services/RessourceService';
 import { UserService0 } from '../Services/UserService0';
+import { RessourcesContext } from '../Context/RessourcesContext';
 
 export function RegisterPage() {
 
   const pathHistory = useHistory()
   const { handleSubmit } = useForm();
-
-  const ressources = new RessourceService().get()
-
+  const {ressources} = useContext(RessourcesContext)
+  
   let registerUsername = React.useRef(null)
   let registerPassword = React.useRef(null)
   let confirmPassword = React.useRef(null)
 
   const onRegister = async () => {
 
-    if (registerPassword.current.value == confirmPassword.current.value) {
+    if (registerPassword.current.value === confirmPassword.current.value) {
       try {
 
         // register account

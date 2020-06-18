@@ -8,11 +8,10 @@ import { GPPSContext } from '../Context/GPPSContext';
 import { GeneratorList } from '../Components/Generator/GeneratorList';
 import { UpdateList } from '../Components/Update/UpdateList';
 import { GeneratorsContext } from '../Context/GeneratorsContext';
-import { RessourceService } from '../Services/RessourceService';
 import { UpdatesContext } from '../Context/UpdatesContext';
 import { UserContext } from '../Context/UserContext';
-import { ConnectionService0 } from '../Services/ConnectionService0';
 import { UserService0 } from '../Services/UserService0';
+import { RessourcesContext } from '../Context/RessourcesContext';
 
 
 export function CorePage() {
@@ -21,13 +20,10 @@ export function CorePage() {
 
     const { generators, setGenerators } = useContext(GeneratorsContext)
     const { updates, setUpdates } = useContext(UpdatesContext)
-    const { user, setUser } = useContext(UserContext)
-    const { points, setPoints } = useContext(PointsContext)
-    const { gPPS, setGPPS } = useContext(GPPSContext)
-
-    const ressourceService = new RessourceService()
-    const ressources = ressourceService.get()
-    //const userService = new UserService(ressources.Server)
+    const { user } = useContext(UserContext)
+    const { points } = useContext(PointsContext)
+    const { gPPS } = useContext(GPPSContext)
+    const {ressources} = useContext(RessourcesContext)
 
     // Prohibit page for users not logged in
     if (!user.LogedIn) {
