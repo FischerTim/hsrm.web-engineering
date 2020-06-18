@@ -1,29 +1,37 @@
 import React, { createContext } from 'react'
 
-import { RessourcenContextProvider } from './RessourcenContext'
+import { RessourcesContextProvider } from './Ressource/RessourcesContext'
 
-import { GeneratorsContextProvider } from './GeneratorsContext'
+import { GeneratorsContextProvider } from './Lists/GeneratorsContext'
 
-import { PointsContextProvider } from './PointsContext'
-import { GPPSContextProvider } from './GPPSContext'
-import { UpdatesContextProvider } from './UpdatesContext'
-
+import { PointsContextProvider } from './Statistics/PointsContext'
+import { GPPSContextProvider } from './Statistics/GPPSContext'
+import { UpdatesContextProvider } from './Lists/UpdatesContext'
+import { UserProvider } from './UserContext'
+import { GameContextProvider } from './Ressource/GameContext'
+import { LanguageContextProvider } from './Ressource/LanguageContext'
 export const ContextManager = createContext()
 export const ContextManagerProvider = ({ children }) => {
 
    return (
       <ContextManager.Provider>
-         <RessourcenContextProvider>
-            <GeneratorsContextProvider>
-               <UpdatesContextProvider>
-                  <PointsContextProvider>
-                     <GPPSContextProvider>
-                        {children}
-                     </GPPSContextProvider>
-                  </PointsContextProvider>
-               </UpdatesContextProvider>
-            </GeneratorsContextProvider>
-         </RessourcenContextProvider>
+         <UserProvider>
+            <GameContextProvider>
+               <LanguageContextProvider>
+                  <RessourcesContextProvider>
+                     <GeneratorsContextProvider>
+                        <UpdatesContextProvider>
+                           <PointsContextProvider>
+                              <GPPSContextProvider>
+                                 {children}
+                              </GPPSContextProvider>
+                           </PointsContextProvider>
+                        </UpdatesContextProvider>
+                     </GeneratorsContextProvider>
+                  </RessourcesContextProvider>
+               </LanguageContextProvider>
+            </GameContextProvider>
+         </UserProvider>
       </ContextManager.Provider >
    )
 }

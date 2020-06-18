@@ -3,51 +3,71 @@ import React, { useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Jumbotron, Button, Container, Row, Col, Image } from 'react-bootstrap';
 
-import { PointsContext } from '../Context/PointsContext';
-import { GPPSContext } from '../Context/GPPSContext';
+import { PointsContext } from '../Context/Statistics/PointsContext';
+import { GPPSContext } from '../Context/Statistics/GPPSContext';
+import { GeneratorsContext } from '../Context/Lists/GeneratorsContext';
+import { UpdatesContext } from '../Context/Lists/UpdatesContext';
+import { UserContext } from '../Context/UserContext';
+import { RessourcesContext } from '../Context/Ressource/RessourcesContext';
+
 import { GeneratorList } from '../Components/Generator/GeneratorList';
 import { UpdateList } from '../Components/Update/UpdateList';
-import { GeneratorsContext } from '../Context/GeneratorsContext';
-import { RessourceService } from '../Services/RessourceService';
+
 import { UserService } from '../Services/UserService';
-import { UpdatesContext } from '../Context/UpdatesContext';
-import { Games } from '../Ressourcen/GameRessource';
+
+
 
 export function CorePage() {
 
     const pathHistory = useHistory()
 
-    const { generators } = useContext(GeneratorsContext)
-    const { updates } = useContext(UpdatesContext)
+    const { generators, setGenerators } = useContext(GeneratorsContext)
+    const { updates, setUpdates } = useContext(UpdatesContext)
+    const { user } = useContext(UserContext)
     const { points } = useContext(PointsContext)
     const { gPPS } = useContext(GPPSContext)
-    const ressourceService = new RessourceService()
-    const ressources = ressourceService.get()
-    const userService = new UserService(ressources.Server)
+    const { ressources } = useContext(RessourcesContext)
 
-    if (!userService.logedIn()) {
+    // Prohibit page for users not logged in
+    if (!user.LogedIn) {
         pathHistory.push(ressources.Path.Login)
     }
 
-    /*
-    const logout = () => {
-        userService.logout()
-            .then(pathHistory.push(ressources.Path.Login))
-            .catch()
-    }
-    */
+    const updateGenerators = async () => {
+        try {
 
-    const updateGenerators = () => {
-        userService.updateGenerators()
-        updateUpdates()
+            const newGeneratorList = await UserService.getGenerators(user.Token)
+            setGenerators(await newGeneratorList)
+
+            //update upgrades 
+            updateUpgrades()
+
+        } catch (error) {
+            //TODO error handling
+        }
     }
-    const updateUpdates = () => {
-        userService.updateUpdates()
+
+    const updateUpgrades = async () => {
+        try {
+
+            const newupgradeList = await UserService.getUpgrades(user.Token)
+            setUpdates(await newupgradeList)
+
+        } catch (error) {
+            //TODO error handling
+        }
+
     }
 
     const pointclick = () => {
-        userService.click()
+        if (user.Connections.Click !== null) {
+            user.Connections.Click.send("")
+            // TODO KLICKT!!!!!!!!!
+        } else {
+            // TODO error handling 
+        }
     }
+
     return (
         <div>
             <br /><br />
@@ -64,7 +84,7 @@ export function CorePage() {
                         <Image src={ressources.Game.ImagePath + "/Image" + updates.SelectImage + ".png"} thumbnail />
                     </Col>
                     <Col>
-                        <UpdateList points={points} onBuyHook={updateUpdates} updatesList={updates} gameRessources={ressources.Game} />
+                        <UpdateList points={points} onBuyHook={updateUpgrades} updatesList={updates} gameRessources={ressources.Game} />
                     </Col>
                 </Row>
                 <br /><br />

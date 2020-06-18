@@ -1,6 +1,6 @@
 import React, { useState, createContext } from 'react'
 
-import { StatisticState } from '../States/StatisticState'
+import { StatisticState } from '../../States/StatisticState'
 
 export const GPPSContext = createContext()
 export const GPPSContextProvider = ({ children }) => {

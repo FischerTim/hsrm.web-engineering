@@ -1,6 +1,6 @@
 import React, { useState, createContext } from 'react'
 
-import { StatisticState } from '../States/StatisticState'
+import { StatisticState } from '../../States/StatisticState'
 
 export const PointsContext = createContext()
 export const PointsContextProvider = ({ children }) => {

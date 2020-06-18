@@ -1,10 +1,10 @@
 import React from 'react'
 import { NavDropdown } from 'react-bootstrap';
 
-import { LanguageRessources, Languages } from '../../Ressourcen/LanguageRessource'
+import { LanguageRessources, Languages } from '../../Ressources/LanguageRessource'
 import { LanguageOption } from './LanguageOption'
 
-export function LanguageSwitch({ ressourceService }) {
+export function LanguageSwitch({ language, updateLanguage }) {
 
     const languageList = []
     for (const e in LanguageRessources) {
@@ -18,15 +18,16 @@ export function LanguageSwitch({ ressourceService }) {
         const key = e.target.value
 
         if (Languages[key] !== undefined) {
-            ressourceService.setLanguage(Languages[key])
+            updateLanguage(Languages[key])
         }
     }
 
     return (
-        <NavDropdown title={ressourceService._language} id="basic-nav-dropdown" onClick={onLanguageChanged} alignRight>
+        <NavDropdown title={language} id="basic-nav-dropdown" onClick={onLanguageChanged} alignRight>
             {languageList.map((value, index) => {
                 return <NavDropdown.Item key={index}>{value}</NavDropdown.Item>
             })}
+
         </NavDropdown>
     )
 }

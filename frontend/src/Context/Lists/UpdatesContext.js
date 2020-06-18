@@ -1,6 +1,6 @@
 import React, { useState, createContext } from 'react'
 
-import { UpdatesState } from '../States/UpdateState'
+import { UpdatesState } from '../../States/UpdateState'
 
 export const UpdatesContext = createContext()
 export const UpdatesContextProvider = ({ children }) => {

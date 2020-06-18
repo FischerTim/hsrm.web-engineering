@@ -1,194 +1,200 @@
 import { ConnectionState } from '../States/ConnectionState'
 import { GeneratorState, GeneratorsState } from '../States/GeneratorState';
 import { UpdateState, UpdatesState } from '../States/UpdateState';
-
-import { useContext } from 'react';
-import { GeneratorsContext } from '../Context/GeneratorsContext';
-import { UpdatesContext } from '../Context/UpdatesContext';
-
+import { ServerRessource } from '../Ressources/ServerRessource'
 export class ConnectionService {
-    static instance;
 
-    constructor(serverRessource) {
-        if (ConnectionService.instance) {
-            return ConnectionService.instance;
-        }
-        ConnectionService.instance = this;
-        this._serverRessource = serverRessource
-        this._currentConnections = { ...ConnectionState }
-        this._setGenerators = useContext(GeneratorsContext).setGenerators
-        this._setUpdates = useContext(UpdatesContext).setUpdates
-    }
+    static serverRessource = { ...ServerRessource }
 
-    getToken(username, password) {
+    static getToken(username, password) {
         const method = 'POST'
-        const header = { "Accept": "application/json", "Content-Type": 'application/x-www-form-urlencoded' }
+        const headers = { "Accept": "application/json", "Content-Type": 'application/x-www-form-urlencoded' }
         const body = JSON.stringify(`&username=${username}&password=${password}&`)
-        const url = `${this._serverRessource.HttpPrefix}${this._serverRessource.ServerAdresse}:${this._serverRessource.Port}${this._serverRessource.Endpoint.Token}`
-        return fetch(url, { method: method, headers: header, body: body, })
-            .then(response => response.json())
-            .then(data => { return data.access_token })
+        const url = `${ConnectionService.serverRessource.HttpPrefix}${ConnectionService.serverRessource.ServerAdresse}:${ConnectionService.serverRessource.Port}${ConnectionService.serverRessource.Endpoint.Token}`
+        return fetch(url, { method, headers, body, })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error()
+                } else {
+                    return response.json()
+                }
+            })
     }
 
-    register(username, password) {
+    static register(username, password) {
         const method = 'POST'
-        const header = { "Accept": "application/json", "Content-Type": 'application/json' }
+        const headers = { "Accept": "application/json", "Content-Type": 'application/json' }
         const body = `{"username":"${username}","password":"${password}"}`
-        const url = `${this._serverRessource.HttpPrefix}${this._serverRessource.ServerAdresse}:${this._serverRessource.Port}${this._serverRessource.Endpoint.Register}`
-        return fetch(url, { method: method, headers: header, body: body, })
+        const url = `${ConnectionService.serverRessource.HttpPrefix}${ConnectionService.serverRessource.ServerAdresse}:${ConnectionService.serverRessource.Port}${ConnectionService.serverRessource.Endpoint.Register}`
+        return fetch(url, { method, headers, body, })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error()
+                } else {
+                    return response.json()
+                }
+            })
     }
 
-    connectWebSockets(token) {
-        this._token = token
-        this._disconnectWebSocket()
+    static getConnectedSockets(token) {
         const newSocketConnections = { ...ConnectionState }
         if (token !== undefined) {
-            newSocketConnections.Click = new WebSocket(`${this._serverRessource.SocketPrefix}${this._serverRessource.ServerAdresse}:${this._serverRessource.Port}${this._serverRessource.BasePath}${this._serverRessource.Endpoint.Click}?${this._serverRessource.AuthentificationParam}=${token}`)
-            newSocketConnections.Points = new WebSocket(`${this._serverRessource.SocketPrefix}${this._serverRessource.ServerAdresse}:${this._serverRessource.Port}${this._serverRessource.BasePath}${this._serverRessource.Endpoint.CurrentClicks}?${this._serverRessource.AuthentificationParam}=${token}`)
-            newSocketConnections.GPPS = new WebSocket(`${this._serverRessource.SocketPrefix}${this._serverRessource.ServerAdresse}:${this._serverRessource.Port}${this._serverRessource.BasePath}${this._serverRessource.Endpoint.GPPS}?${this._serverRessource.AuthentificationParam}=${token}`)
+            newSocketConnections.Click = new WebSocket(`${ConnectionService.serverRessource.SocketPrefix}${ConnectionService.serverRessource.ServerAdresse}:${ConnectionService.serverRessource.Port}${ConnectionService.serverRessource.BasePath}${ConnectionService.serverRessource.Endpoint.Click}?${ConnectionService.serverRessource.AuthentificationParam}=${token}`)
+            newSocketConnections.Points = new WebSocket(`${ConnectionService.serverRessource.SocketPrefix}${ConnectionService.serverRessource.ServerAdresse}:${ConnectionService.serverRessource.Port}${ConnectionService.serverRessource.BasePath}${ConnectionService.serverRessource.Endpoint.CurrentClicks}?${ConnectionService.serverRessource.AuthentificationParam}=${token}`)
+            newSocketConnections.GPPS = new WebSocket(`${ConnectionService.serverRessource.SocketPrefix}${ConnectionService.serverRessource.ServerAdresse}:${ConnectionService.serverRessource.Port}${ConnectionService.serverRessource.BasePath}${ConnectionService.serverRessource.Endpoint.GPPS}?${ConnectionService.serverRessource.AuthentificationParam}=${token}`)
         }
-        this._currentConnections = newSocketConnections
-    }
-
-    addEvents(gPPSEvent, pointEvent) {
-        if (this._token) {
-            this._currentConnections.Points.addEventListener('message', pointEvent);
-            this._currentConnections.GPPS.addEventListener('message', gPPSEvent);
-        }
+        return newSocketConnections
 
     }
 
-    updateGenerators() {
-
-        if (this._token !== null) {
-            const header = { method: 'GET', headers: { "Accept": "application/json", "Content-Type": 'application/x-www-form-urlencoded', "Authorization": `Bearer ${this._token}` } }
-            const baseServerPath = `${this._serverRessource.HttpPrefix}${this._serverRessource.ServerAdresse}:${this._serverRessource.Port}`
-            const url = `${baseServerPath}${this._serverRessource.Endpoint.Generators.Available}`
-
-            const newGenerators = { ...GeneratorsState }
-            fetch(url, header)
-                .then(response => response.json())
-                .then(availableGenerators => {
-                    for (var i = 0; i < availableGenerators.length; i++) {
-                        const currentId = availableGenerators[i].id
-
-                        const url = `${baseServerPath}${this._serverRessource.Endpoint.Generators.Base}/${currentId}${this._serverRessource.Endpoint.Generators.Buy}`
-                        const buyFunction = (update) => {
-                            fetch(url, header)
-                        }
-                        newGenerators[currentId] = {
-                            ...GeneratorState,
-                            Income_rate: availableGenerators[i].income_rate,
-                            Id: currentId,
-                            Buy: buyFunction
-                        }
-                        if (i === availableGenerators.length - 1) {
-                            const url = `${baseServerPath}${this._serverRessource.Endpoint.Generators.Base}/${currentId}${this._serverRessource.Endpoint.Generators.PriceOf}`
-                            return fetch(url, header)
-                                .then(response => response.json())
-                                .then(priceOfGen => {
-                                    newGenerators[currentId].Price = priceOfGen
-                                    const url = `${baseServerPath}${this._serverRessource.Endpoint.Generators.Owned}`
-                                    return fetch(url, header)
-                                        .then(response => response.json())
-                                        .then(ownedGenerators => {
-                                            for (var j = 0; j < ownedGenerators.length; j++) {
-                                                const currentId = ownedGenerators[j].generator.id
-                                                newGenerators[currentId].Amount = ownedGenerators[j].amount
-                                            }
-                                        })
-                                })
-                        } else {
-                            const url = `${baseServerPath}${this._serverRessource.Endpoint.Generators.Base}/${currentId}${this._serverRessource.Endpoint.Generators.PriceOf}`
-                            fetch(url, header)
-                                .then(response => response.json())
-                                .then(priceOfGen => {
-                                    newGenerators[currentId].Price = priceOfGen
-
-                                })
-                        }
-
-                    }
-
-                }).then(() => {
-                    this._setGenerators(newGenerators)
-                })
-        }
-
-    }
-    updateUpdates() {
-
-        if (this._token !== null) {
-            const header = { method: 'GET', headers: { "Accept": "application/json", "Content-Type": 'application/x-www-form-urlencoded', "Authorization": `Bearer ${this._token}` } }
-            const baseServerPath = `${this._serverRessource.HttpPrefix}${this._serverRessource.ServerAdresse}:${this._serverRessource.Port}`
-            const url = `${baseServerPath}${this._serverRessource.Endpoint.Updates.Available}`
-
-            const newUpdates = { ...UpdatesState }
-            fetch(url, header)
-                .then(response => response.json())
-                .then(availableUpdates => {
-                    for (var i = 0; i < availableUpdates.length; i++) {
-                        const currentId = availableUpdates[i].id
-                        const url = `${baseServerPath}${this._serverRessource.Endpoint.Updates.Base}/${currentId}${this._serverRessource.Endpoint.Updates.Buy}`
-                        const buyFunction = (update) => {
-                            fetch(url, header)
-                        }
-                        newUpdates[currentId] = {
-                            ...UpdateState,
-                            Multiplier: availableUpdates[i].multiplier,
-                            Id: currentId,
-                            Price: availableUpdates[i].cost,
-                            Bought: false,
-                            Buy: buyFunction
-                        }
-                    }
-                    const newUrl = `${baseServerPath}${this._serverRessource.Endpoint.Updates.Owned}`
-                    return fetch(newUrl, header)
-                        .then(response => response.json())
-                        .then(ownedUpdates => {
-                            for (var i = 0; i < ownedUpdates.length; i++) {
-
-                                const currentId = ownedUpdates[i].upgrade.id
-                                newUpdates[currentId] = {
-                                    ...UpdateState,
-                                    Multiplier: ownedUpdates[i].upgrade.multiplier,
-                                    Id: currentId,
-                                    Price: ownedUpdates[i].upgrade.cost,
-                                    Bought: true,
-                                    Buy: null
-                                }
-                                if (newUpdates.SelectImage < currentId) {
-                                    newUpdates.SelectImage = currentId
-                                }
-                            }
-                        })
-
-                }).then(() => {
-                    this._setUpdates(newUpdates)
-                })
-        }
-
+    static addEventsToSockets(connection, gPPSEvent, pointEvent) {
+        connection.Points.addEventListener('message', pointEvent);
+        connection.GPPS.addEventListener('message', gPPSEvent);
     }
 
-    disconnect() {
-        this._disconnectWebSocket()
-        this._disconnectGenerators()
-        this._disconnectUpdates()
-        this._token = null
-    }
-    _disconnectGenerators() {
-        const newGenerators = { ...GeneratorsState }
-        this._setGenerators(newGenerators)
-    }
-    _disconnectUpdates() {
+    static getUpgrades(token) {
+        const method = 'GET'
+        const headers = { "Accept": "application/json", "Content-Type": 'application/x-www-form-urlencoded', "Authorization": `Bearer ${token}` }
+        const requestInfos = { method, headers }
+        const baseServerPath = `${ConnectionService.serverRessource.HttpPrefix}${ConnectionService.serverRessource.ServerAdresse}:${ConnectionService.serverRessource.Port}`
+
+        // set url for next request
+        const url = `${baseServerPath}${ConnectionService.serverRessource.Endpoint.Updates.Available}`
         const newUpdates = { ...UpdatesState }
-        this._setUpdates(newUpdates)
+
+        return fetch(url, requestInfos)
+            .then(response => response.json())
+            .then(availableUpdates => {
+
+                for (var i = 0; i < availableUpdates.length; i++) {
+
+                    const currentId = availableUpdates[i].id
+
+                    // set url for next request
+                    const url = `${baseServerPath}${ConnectionService.serverRessource.Endpoint.Updates.Base}/${currentId}${ConnectionService.serverRessource.Endpoint.Updates.Buy}`
+                    const buyFunction = (update) => { fetch(url, requestInfos) }
+
+                    // set infos for upgrade with current id
+                    newUpdates[currentId] = {
+                        ...UpdateState,
+                        Multiplier: availableUpdates[i].multiplier,
+                        Id: currentId,
+                        Price: availableUpdates[i].cost,
+                        Bought: false,
+                        Buy: buyFunction
+                    }
+                }
+
+                // set url for next request
+                const nextUrl = `${baseServerPath}${ConnectionService.serverRessource.Endpoint.Updates.Owned}`
+
+                return fetch(nextUrl, requestInfos)
+                    .then(response => response.json())
+                    .then(ownedUpdates => {
+
+                        for (var i = 0; i < ownedUpdates.length; i++) {
+
+                            const currentId = ownedUpdates[i].upgrade.id
+
+                            // set url for next request
+                            newUpdates[currentId] = {
+                                ...UpdateState,
+                                Multiplier: ownedUpdates[i].upgrade.multiplier,
+                                Id: currentId,
+                                Price: ownedUpdates[i].upgrade.cost,
+                                Bought: true,
+                                Buy: null
+                            }
+
+                            if (newUpdates.SelectImage < currentId) {
+                                newUpdates.SelectImage = currentId
+                            }
+                        }
+                        return newUpdates
+                    })
+            })
     }
 
-    getConnection(connectionKey) {
-        return this._currentConnections[connectionKey]
-    }
+    static getGenerators(token) {
+        const method = 'GET'
+        const headers = { "Accept": "application/json", "Content-Type": 'application/x-www-form-urlencoded', "Authorization": `Bearer ${token}` }
+        const requestInfos = { method, headers }
+        const baseServerPath = `${ConnectionService.serverRessource.HttpPrefix}${ConnectionService.serverRessource.ServerAdresse}:${ConnectionService.serverRessource.Port}`
 
+        // set url for next request
+        const url = `${baseServerPath}${ConnectionService.serverRessource.Endpoint.Generators.Available}`
+        const newGenerators = { ...GeneratorsState }
+
+        // return newGenerators
+        return fetch(url, requestInfos)
+            .then(response => response.json())
+            .then(availableGenerators => {
+
+                for (var i = 0; i < availableGenerators.length; i++) {
+
+                    const currentId = availableGenerators[i].id
+
+                    // set url for next request
+                    const url = `${baseServerPath}${ConnectionService.serverRessource.Endpoint.Generators.Base}/${currentId}${ConnectionService.serverRessource.Endpoint.Generators.Buy}`
+                    const buyFunction = (update) => { fetch(url, requestInfos) }
+
+                    // set infos for generator with current id
+                    newGenerators[currentId] = {
+                        ...GeneratorState,
+                        Income_rate: availableGenerators[i].income_rate,
+                        Id: currentId,
+                        Buy: buyFunction
+                    }
+
+                    if (i === availableGenerators.length - 1) {
+
+                        // set url for next request
+                        const url = `${baseServerPath}${ConnectionService.serverRessource.Endpoint.Generators.Base}/${currentId}${ConnectionService.serverRessource.Endpoint.Generators.PriceOf}`
+
+                        return fetch(url, requestInfos)
+                            .then(response => response.json())
+                            .then(priceOfGen => {
+
+                                // set price for generator with current id
+                                newGenerators[currentId].Price = priceOfGen
+
+                                // set url for next request
+                                const url = `${baseServerPath}${ConnectionService.serverRessource.Endpoint.Generators.Owned}`
+
+                                return fetch(url, requestInfos)
+                                    .then(response => response.json())
+                                    .then(ownedGenerators => {
+
+                                        for (var j = 0; j < ownedGenerators.length; j++) {
+
+                                            const currentId = ownedGenerators[j].generator.id
+
+                                            // set amount for generator with current id
+                                            newGenerators[currentId].Amount = ownedGenerators[j].amount
+                                        }
+                                        return newGenerators
+                                    })
+                            })
+
+                    } else {
+                        // set url for next request
+                        const url = `${baseServerPath}${ConnectionService.serverRessource.Endpoint.Generators.Base}/${currentId}${ConnectionService.serverRessource.Endpoint.Generators.PriceOf}`
+
+
+                        fetch(url, requestInfos)
+                            .then(response => response.json())
+                            .then(priceOfGen => {
+
+                                // set price for generator with current id
+                                newGenerators[currentId].Price = priceOfGen
+
+                            })
+                    }
+
+                }
+
+            })
+    }
     _disconnectWebSocket() {
         for (const connection in this._currentConnections) {
             if (this._currentConnections[connection] !== null) {
