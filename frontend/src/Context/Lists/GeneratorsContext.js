@@ -1,6 +1,6 @@
 import React, { useState, createContext } from 'react'
 
-import { GeneratorsState } from '../States/GeneratorState'
+import { GeneratorsState } from '../../States/GeneratorState'
 
 export const GeneratorsContext = createContext()
 export const GeneratorsContextProvider = ({ children }) => {

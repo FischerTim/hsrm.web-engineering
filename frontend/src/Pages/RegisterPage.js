@@ -5,15 +5,17 @@ import { useForm } from "react-hook-form";
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
 
+import { RessourcesContext } from '../Context/Ressource/RessourcesContext';
+
 import { UserService0 } from '../Services/UserService0';
-import { RessourcesContext } from '../Context/RessourcesContext';
+
 
 export function RegisterPage() {
 
   const pathHistory = useHistory()
   const { handleSubmit } = useForm();
-  const {ressources} = useContext(RessourcesContext)
-  
+  const { ressources } = useContext(RessourcesContext)
+
   let registerUsername = React.useRef(null)
   let registerPassword = React.useRef(null)
   let confirmPassword = React.useRef(null)
@@ -28,7 +30,7 @@ export function RegisterPage() {
 
         // go to login page
         pathHistory.push(ressources.Path.Login)
-      
+
       } catch (e) {
 
         //TODO error handling !!!
@@ -36,8 +38,8 @@ export function RegisterPage() {
       }
 
     } else {
- 
-       // TODO error handlinh 
+
+      // TODO error handlinh 
 
     }
   }

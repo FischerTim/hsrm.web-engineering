@@ -7,7 +7,7 @@ import { RegisterPage } from './Pages/RegisterPage'
 import { CorePage } from './Pages/CorePage'
 
 import { CustomNavBar } from './Components/NavBar/CustomNavBar'
-import { RessourcesContext } from './Context/RessourcesContext'
+import { RessourcesContext } from './Context/Ressource/RessourcesContext'
 
 function App() {
 

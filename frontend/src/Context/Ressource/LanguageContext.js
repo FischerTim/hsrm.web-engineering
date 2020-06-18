@@ -1,6 +1,6 @@
 import React, { useState, createContext } from 'react'
 
-import { Languages } from '../Ressources/LanguageRessource'
+import { Languages } from '../../Ressources/LanguageRessource'
 export const LanguageContext = createContext()
 export const LanguageContextProvider = ({ children }) => {
     const [language, setLanguage] = useState(Languages.DEFAULT)

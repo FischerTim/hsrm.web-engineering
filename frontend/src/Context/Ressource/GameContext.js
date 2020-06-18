@@ -1,6 +1,6 @@
 import React, { useState, createContext } from 'react'
 
-import { Games } from '../Ressources/GameRessource'
+import { Games } from '../../Ressources/GameRessource'
 
 export const GameContext = createContext()
 export const GameContextProvider = ({ children }) => {

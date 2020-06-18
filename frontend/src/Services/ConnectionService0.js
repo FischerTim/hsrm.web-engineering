@@ -27,13 +27,13 @@ export class ConnectionService0 {
         const body = `{"username":"${username}","password":"${password}"}`
         const url = `${ConnectionService0.serverRessource.HttpPrefix}${ConnectionService0.serverRessource.ServerAdresse}:${ConnectionService0.serverRessource.Port}${ConnectionService0.serverRessource.Endpoint.Register}`
         return fetch(url, { method, headers, body, })
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error()
-                    } else {
-                        return response.json()
-                    }
-                })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error()
+                } else {
+                    return response.json()
+                }
+            })
     }
 
     static getConnectedSockets(token) {
@@ -195,6 +195,12 @@ export class ConnectionService0 {
 
             })
     }
-
+    _disconnectWebSocket() {
+        for (const connection in this._currentConnections) {
+            if (this._currentConnections[connection] !== null) {
+                this._currentConnections[connection].close()
+            }
+        }
+    }
 
 }

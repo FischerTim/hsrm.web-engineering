@@ -4,16 +4,16 @@ import { Form, Navbar, Nav, Button } from 'react-bootstrap';
 import { LanguageSwitch } from '../Language/LanguageSwitch'
 import { GameSwitch } from '../Game/GameSwitch';
 import { UserContext } from '../../Context/UserContext';
-import { LanguageContext } from '../../Context/LanguageContext';
-import { RessourcesContext } from '../../Context/RessourcesContext';
-import { GameContext } from '../../Context/GameContext';
+import { LanguageContext } from '../../Context/Ressource/LanguageContext';
+import { RessourcesContext } from '../../Context/Ressource/RessourcesContext';
+import { GameContext } from '../../Context/Ressource/GameContext';
 import { RessourceService0 } from '../../Services/RessourceService0';
 
 export function CustomNavBar() {
 
     const { user } = useContext(UserContext)
     const { language, setLanguage } = useContext(LanguageContext)
-    const { game ,setGame} = useContext(GameContext)
+    const { game, setGame } = useContext(GameContext)
     const { ressources, setRessources } = useContext(RessourcesContext)
     // TODO -> Global 
 
@@ -39,7 +39,7 @@ export function CustomNavBar() {
         setRessources(newRessources)
         setGame(key)
     }
-    
+
 
     return (<Navbar bg="dark" expand="lg" variant="dark">
         <Navbar.Brand href="/">Web-Engineering</Navbar.Brand>

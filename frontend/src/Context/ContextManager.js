@@ -1,15 +1,15 @@
 import React, { createContext } from 'react'
 
-import { RessourcesContextProvider } from './RessourcesContext'
+import { RessourcesContextProvider } from './Ressource/RessourcesContext'
 
-import { GeneratorsContextProvider } from './GeneratorsContext'
+import { GeneratorsContextProvider } from './Lists/GeneratorsContext'
 
-import { PointsContextProvider } from './PointsContext'
-import { GPPSContextProvider } from './GPPSContext'
-import { UpdatesContextProvider } from './UpdatesContext'
+import { PointsContextProvider } from './Statistics/PointsContext'
+import { GPPSContextProvider } from './Statistics/GPPSContext'
+import { UpdatesContextProvider } from './Lists/UpdatesContext'
 import { UserProvider } from './UserContext'
-import { GameContextProvider } from './GameContext'
-import { LanguageContextProvider } from './LanguageContext'
+import { GameContextProvider } from './Ressource/GameContext'
+import { LanguageContextProvider } from './Ressource/LanguageContext'
 export const ContextManager = createContext()
 export const ContextManagerProvider = ({ children }) => {
 

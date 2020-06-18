@@ -4,7 +4,7 @@ import { NavDropdown } from 'react-bootstrap';
 import { LanguageRessources, Languages } from '../../Ressources/LanguageRessource'
 import { LanguageOption } from './LanguageOption'
 
-export function LanguageSwitch({ language ,updateLanguage }) {
+export function LanguageSwitch({ language, updateLanguage }) {
 
     const languageList = []
     for (const e in LanguageRessources) {

@@ -3,15 +3,18 @@ import React, { useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Jumbotron, Button, Container, Row, Col, Image } from 'react-bootstrap';
 
-import { PointsContext } from '../Context/PointsContext';
-import { GPPSContext } from '../Context/GPPSContext';
+import { PointsContext } from '../Context/Statistics/PointsContext';
+import { GPPSContext } from '../Context/Statistics/GPPSContext';
+import { GeneratorsContext } from '../Context/Lists/GeneratorsContext';
+import { UpdatesContext } from '../Context/Lists/UpdatesContext';
+import { UserContext } from '../Context/UserContext';
+import { RessourcesContext } from '../Context/Ressource/RessourcesContext';
+
 import { GeneratorList } from '../Components/Generator/GeneratorList';
 import { UpdateList } from '../Components/Update/UpdateList';
-import { GeneratorsContext } from '../Context/GeneratorsContext';
-import { UpdatesContext } from '../Context/UpdatesContext';
-import { UserContext } from '../Context/UserContext';
+
 import { UserService0 } from '../Services/UserService0';
-import { RessourcesContext } from '../Context/RessourcesContext';
+
 
 
 export function CorePage() {
@@ -23,7 +26,7 @@ export function CorePage() {
     const { user } = useContext(UserContext)
     const { points } = useContext(PointsContext)
     const { gPPS } = useContext(GPPSContext)
-    const {ressources} = useContext(RessourcesContext)
+    const { ressources } = useContext(RessourcesContext)
 
     // Prohibit page for users not logged in
     if (!user.LogedIn) {
