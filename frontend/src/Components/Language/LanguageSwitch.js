@@ -24,7 +24,9 @@ export function LanguageSwitch({ ressourceService }) {
 
     return (
         <NavDropdown title={ressourceService._language} id="basic-nav-dropdown" onClick={onLanguageChanged} alignRight>
-            <NavDropdown.Item >{languageList}</NavDropdown.Item>
+            {languageList.map((value, index) => {
+                return <NavDropdown.Item key={index}>{value}</NavDropdown.Item>
+            })}
         </NavDropdown>
     )
 }

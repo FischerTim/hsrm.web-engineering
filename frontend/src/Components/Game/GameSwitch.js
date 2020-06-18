@@ -24,7 +24,9 @@ export function GameSwitch({ ressourceService }) {
 
     return (
         <NavDropdown title={ressourceService._game} id="basic-nav-dropdown" onClick={onGameChanged} alignRight>
-            <NavDropdown.Item >{GameList}</NavDropdown.Item>
+            {GameList.map((value, index) => {
+                return <NavDropdown.Item key={index}>{value}</NavDropdown.Item>
+            })}
         </NavDropdown>
     )
 }
