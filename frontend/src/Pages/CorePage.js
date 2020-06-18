@@ -13,7 +13,7 @@ import { RessourcesContext } from '../Context/Ressource/RessourcesContext';
 import { GeneratorList } from '../Components/Generator/GeneratorList';
 import { UpdateList } from '../Components/Update/UpdateList';
 
-import { UserService0 } from '../Services/UserService0';
+import { UserService } from '../Services/UserService';
 
 
 
@@ -36,7 +36,7 @@ export function CorePage() {
     const updateGenerators = async () => {
         try {
 
-            const newGeneratorList = await UserService0.getGenerators(user.Token)
+            const newGeneratorList = await UserService.getGenerators(user.Token)
             setGenerators(await newGeneratorList)
 
             //update upgrades 
@@ -50,7 +50,7 @@ export function CorePage() {
     const updateUpgrades = async () => {
         try {
 
-            const newupgradeList = await UserService0.getUpgrades(user.Token)
+            const newupgradeList = await UserService.getUpgrades(user.Token)
             setUpdates(await newupgradeList)
 
         } catch (error) {

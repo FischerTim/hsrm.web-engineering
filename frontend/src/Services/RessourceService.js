@@ -3,7 +3,7 @@ import { LanguageRessources } from '../Ressources/LanguageRessource';
 import { RessourceState } from '../States/RessourceState';
 import { GameRessources } from '../Ressources/GameRessource';
 
-export class RessourceService0 {
+export class RessourceService {
 
     static getUpdatedRessource(language, game) {
         const newRessource = { ...RessourceState }

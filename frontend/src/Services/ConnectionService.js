@@ -2,15 +2,15 @@ import { ConnectionState } from '../States/ConnectionState'
 import { GeneratorState, GeneratorsState } from '../States/GeneratorState';
 import { UpdateState, UpdatesState } from '../States/UpdateState';
 import { ServerRessource } from '../Ressources/ServerRessource'
-export class ConnectionService0 {
-    static serverRessource = { ...ServerRessource }
+export class ConnectionService {
 
+    static serverRessource = { ...ServerRessource }
 
     static getToken(username, password) {
         const method = 'POST'
         const headers = { "Accept": "application/json", "Content-Type": 'application/x-www-form-urlencoded' }
         const body = JSON.stringify(`&username=${username}&password=${password}&`)
-        const url = `${ConnectionService0.serverRessource.HttpPrefix}${ConnectionService0.serverRessource.ServerAdresse}:${ConnectionService0.serverRessource.Port}${ConnectionService0.serverRessource.Endpoint.Token}`
+        const url = `${ConnectionService.serverRessource.HttpPrefix}${ConnectionService.serverRessource.ServerAdresse}:${ConnectionService.serverRessource.Port}${ConnectionService.serverRessource.Endpoint.Token}`
         return fetch(url, { method, headers, body, })
             .then((response) => {
                 if (!response.ok) {
@@ -25,7 +25,7 @@ export class ConnectionService0 {
         const method = 'POST'
         const headers = { "Accept": "application/json", "Content-Type": 'application/json' }
         const body = `{"username":"${username}","password":"${password}"}`
-        const url = `${ConnectionService0.serverRessource.HttpPrefix}${ConnectionService0.serverRessource.ServerAdresse}:${ConnectionService0.serverRessource.Port}${ConnectionService0.serverRessource.Endpoint.Register}`
+        const url = `${ConnectionService.serverRessource.HttpPrefix}${ConnectionService.serverRessource.ServerAdresse}:${ConnectionService.serverRessource.Port}${ConnectionService.serverRessource.Endpoint.Register}`
         return fetch(url, { method, headers, body, })
             .then((response) => {
                 if (!response.ok) {
@@ -39,9 +39,9 @@ export class ConnectionService0 {
     static getConnectedSockets(token) {
         const newSocketConnections = { ...ConnectionState }
         if (token !== undefined) {
-            newSocketConnections.Click = new WebSocket(`${ConnectionService0.serverRessource.SocketPrefix}${ConnectionService0.serverRessource.ServerAdresse}:${ConnectionService0.serverRessource.Port}${ConnectionService0.serverRessource.BasePath}${ConnectionService0.serverRessource.Endpoint.Click}?${ConnectionService0.serverRessource.AuthentificationParam}=${token}`)
-            newSocketConnections.Points = new WebSocket(`${ConnectionService0.serverRessource.SocketPrefix}${ConnectionService0.serverRessource.ServerAdresse}:${ConnectionService0.serverRessource.Port}${ConnectionService0.serverRessource.BasePath}${ConnectionService0.serverRessource.Endpoint.CurrentClicks}?${ConnectionService0.serverRessource.AuthentificationParam}=${token}`)
-            newSocketConnections.GPPS = new WebSocket(`${ConnectionService0.serverRessource.SocketPrefix}${ConnectionService0.serverRessource.ServerAdresse}:${ConnectionService0.serverRessource.Port}${ConnectionService0.serverRessource.BasePath}${ConnectionService0.serverRessource.Endpoint.GPPS}?${ConnectionService0.serverRessource.AuthentificationParam}=${token}`)
+            newSocketConnections.Click = new WebSocket(`${ConnectionService.serverRessource.SocketPrefix}${ConnectionService.serverRessource.ServerAdresse}:${ConnectionService.serverRessource.Port}${ConnectionService.serverRessource.BasePath}${ConnectionService.serverRessource.Endpoint.Click}?${ConnectionService.serverRessource.AuthentificationParam}=${token}`)
+            newSocketConnections.Points = new WebSocket(`${ConnectionService.serverRessource.SocketPrefix}${ConnectionService.serverRessource.ServerAdresse}:${ConnectionService.serverRessource.Port}${ConnectionService.serverRessource.BasePath}${ConnectionService.serverRessource.Endpoint.CurrentClicks}?${ConnectionService.serverRessource.AuthentificationParam}=${token}`)
+            newSocketConnections.GPPS = new WebSocket(`${ConnectionService.serverRessource.SocketPrefix}${ConnectionService.serverRessource.ServerAdresse}:${ConnectionService.serverRessource.Port}${ConnectionService.serverRessource.BasePath}${ConnectionService.serverRessource.Endpoint.GPPS}?${ConnectionService.serverRessource.AuthentificationParam}=${token}`)
         }
         return newSocketConnections
 
@@ -56,10 +56,10 @@ export class ConnectionService0 {
         const method = 'GET'
         const headers = { "Accept": "application/json", "Content-Type": 'application/x-www-form-urlencoded', "Authorization": `Bearer ${token}` }
         const requestInfos = { method, headers }
-        const baseServerPath = `${ConnectionService0.serverRessource.HttpPrefix}${ConnectionService0.serverRessource.ServerAdresse}:${ConnectionService0.serverRessource.Port}`
+        const baseServerPath = `${ConnectionService.serverRessource.HttpPrefix}${ConnectionService.serverRessource.ServerAdresse}:${ConnectionService.serverRessource.Port}`
 
         // set url for next request
-        const url = `${baseServerPath}${ConnectionService0.serverRessource.Endpoint.Updates.Available}`
+        const url = `${baseServerPath}${ConnectionService.serverRessource.Endpoint.Updates.Available}`
         const newUpdates = { ...UpdatesState }
 
         return fetch(url, requestInfos)
@@ -71,7 +71,7 @@ export class ConnectionService0 {
                     const currentId = availableUpdates[i].id
 
                     // set url for next request
-                    const url = `${baseServerPath}${ConnectionService0.serverRessource.Endpoint.Updates.Base}/${currentId}${ConnectionService0.serverRessource.Endpoint.Updates.Buy}`
+                    const url = `${baseServerPath}${ConnectionService.serverRessource.Endpoint.Updates.Base}/${currentId}${ConnectionService.serverRessource.Endpoint.Updates.Buy}`
                     const buyFunction = (update) => { fetch(url, requestInfos) }
 
                     // set infos for upgrade with current id
@@ -86,7 +86,7 @@ export class ConnectionService0 {
                 }
 
                 // set url for next request
-                const nextUrl = `${baseServerPath}${ConnectionService0.serverRessource.Endpoint.Updates.Owned}`
+                const nextUrl = `${baseServerPath}${ConnectionService.serverRessource.Endpoint.Updates.Owned}`
 
                 return fetch(nextUrl, requestInfos)
                     .then(response => response.json())
@@ -119,10 +119,10 @@ export class ConnectionService0 {
         const method = 'GET'
         const headers = { "Accept": "application/json", "Content-Type": 'application/x-www-form-urlencoded', "Authorization": `Bearer ${token}` }
         const requestInfos = { method, headers }
-        const baseServerPath = `${ConnectionService0.serverRessource.HttpPrefix}${ConnectionService0.serverRessource.ServerAdresse}:${ConnectionService0.serverRessource.Port}`
+        const baseServerPath = `${ConnectionService.serverRessource.HttpPrefix}${ConnectionService.serverRessource.ServerAdresse}:${ConnectionService.serverRessource.Port}`
 
         // set url for next request
-        const url = `${baseServerPath}${ConnectionService0.serverRessource.Endpoint.Generators.Available}`
+        const url = `${baseServerPath}${ConnectionService.serverRessource.Endpoint.Generators.Available}`
         const newGenerators = { ...GeneratorsState }
 
         // return newGenerators
@@ -135,7 +135,7 @@ export class ConnectionService0 {
                     const currentId = availableGenerators[i].id
 
                     // set url for next request
-                    const url = `${baseServerPath}${ConnectionService0.serverRessource.Endpoint.Generators.Base}/${currentId}${ConnectionService0.serverRessource.Endpoint.Generators.Buy}`
+                    const url = `${baseServerPath}${ConnectionService.serverRessource.Endpoint.Generators.Base}/${currentId}${ConnectionService.serverRessource.Endpoint.Generators.Buy}`
                     const buyFunction = (update) => { fetch(url, requestInfos) }
 
                     // set infos for generator with current id
@@ -149,7 +149,7 @@ export class ConnectionService0 {
                     if (i === availableGenerators.length - 1) {
 
                         // set url for next request
-                        const url = `${baseServerPath}${ConnectionService0.serverRessource.Endpoint.Generators.Base}/${currentId}${ConnectionService0.serverRessource.Endpoint.Generators.PriceOf}`
+                        const url = `${baseServerPath}${ConnectionService.serverRessource.Endpoint.Generators.Base}/${currentId}${ConnectionService.serverRessource.Endpoint.Generators.PriceOf}`
 
                         return fetch(url, requestInfos)
                             .then(response => response.json())
@@ -159,7 +159,7 @@ export class ConnectionService0 {
                                 newGenerators[currentId].Price = priceOfGen
 
                                 // set url for next request
-                                const url = `${baseServerPath}${ConnectionService0.serverRessource.Endpoint.Generators.Owned}`
+                                const url = `${baseServerPath}${ConnectionService.serverRessource.Endpoint.Generators.Owned}`
 
                                 return fetch(url, requestInfos)
                                     .then(response => response.json())
@@ -178,7 +178,7 @@ export class ConnectionService0 {
 
                     } else {
                         // set url for next request
-                        const url = `${baseServerPath}${ConnectionService0.serverRessource.Endpoint.Generators.Base}/${currentId}${ConnectionService0.serverRessource.Endpoint.Generators.PriceOf}`
+                        const url = `${baseServerPath}${ConnectionService.serverRessource.Endpoint.Generators.Base}/${currentId}${ConnectionService.serverRessource.Endpoint.Generators.PriceOf}`
 
 
                         fetch(url, requestInfos)

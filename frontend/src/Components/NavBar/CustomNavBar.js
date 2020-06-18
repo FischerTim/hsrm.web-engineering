@@ -7,7 +7,7 @@ import { UserContext } from '../../Context/UserContext';
 import { LanguageContext } from '../../Context/Ressource/LanguageContext';
 import { RessourcesContext } from '../../Context/Ressource/RessourcesContext';
 import { GameContext } from '../../Context/Ressource/GameContext';
-import { RessourceService0 } from '../../Services/RessourceService0';
+import { RessourceService } from '../../Services/RessourceService';
 
 export function CustomNavBar() {
 
@@ -15,7 +15,7 @@ export function CustomNavBar() {
     const { language, setLanguage } = useContext(LanguageContext)
     const { game, setGame } = useContext(GameContext)
     const { ressources, setRessources } = useContext(RessourcesContext)
-    // TODO -> Global 
+
 
     let buttonText = ''
     let buttonColor = ''
@@ -30,12 +30,12 @@ export function CustomNavBar() {
 
     const updateLanguage = (key) => {
 
-        const newRessources = RessourceService0.getUpdatedRessource(key, game)
+        const newRessources = RessourceService.getUpdatedRessource(key, game)
         setRessources(newRessources)
         setLanguage(key)
     }
     const updateGame = (key) => {
-        const newRessources = RessourceService0.getUpdatedRessource(language, key)
+        const newRessources = RessourceService.getUpdatedRessource(language, key)
         setRessources(newRessources)
         setGame(key)
     }

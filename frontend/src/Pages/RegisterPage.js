@@ -7,7 +7,7 @@ import { Link, useHistory } from 'react-router-dom';
 
 import { RessourcesContext } from '../Context/Ressource/RessourcesContext';
 
-import { UserService0 } from '../Services/UserService0';
+import { UserService } from '../Services/UserService';
 
 
 export function RegisterPage() {
@@ -26,7 +26,7 @@ export function RegisterPage() {
       try {
 
         // register account
-        UserService0.register(registerUsername.current.value, registerPassword.current.value)
+        UserService.register(registerUsername.current.value, registerPassword.current.value)
 
         // go to login page
         pathHistory.push(ressources.Path.Login)

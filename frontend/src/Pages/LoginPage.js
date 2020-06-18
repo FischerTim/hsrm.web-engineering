@@ -11,8 +11,8 @@ import { GeneratorsContext } from '../Context/Lists/GeneratorsContext';
 import { UpdatesContext } from '../Context/Lists/UpdatesContext';
 import { RessourcesContext } from '../Context/Ressource/RessourcesContext';
 
-import { UserService0 } from '../Services/UserService0';
-import { ConnectionService0 } from '../Services/ConnectionService0';
+import { UserService } from '../Services/UserService';
+import { ConnectionService } from '../Services/ConnectionService';
 
 
 export function LoginPage() {
@@ -35,24 +35,24 @@ export function LoginPage() {
     try {
 
       // get login token
-      const response = await UserService0.login(loginUserName.current.value, loginPassword.current.value)
-      const newUser = UserService0.getUserObject(loginUserName.current.value, await response.access_token, true)
+      const response = await UserService.login(loginUserName.current.value, loginPassword.current.value)
+      const newUser = UserService.getUserObject(loginUserName.current.value, await response.access_token, true)
 
       // connect to web wockets
-      newUser.Connections = ConnectionService0.getConnectedSockets(newUser.Token)
+      newUser.Connections = ConnectionService.getConnectedSockets(newUser.Token)
 
       // add event listener
-      ConnectionService0.addEventsToSockets(
+      ConnectionService.addEventsToSockets(
         newUser.Connections,
         (event) => { setGPPS(JSON.parse(event.data)["points"]) },
         (event) => { setPoints(JSON.parse(event.data)["points"]) })
 
       // get generator list
-      const newGeneratorList = await UserService0.getGenerators(newUser.Token)
+      const newGeneratorList = await UserService.getGenerators(newUser.Token)
       setGenerators(await newGeneratorList)
 
       // get upgrade list
-      const newupgradeList = await UserService0.getUpgrades(newUser.Token)
+      const newupgradeList = await UserService.getUpgrades(newUser.Token)
       setUpdates(await newupgradeList)
 
       // set user 
