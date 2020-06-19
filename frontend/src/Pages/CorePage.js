@@ -63,6 +63,7 @@ export function CorePage() {
                         </Jumbotron><br />
                         <Image src={ressources.Game.ImagePath + "/Image" + updates.SelectImage + ".png"} thumbnail />
                     </Col>
+                    
                     <Col>
                         <UpdateList points={points} onBuyHook={updateUpdates} updatesList={updates} gameRessources={ressources.Game} />
                     </Col>

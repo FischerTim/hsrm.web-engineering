@@ -1,5 +1,5 @@
 import React from 'react'
-import { DropdownButton, Dropdown } from 'react-bootstrap'
+import { DropdownButton, Dropdown, Table } from 'react-bootstrap'
 
 export function Update({ update, ressource }) {
     // const buybutton = buy !== null ? <button onClick={buy}>Buy</button> : <button disabled={true}>Buy</button>
@@ -12,9 +12,21 @@ export function Update({ update, ressource }) {
     return (
         <p>
         <DropdownButton title={ressource.Updates.List[update.Id]}>
-            <Dropdown.Item>{ressource.Updates.MultiplierText}{update.Multiplier}</Dropdown.Item>
-            <Dropdown.Item>{ressource.Updates.IdText}{update.Id}</Dropdown.Item>
-            <Dropdown.Item>{ressource.Updates.PriceText}{update.Price}</Dropdown.Item>
+            <Table borderless size="sm">
+                <tr>
+                    <th>{ressource.Updates.MultiplierText}</th>
+                    <td>{update.Multiplier}</td>
+                </tr>
+                <tr>
+                    <th>{ressource.Updates.IdText}</th>
+                    <td>{update.Id}</td>
+                </tr>
+                <tr>
+                    <th>{ressource.Updates.PriceText}</th>
+                    <td>{update.Price}</td>
+                </tr>
+            </Table>
+            
             <Dropdown.Item> <input type="radio" value="male" onClick={update.Buy} disabled={update.Buy == null} defaultChecked={update.Bought}></input></Dropdown.Item>
         </DropdownButton>
         </p>
