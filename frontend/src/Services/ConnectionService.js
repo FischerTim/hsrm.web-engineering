@@ -62,6 +62,10 @@ export class ConnectionService {
         const url = `${baseServerPath}${ConnectionService.serverRessource.Endpoint.Updates.Available}`
         const newUpdates = { ...UpdatesState }
 
+        if (token == null){
+            return newUpdates
+        }
+
         return fetch(url, requestInfos)
             .then(response => response.json())
             .then(availableUpdates => {
@@ -124,6 +128,10 @@ export class ConnectionService {
         // set url for next request
         const url = `${baseServerPath}${ConnectionService.serverRessource.Endpoint.Generators.Available}`
         const newGenerators = { ...GeneratorsState }
+
+        if (token == null){
+            return newGenerators
+        }
 
         // return newGenerators
         return fetch(url, requestInfos)
@@ -195,10 +203,11 @@ export class ConnectionService {
 
             })
     }
-    _disconnectWebSocket() {
-        for (const connection in this._currentConnections) {
-            if (this._currentConnections[connection] !== null) {
-                this._currentConnections[connection].close()
+
+    static disconnectWebSocket(connections) {
+        for (const connection in connections) {
+            if (connections[connection] !== null) {
+                connections[connection].close()
             }
         }
     }

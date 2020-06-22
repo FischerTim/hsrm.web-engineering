@@ -9,8 +9,9 @@ export class UserService {
     }
 
     static getUserObject(username, token, logedIn) {
+       
         const newUser = { ...UserState }
-        newUser.LogedIn = true
+        newUser.LogedIn = logedIn
         newUser.Token = token
         newUser.Username = username
         return newUser
@@ -28,4 +29,7 @@ export class UserService {
         return ConnectionService.getUpgrades(token)
     }
 
+    static disconnect(connections){
+        ConnectionService.disconnectWebSocket(connections) 
+    }
 }

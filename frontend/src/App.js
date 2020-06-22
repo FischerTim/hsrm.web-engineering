@@ -2,11 +2,11 @@ import React, { useContext } from 'react'
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
-import { LoginPage } from './Pages/LoginPage'
-import { RegisterPage } from './Pages/RegisterPage'
-import { CorePage } from './Pages/CorePage'
+import { LoginPage } from './Pages/Body/LoginPage'
+import { RegisterPage } from './Pages/Body/RegisterPage'
+import { CorePage } from './Pages/Body/CorePage'
 
-import { CustomNavBar } from './Components/NavBar/CustomNavBar'
+import { CustomNavBar } from './Pages/Head/CustomNavBar'
 import { RessourcesContext } from './Context/Ressource/RessourcesContext'
 
 function App() {
@@ -15,8 +15,9 @@ function App() {
 
   return (
     <div className="src/App">
-      <CustomNavBar/>
+      
       <Router>
+      <CustomNavBar/>
         <Switch>
           <Route path={ressources.Path.Login}>
             <LoginPage />

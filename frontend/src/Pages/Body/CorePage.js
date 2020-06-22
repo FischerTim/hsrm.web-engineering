@@ -3,17 +3,17 @@ import React, { useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Jumbotron, Button, Container, Row, Col, Image } from 'react-bootstrap';
 
-import { PointsContext } from '../Context/Statistics/PointsContext';
-import { GPPSContext } from '../Context/Statistics/GPPSContext';
-import { GeneratorsContext } from '../Context/Lists/GeneratorsContext';
-import { UpdatesContext } from '../Context/Lists/UpdatesContext';
-import { UserContext } from '../Context/UserContext';
-import { RessourcesContext } from '../Context/Ressource/RessourcesContext';
+import { PointsContext } from '../../Context/Statistics/PointsContext';
+import { GPPSContext } from '../../Context/Statistics/GPPSContext';
+import { GeneratorsContext } from '../../Context/Lists/GeneratorsContext';
+import { UpdatesContext } from '../../Context/Lists/UpdatesContext';
+import { UserContext } from '../../Context/UserContext';
+import { RessourcesContext } from '../../Context/Ressource/RessourcesContext';
 
-import { GeneratorList } from '../Components/Generator/GeneratorList';
-import { UpdateList } from '../Components/Update/UpdateList';
+import { GeneratorList } from '../../Components/Generator/GeneratorList';
+import { UpdateList } from '../../Components/Update/UpdateList';
 
-import { UserService } from '../Services/UserService';
+import { UserService } from '../../Services/UserService';
 
 
 

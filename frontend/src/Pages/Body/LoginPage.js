@@ -4,15 +4,15 @@ import { useHistory, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 
-import { PointsContext } from '../Context/Statistics/PointsContext';
-import { GPPSContext } from '../Context/Statistics/GPPSContext';
-import { UserContext } from '../Context/UserContext'
-import { GeneratorsContext } from '../Context/Lists/GeneratorsContext';
-import { UpdatesContext } from '../Context/Lists/UpdatesContext';
-import { RessourcesContext } from '../Context/Ressource/RessourcesContext';
+import { PointsContext } from '../../Context/Statistics/PointsContext';
+import { GPPSContext } from '../../Context/Statistics/GPPSContext';
+import { UserContext } from '../../Context/UserContext'
+import { GeneratorsContext } from '../../Context/Lists/GeneratorsContext';
+import { UpdatesContext } from '../../Context/Lists/UpdatesContext';
+import { RessourcesContext } from '../../Context/Ressource/RessourcesContext';
 
-import { UserService } from '../Services/UserService';
-import { ConnectionService } from '../Services/ConnectionService';
+import { UserService } from '../../Services/UserService';
+import { ConnectionService } from '../../Services/ConnectionService';
 
 
 export function LoginPage() {
