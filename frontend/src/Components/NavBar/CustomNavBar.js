@@ -39,7 +39,20 @@ export function CustomNavBar() {
         setRessources(newRessources)
         setGame(key)
     }
+    
+    const test = ()=>{
+        if (true){
 
+        }
+
+        if (true){
+            // push Path
+        }else if(false){
+
+            //push Path
+
+        }
+    }
 
     return (<Navbar bg="dark" expand="lg" variant="dark">
         <Navbar.Brand href="/">Web-Engineering</Navbar.Brand>
@@ -47,13 +60,11 @@ export function CustomNavBar() {
         <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
             </Nav>
-            <Form inline>
-                <Button variant={buttonColor} type="submit">
+                <Button variant={buttonColor} onclick={test} type="submit">
                     {buttonText}
                 </Button>
                 <LanguageSwitch updateLanguage={updateLanguage} language={language} />
                 <GameSwitch language={language} updateGame={updateGame} game={game} />
-            </Form>
         </Navbar.Collapse>
     </Navbar>)
 }
