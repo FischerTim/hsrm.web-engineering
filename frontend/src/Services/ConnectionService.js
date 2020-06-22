@@ -114,7 +114,9 @@ export class ConnectionService {
                                 newUpdates.SelectImage = currentId
                             }
                         }
-                        return newUpdates
+                        const newSafeUpdates = { ...UpdatesState }
+                        newSafeUpdates.SelectImage = newUpdates.SelectImage
+                        return ConnectionService.sortByOrder(newUpdates,(a)=>{return newUpdates[a].Id},newSafeUpdates)
                     })
             })
     }
@@ -149,6 +151,7 @@ export class ConnectionService {
                     // set infos for generator with current id
                     newGenerators[currentId] = {
                         ...GeneratorState,
+                        Order: availableGenerators[i].order,
                         Income_rate: availableGenerators[i].income_rate,
                         Id: currentId,
                         Buy: buyFunction
@@ -180,7 +183,8 @@ export class ConnectionService {
                                             // set amount for generator with current id
                                             newGenerators[currentId].Amount = ownedGenerators[j].amount
                                         }
-                                        return newGenerators
+                                        
+                                        return ConnectionService.sortByOrder(newGenerators,(a)=>{return newGenerators[a].Order},GeneratorsState)
                                     })
                             })
 
@@ -202,6 +206,21 @@ export class ConnectionService {
                 }
 
             })
+        
+    }
+    static sortByOrder(list,getKey,BaseList){
+        const newList ={...BaseList}
+        const i = []
+        for (const ele in list) {
+            if (!isNaN(ele)){
+                i[getKey(ele)] = list[ele]
+            }
+            
+        }
+        for (const ele in i){
+            newList[ele] = i[ele] 
+        }
+        return newList
     }
 
     static disconnectWebSocket(connections) {

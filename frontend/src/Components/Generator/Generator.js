@@ -11,7 +11,7 @@ export function Generator({ generator, ressource }) {
         <td>
             {ressource.Generators.IdText}
             <label>
-                {generator.Id}
+                {generator.Order}
             </label>
         </td>
         <td>
