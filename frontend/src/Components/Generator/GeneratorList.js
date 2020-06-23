@@ -22,15 +22,29 @@ export function GeneratorList({ points, generatorsList, onBuyHook, gameRessource
             ressource={gameRessources} />)
     }
     return (<div>
-        <table>
-            <thead>
-                <tr>
-                    <td colSpan="10" >{gameRessources.Generators.HeadText}</td>
-                </tr>
-            </thead>
-            <tbody>
-                {generators}
-            </tbody>
-        </table>
+            <table>
+                <thead>
+                    <tr>
+                        <th colSpan="10" >{gameRessources.Generators.HeadText}</th>
+                    </tr>
+                    <tr>
+                        <th>
+                        {   gameRessources.Generators.CpsText}
+                        </th>
+                        <th>
+                            {gameRessources.Generators.IdText}
+                        </th>
+                        <th>
+                            {gameRessources.Generators.PriceText}
+                        </th>
+                        <th>
+                            {gameRessources.Generators.AmountText}
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {generators}
+                </tbody>
+            </table>
     </div>)
 }

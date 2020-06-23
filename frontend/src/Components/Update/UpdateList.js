@@ -21,7 +21,6 @@ export function UpdateList({ points, updatesList, onBuyHook, gameRessources }) {
             updates.push(<Update
                 key={ele}
                 update={currentUpdate}
-                ressource={gameRessources}
             />)
         }
     }
@@ -30,7 +29,18 @@ export function UpdateList({ points, updatesList, onBuyHook, gameRessources }) {
         <table>
             <thead>
                 <tr>
-                    <td colSpan="10" >{gameRessources.Updates.HeadText}</td>
+                    <th colSpan="10" >{gameRessources.Updates.HeadText}</th>
+                </tr>
+                <tr>
+                    <th>
+                        {gameRessources.Updates.MultiplierText}
+                    </th>
+                    <th>
+                        {gameRessources.Updates.IdText}
+                    </th>
+                    <th>
+                        {gameRessources.Updates.PriceText}
+                    </th>
                 </tr>
             </thead>
             <tbody>

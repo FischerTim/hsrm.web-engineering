@@ -3,28 +3,16 @@ import React from 'react'
 export function Generator({ generator, ressource }) {
     return (<tr>
         <td>
-            {ressource.Generators.CpsText}
-            <label>
-                {generator.Income_rate}
-            </label>
+            {generator.Income_rate}
         </td>
         <td>
-            {ressource.Generators.IdText}
-            <label>
-                {generator.Order}
-            </label>
+            {generator.Order}
         </td>
         <td>
-            {ressource.Generators.PriceText}
-            <label>
-                {generator.Price}
-            </label>
+            {generator.Price}
         </td>
         <td>
-            {ressource.Generators.AmountText}
-            <label>
-                {generator.Amount}
-            </label>
+            {generator.Amount}
         </td>
         <td>
             <button disabled={generator.Buy == null} onClick={generator.Buy}>

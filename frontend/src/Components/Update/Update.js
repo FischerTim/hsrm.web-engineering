@@ -1,6 +1,6 @@
 import React from 'react'
 
-export function Update({ update, ressource }) {
+export function Update({ update }) {
     // const buybutton = buy !== null ? <button onClick={buy}>Buy</button> : <button disabled={true}>Buy</button>
     // const cpsLabel = <label>{CPS}</label>
     // const idLabel = <label>{id}</label>
@@ -11,22 +11,13 @@ export function Update({ update, ressource }) {
     return (
         <tr>
             <td>
-                {ressource.Updates.MultiplierText}
-                <label>
-                    {update.Multiplier}
-                </label>
+                {update.Multiplier}
             </td>
             <td>
-                {ressource.Updates.IdText}
-                <label>
-                    {update.Id}
-                </label>
+                {update.Id}
             </td>
             <td>
-                {ressource.Updates.PriceText}
-                <label>
-                    {update.Price}
-                </label>
+                {update.Price}
             </td>
             <td>
                 <input type="radio" value="male" onClick={update.Buy} disabled={update.Buy == null} defaultChecked={update.Bought}></input>
