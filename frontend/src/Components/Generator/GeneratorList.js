@@ -1,5 +1,6 @@
 import React from 'react'
 import { Generator } from './Generator'
+import { Accordion } from 'react-bootstrap'
 
 export function GeneratorList({ points, generatorsList, onBuyHook, gameRessources }) {
     const generators = []
@@ -29,7 +30,9 @@ export function GeneratorList({ points, generatorsList, onBuyHook, gameRessource
                 </tr>
             </thead>
             <tbody>
+                <Accordion>
                 {generators} 
+                </Accordion>
             </tbody>
         </table>
     </div>)

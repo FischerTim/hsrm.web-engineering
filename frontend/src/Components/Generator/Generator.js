@@ -1,18 +1,17 @@
 import React from 'react'
-import { Dropdown, DropdownButton, Table } from 'react-bootstrap'
+import { Accordion, Button , Table, Card } from 'react-bootstrap'
 
 export function Generator({ generator, ressource }) {
-    const a =  '<Image src={"info.png"} thumbnail />'
+
    
     return (
-        <p>
-
-            <Table borderless>
-                <tr>
-                    <td>
-                        <DropdownButton size="xs" title={ressource.Generators.List[generator.Id]}>
-
-                            <Table borderless size="sm">
+        <Card>
+            <Card.Header>
+            <Accordion.Toggle as={Button} variant="link" eventKey={generator.Id}>{ressource.Generators.List[generator.Id]}</Accordion.Toggle>
+            </Card.Header>
+            <Accordion.Collapse eventKey={generator.Id}>
+                <Card.Body>
+                <Table borderless size="sm">
                                 <tr>
                                     <th>{ressource.Generators.CpsText}</th>
                                     <td>{generator.Income_rate}</td>
@@ -29,15 +28,16 @@ export function Generator({ generator, ressource }) {
                                     <th>{ressource.Generators.AmountText}</th>
                                     <td>{generator.Amount}</td>
                                 </tr>
-                            </Table>
-                        </DropdownButton>
-                    </td>
+
                     <td><button disabled={generator.Buy == null} onClick={generator.Buy}>
                         {ressource.Generators.BuyText}
                     </button></td>
+                            </Table>
+                </Card.Body>
+            </Accordion.Collapse>
+        </Card>
 
-                </tr>
-            </Table>
-        </p>
+
+           
     )
 }
