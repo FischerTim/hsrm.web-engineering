@@ -21,6 +21,7 @@ export function UpdateList({ points, updatesList, onBuyHook, gameRessources }) {
             updates.push(<Update
                 key={ele}
                 update={currentUpdate}
+                ressource={gameRessources}
             />)
         }
     }
