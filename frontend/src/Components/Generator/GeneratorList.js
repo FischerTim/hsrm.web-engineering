@@ -25,18 +25,13 @@ export function GeneratorList({ points, generatorsList, onBuyHook, gameRessource
     return (
         <div>
 
-        <table>
-            <thead>
-                <tr>
-                    <h4><td  colSpan="10" >{gameRessources.Generators.HeadText}</td></h4>
-                </tr>
-            </thead>
-            <tbody>
+        
+                    <h4>{gameRessources.Generators.HeadText}</h4>
+                
                 <Accordion>
                 {generators} 
                 </Accordion>
-            </tbody>
-        </table>
+           
 
     </div>
     )

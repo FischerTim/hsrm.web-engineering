@@ -1,5 +1,6 @@
 import React from 'react'
 import { Update } from './Update'
+import { Accordion } from 'react-bootstrap'
 
 export function UpdateList({ points, updatesList, onBuyHook, gameRessources }) {
     const updates = []
@@ -27,26 +28,9 @@ export function UpdateList({ points, updatesList, onBuyHook, gameRessources }) {
     }
 
     return (<div>
-        <table>
-            <thead>
-                <tr>
-                    <th colSpan="10" >{gameRessources.Updates.HeadText}</th>
-                </tr>
-                <tr>
-                    <th>
-                        {gameRessources.Updates.MultiplierText}
-                    </th>
-                    <th>
-                        {gameRessources.Updates.IdText}
-                    </th>
-                    <th>
-                        {gameRessources.Updates.PriceText}
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                {updates}
-            </tbody>
-        </table>
+        <h4>{gameRessources.Updates.HeadText}</h4>
+        <Accordion>
+            {updates}
+        </Accordion>
     </div>)
 }
