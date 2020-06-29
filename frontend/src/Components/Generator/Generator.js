@@ -8,20 +8,25 @@ export function Generator({ generator, ressource }) {
     return (<Card>
         <Card.Header>
         <Accordion.Toggle as={Button} variant="link" eventKey={generator.Id}>
-            <Table>
+            <Table className="table table-borderless">
+                <thead>
+                <tr><td>{ressource.Generators.List[generator.Id]}</td></tr>
                 <tr>
-          <td> {ressource.Generators.List[generator.Id]}  </td> 
-           <td> <button size="xxl" disabled={generator.Buy == null} onClick={generator.Buy}>
+                
+          
+           <td> <button disabled={generator.Buy == null} onClick={generator.Buy}>
                     {ressource.Generators.BuyText}
                 </button> </td>
-               <td> <Image src={ressources.Game.ImagePath + "/Farm_" + generator.Id + ".png"} thumbnail />  </td>
+               <td> <Image src={ressources.Game.ImagePath + "/Farm_" + generator.Id + ".png"} thumbnail/>  </td>
                 </tr>
+                </thead>
                 </Table>  
                 </Accordion.Toggle>
         </Card.Header>
         <Accordion.Collapse eventKey={generator.Id}>
             <Card.Body>
             <Table borderless size="sm">
+                <thead>
                 <tr>
                     <th>{ressource.Generators.CpsText}</th>
                     <th>{ressource.Generators.IdText}</th>
@@ -38,6 +43,7 @@ export function Generator({ generator, ressource }) {
                 <tr>
                
                     </tr>
+                    </thead>
                         </Table>
             </Card.Body>
         </Accordion.Collapse>
