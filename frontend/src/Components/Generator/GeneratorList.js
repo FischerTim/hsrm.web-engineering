@@ -1,5 +1,6 @@
 import React from 'react'
 import { Generator } from './Generator'
+import {Accordion} from 'react-bootstrap'
 
 export function GeneratorList({ points, generatorsList, onBuyHook, gameRessources }) {
     const generators = []
@@ -21,30 +22,22 @@ export function GeneratorList({ points, generatorsList, onBuyHook, gameRessource
             generator={currentGenerator}
             ressource={gameRessources} />)
     }
-    return (<div>
-            <table>
-                <thead>
-                    <tr>
-                        <th colSpan="10" >{gameRessources.Generators.HeadText}</th>
-                    </tr>
-                    <tr>
-                        <th>
-                        {   gameRessources.Generators.CpsText}
-                        </th>
-                        <th>
-                            {gameRessources.Generators.IdText}
-                        </th>
-                        <th>
-                            {gameRessources.Generators.PriceText}
-                        </th>
-                        <th>
-                            {gameRessources.Generators.AmountText}
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {generators}
-                </tbody>
-            </table>
-    </div>)
+    return (
+        <div>
+
+        <table>
+            <thead>
+                <tr>
+                    <h4><td  colSpan="10" >{gameRessources.Generators.HeadText}</td></h4>
+                </tr>
+            </thead>
+            <tbody>
+                <Accordion>
+                {generators} 
+                </Accordion>
+            </tbody>
+        </table>
+
+    </div>
+    )
 }
