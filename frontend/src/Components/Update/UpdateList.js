@@ -1,7 +1,7 @@
 import React from 'react'
-import { Update } from './Update'
+import Update from './Update'
 
-export function UpdateList({ points, updatesList, onBuyHook, gameRessources }) {
+export default function UpdateList({ points, updatesList, onBuyHook, gameRessources }) {
     const updates = []
 
     for (const ele in updatesList) {
@@ -29,10 +29,10 @@ export function UpdateList({ points, updatesList, onBuyHook, gameRessources }) {
     return (<div>
         <table>
             <thead>
-                <tr>
+                <tr className='upListTableHead'>
                     <th colSpan="10" >{gameRessources.Updates.HeadText}</th>
                 </tr>
-                <tr>
+                <tr className='upListTableBody'>
                     <th>
                         {gameRessources.Updates.MultiplierText}
                     </th>

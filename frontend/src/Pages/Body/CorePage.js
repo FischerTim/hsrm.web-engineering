@@ -10,7 +10,7 @@ import { UpdatesContext } from '../../Context/Lists/UpdatesContext';
 import { UserContext } from '../../Context/UserContext';
 import { RessourcesContext } from '../../Context/Ressource/RessourcesContext';
 
-import { GeneratorList } from '../../Components/Generator/GeneratorList';
+import GeneratorList from '../../Components/Generator/GeneratorList';
 import { UpdateList } from '../../Components/Update/UpdateList';
 
 import { UserService } from '../../Services/UserService';

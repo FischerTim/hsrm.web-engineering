@@ -1,7 +1,7 @@
 import React from 'react'
-import { Generator } from './Generator'
+import Generator from './Generator'
 
-export function GeneratorList({ points, generatorsList, onBuyHook, gameRessources }) {
+export default function GeneratorList({ points, generatorsList, onBuyHook, gameRessources }) {
     const generators = []
 
     for (const ele in generatorsList) {
@@ -22,29 +22,29 @@ export function GeneratorList({ points, generatorsList, onBuyHook, gameRessource
             ressource={gameRessources} />)
     }
     return (<div>
-            <table>
-                <thead>
-                    <tr>
-                        <th colSpan="10" >{gameRessources.Generators.HeadText}</th>
-                    </tr>
-                    <tr>
-                        <th>
-                        {   gameRessources.Generators.CpsText}
-                        </th>
-                        <th>
-                            {gameRessources.Generators.IdText}
-                        </th>
-                        <th>
-                            {gameRessources.Generators.PriceText}
-                        </th>
-                        <th>
-                            {gameRessources.Generators.AmountText}
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {generators}
-                </tbody>
-            </table>
+        <table>
+            <thead>
+                <tr className='genListTableHead'>
+                    <th colSpan="10" >{gameRessources.Generators.HeadText}</th>
+                </tr>
+                <tr className='genListTableBody'>
+                    <th>
+                        {gameRessources.Generators.CpsText}
+                    </th>
+                    <th>
+                        {gameRessources.Generators.IdText}
+                    </th>
+                    <th>
+                        {gameRessources.Generators.PriceText}
+                    </th>
+                    <th>
+                        {gameRessources.Generators.AmountText}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {generators}
+            </tbody>
+        </table>
     </div>)
 }

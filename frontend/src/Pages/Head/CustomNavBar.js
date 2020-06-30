@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 import { Navbar, Nav, Button } from 'react-bootstrap';
 
-import { LanguageSwitch } from '../../Components/Language/LanguageSwitch'
-import { GameSwitch } from '../../Components/Game/GameSwitch';
+import LanguageSwitch from '../../Components/Language/LanguageSwitch'
+import GameSwitch from '../../Components/Game/GameSwitch';
 import { UserContext } from '../../Context/UserContext';
 import { LanguageContext } from '../../Context/Ressource/LanguageContext';
 import { RessourcesContext } from '../../Context/Ressource/RessourcesContext';
@@ -69,7 +69,7 @@ export function CustomNavBar() {
 
                 // get empty user
                 const newUser = UserService.getUserObject(null, null, false)
-                
+
                 // remove GPPS
                 setGPPS(0)
 

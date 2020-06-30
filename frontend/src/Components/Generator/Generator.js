@@ -1,7 +1,8 @@
 import React from 'react'
 
-export function Generator({ generator, ressource }) {
-    return (<tr>
+export default function Generator({ generator, ressource }) {
+    return (
+    <tr className='generatorTable'>
         <td>
             {generator.Income_rate}
         </td>

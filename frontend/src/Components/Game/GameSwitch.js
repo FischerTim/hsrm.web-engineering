@@ -1,10 +1,10 @@
 import React from 'react'
 import { NavDropdown } from 'react-bootstrap';
 
-import { GameOption } from './GameOption'
+import GameOption from './GameOption'
 import { Games, GameRessources } from '../../Ressources/GameRessource';
 
-export function GameSwitch({ game, language, updateGame }) {
+export default function GameSwitch({ game, language, updateGame }) {
 
     const GameList = []
     const gmRssrcs = GameRessources[language]

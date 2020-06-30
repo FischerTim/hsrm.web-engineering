@@ -2,9 +2,9 @@ import React from 'react'
 import { NavDropdown } from 'react-bootstrap';
 
 import { LanguageRessources, Languages } from '../../Ressources/LanguageRessource'
-import { LanguageOption } from './LanguageOption'
+import LanguageOption from './LanguageOption'
 
-export function LanguageSwitch({ language, updateLanguage }) {
+export default function LanguageSwitch({ language, updateLanguage }) {
 
     const languageList = []
     for (const e in LanguageRessources) {
@@ -25,7 +25,7 @@ export function LanguageSwitch({ language, updateLanguage }) {
     return (
         <NavDropdown title={language} id="basic-nav-dropdown" onClick={onLanguageChanged} alignRight>
             {languageList.map((value, index) => {
-                return <NavDropdown.Item key={index}>{value}</NavDropdown.Item>
+                return <NavDropdown.Item id='switchItem' key={index}>{value}</NavDropdown.Item>
             })}
 
         </NavDropdown>

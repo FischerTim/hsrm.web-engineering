@@ -1,6 +1,6 @@
 import React from 'react'
 
-export function Update({ update ,ressource}) {
+export default function Update({ update ,ressource}) {
     // const buybutton = buy !== null ? <button onClick={buy}>Buy</button> : <button disabled={true}>Buy</button>
     // const cpsLabel = <label>{CPS}</label>
     // const idLabel = <label>{id}</label>
@@ -9,7 +9,7 @@ export function Update({ update ,ressource}) {
     // return (<tr><td>CPS:  {cpsLabel} |  id:  {idLabel} |  price: {priceLabel} |  amount:  {amountLabel} {buybutton}</td></tr>)
 
     return (
-        <tr>
+        <tr className='updateTable'>
             <td>
                 {update.Multiplier}
             </td>
