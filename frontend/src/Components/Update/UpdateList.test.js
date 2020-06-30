@@ -20,7 +20,7 @@ const upres = {
 let wrapper = mount(
     <UpdateList gameRessources={upres} />
 )
-test('GeneratorList table content', () => {
+test('UpdateList table content', () => {
     const rowsHead = wrapper.find('.upListTableHead')
     expect(rowsHead.length).toEqual(1)
     const rowsHeadCol = rowsHead.first().find('th').map(column => column.text())
