@@ -11,7 +11,7 @@ import { UserContext } from '../../Context/UserContext';
 import { RessourcesContext } from '../../Context/Ressource/RessourcesContext';
 
 import GeneratorList from '../../Components/Generator/GeneratorList';
-import { UpdateList } from '../../Components/Update/UpdateList';
+import UpdateList from '../../Components/Update/UpdateList';
 
 import { UserService } from '../../Services/UserService';
 
