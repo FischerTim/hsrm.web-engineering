@@ -7,5 +7,5 @@ export const GeneratorState = {
     Order: null
 }
 export const GeneratorsState = {
-
+    SelectImage: 1
 }

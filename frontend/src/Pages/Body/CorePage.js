@@ -67,6 +67,7 @@ export function CorePage() {
             // TODO error handling 
         }
     }
+    console.log(ressources.Game.ImagePath + "/Image1_" + generators.SelectImage + ".png")
 
     return (
         <div>
@@ -81,8 +82,8 @@ export function CorePage() {
                             <h1>{points}</h1>
                             {ressources.Core.Points}<br />
                         </Jumbotron><br />
-                        <Image src={ressources.Game.ImagePath + "/Image0_" + updates.SelectImage + ".png"}/>
-                        <Image src={ressources.Game.ImagePath + "/Image1_" + generators.SelectImage + ".png"}/>
+                        <Image src={ressources.Game.ImagePath + "/Image0_" + updates.SelectImage + ".png"}fluid/>
+                        <Image src={ressources.Game.ImagePath + "/Image1_" + generators.SelectImage + ".png"}fluid/>
                     </Col>
                     <Col>
                         <UpdateList points={points} onBuyHook={updateUpgrades} updatesList={updates} gameRessources={ressources.Game} />
