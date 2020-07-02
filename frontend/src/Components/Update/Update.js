@@ -22,7 +22,7 @@ export function Update({ update ,ressource}) {
                                 <td>
                 <input type="checkbox" value="male" onClick={update.Buy} disabled={update.Buy == null} defaultChecked={update.Bought}></input>
             </td>
-            <td> <Image src={ressources.Game.ImagePath + "/Egg_" + update.Id + ".png"} thumbnail/>  </td>
+            <td> <Image src={ressources.Game.ImagePath + "/Egg_" + update.Id + ".png"} fluid/></td>
                             </tr>
                         </thead>
                     </Table>
