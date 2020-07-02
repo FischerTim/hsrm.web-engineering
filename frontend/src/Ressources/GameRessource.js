@@ -5,7 +5,10 @@ export const GameRessources = {
                 id: "EggFarm",
                 Repressentation: "Egg Farm"
             },
-            ImagePath: "EggFarmImg",
+            ImagePath: {
+                GeneratorPath: "EggFarmImg/Image1_",
+                UpdatePath: "EggFarmImg//Image0_"
+            },
             Updates: {
                 MultiplierText: "Egg Value Multiplier: ",
                 IdText: "Chicken No.: ",
@@ -53,7 +56,10 @@ export const GameRessources = {
                 id: "PizzaDelivery",
                 Repressentation: "Pizza Delivery"
             },
-            ImagePath: "PizzaDeliveryImg",
+            ImagePath: {
+                GeneratorPath: "PizzaDeliveryImg/Image1_",
+                UpdatePath: "PizzaDeliveryImg/Image0_"
+            },
             Updates: {
                 MultiplierText: "cook Value Multiplier: ",
                 IdText: "cook No.: ",
@@ -102,7 +108,10 @@ export const GameRessources = {
                 id: "EggFarm",
                 Repressentation: "Eier Farm"
             },
-            ImagePath: "EggFarmImg",
+            ImagePath: {
+                GeneratorPath: "EggFarmImg/Image1_",
+                UpdatePath: "EggFarmImg/Image0_"
+            },
 
             Updates: {
                 MultiplierText: "Ei Wert Multipikator: ",
@@ -151,7 +160,10 @@ export const GameRessources = {
                 id: "PizzaDelivery",
                 Repressentation: "Pizza Lieferdienst"
             },
-            ImagePath: "PizzaDeliveryImg",
+            ImagePath: {
+                GeneratorPath: "PizzaDeliveryImg/Image1_",
+                UpdatePath: "PizzaDeliveryImg/Image0_"
+            },
             Updates: {
                 MultiplierText: "Koch Multiplikator: ",
                 IdText: "Koch Nr.: ",

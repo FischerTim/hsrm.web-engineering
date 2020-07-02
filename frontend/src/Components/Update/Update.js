@@ -10,6 +10,7 @@ export function Update({ update ,ressource}) {
     // const priceLabel = <label>{price}</label>
     // const amountLabel = <label>{amount}</label>
     // return (<tr><td>CPS:  {cpsLabel} |  id:  {idLabel} |  price: {priceLabel} |  amount:  {amountLabel} {buybutton}</td></tr>)
+ 
 
     return (
         <Card>
@@ -22,7 +23,7 @@ export function Update({ update ,ressource}) {
                                 <td>
                 <input type="checkbox" value="male" onClick={update.Buy} disabled={update.Buy == null} defaultChecked={update.Bought}></input>
             </td>
-            <td> <Image src={ressources.Game.ImagePath + "/Image0_" + update.Id + ".png"} fluid/></td>
+            <td> <Image src={ressources.Game.ImagePath.UpdatePath  + update.Id + ".png"} fluid/></td>
                             </tr>
                         </thead>
                     </Table>

@@ -15,6 +15,9 @@ import { UpdateList } from '../../Components/Update/UpdateList';
 
 import { UserService } from '../../Services/UserService';
 
+import Slide from '@material-ui/core/Slide';
+
+
 
 
 export function CorePage() {
@@ -59,15 +62,26 @@ export function CorePage() {
 
     }
 
+  
+    const [checked, setChecked] = React.useState(false);
+
+
     const pointclick = () => {
         if (user.Connections.Click !== null) {
             user.Connections.Click.send("")
+            setChecked((prev) => !prev);
+            
+            console.log(checked)
+          
+
             // TODO KLICKT!!!!!!!!!
         } else {
             // TODO error handling 
         }
     }
-    console.log(ressources.Game.ImagePath + "/Image1_" + generators.SelectImage + ".png")
+
+
+  
 
     return (
         <div>
@@ -82,8 +96,13 @@ export function CorePage() {
                             <h1>{points}</h1>
                             {ressources.Core.Points}<br />
                         </Jumbotron><br />
-                        <Image src={ressources.Game.ImagePath + "/Image0_" + updates.SelectImage + ".png"}fluid/>
-                        <Image src={ressources.Game.ImagePath + "/Image1_" + generators.SelectImage + ".png"}fluid/>
+                        
+                        <Slide direction="right" timeout={1000} exit={false} in={checked} mountOnEnter unmountOnExit>
+                        <Image src={ressources.Game.ImagePath.UpdatePath  + updates.SelectImage + ".png"}fluid/> 
+                        </Slide>
+                       
+                        <Image src={ressources.Game.ImagePath.GeneratorPath + generators.SelectImage-2 + ".png"}fluid/>
+                        
                     </Col>
                     <Col>
                         <UpdateList points={points} onBuyHook={updateUpgrades} updatesList={updates} gameRessources={ressources.Game} />

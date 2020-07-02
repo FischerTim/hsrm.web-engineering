@@ -17,7 +17,7 @@ export function Generator({ generator, ressource }) {
            <td> <button disabled={generator.Buy == null} onClick={generator.Buy}>
                     {ressource.Generators.BuyText}
                 </button> </td>
-               <td> <Image src={ressources.Game.ImagePath + "/Image1_" + generator.Id + ".png"} fluid/>  </td>
+               <td> <Image src={ressources.Game.ImagePath.GeneratorPath + generator.Id + ".png"} fluid/>  </td>
                 </tr>
                 </thead>
                 </Table>  
