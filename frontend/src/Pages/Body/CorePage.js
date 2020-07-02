@@ -14,6 +14,7 @@ import GeneratorList from '../../Components/Generator/GeneratorList';
 import UpdateList from '../../Components/Update/UpdateList';
 
 import { UserService } from '../../Services/UserService';
+import { Test } from '../../Components/Test/Test';
 
 
 
@@ -28,6 +29,8 @@ export function CorePage() {
     const { gPPS } = useContext(GPPSContext)
     const { ressources } = useContext(RessourcesContext)
     const [disableClick, setDisableClick] = useState(true)
+    const [animationList, setAnimationList] = useState([])
+
 
     
     // Prohibit page for users not logged in
@@ -76,13 +79,26 @@ export function CorePage() {
         }
 
     }
+
+    const shiftAnimation = () => {
+        animationList.shift()
+        var newAnimationList = [...animationList]
+        setAnimationList(newAnimationList)
+    }
+
     const pointclick = () => {
 
         if (isClickConnected(user.Connections.Click)) {
             user.Connections.Click.send("")
-            // TODO KLICKT!!!!!!!!!
+
+            //push new Animation
+            animationList.push(<Test key={Date.now()} shiftAnimation={shiftAnimation}></Test>)
+            var newAnimationList = [...animationList]
+            setAnimationList(newAnimationList)
         } 
+        
     }
+    
 
     return (
         <div>
@@ -109,6 +125,7 @@ export function CorePage() {
                 </p>
                 <h6 className="text-center">{ressources.Core.PointsPC} {gPPS}</h6>
             </Container>
+{animationList}
         </div>
     )
 }
