@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext,useState } from 'react'
 
 import { useHistory } from 'react-router-dom'
 import { Jumbotron, Button, Container, Row, Col, Image } from 'react-bootstrap';
@@ -27,11 +27,29 @@ export function CorePage() {
     const { points } = useContext(PointsContext)
     const { gPPS } = useContext(GPPSContext)
     const { ressources } = useContext(RessourcesContext)
+    const [disableClick, setDisableClick] = useState(true)
 
+    
     // Prohibit page for users not logged in
     if (!user.LogedIn) {
         pathHistory.push(ressources.Path.Login)
     }
+    const isClickConnected = (con)=> {
+        if(con != null){
+            if ( con.readyState === 1){
+                if(disableClick === true){
+                    setDisableClick(false)
+                }
+                return true
+            }
+        }
+        if(disableClick === false){
+            setDisableClick(true)
+        }
+        return false
+    
+    }
+    isClickConnected(user.Connections.Click)
 
     const updateGenerators = async () => {
         try {
@@ -58,14 +76,12 @@ export function CorePage() {
         }
 
     }
-
     const pointclick = () => {
-        if (user.Connections.Click !== null) {
+
+        if (isClickConnected(user.Connections.Click)) {
             user.Connections.Click.send("")
             // TODO KLICKT!!!!!!!!!
-        } else {
-            // TODO error handling 
-        }
+        } 
     }
 
     return (
@@ -89,7 +105,7 @@ export function CorePage() {
                 </Row>
                 <br /><br />
                 <p>
-                    <Button variant="secondary" size="lg" block onClick={pointclick}>{ressources.Core.ClickButton}</Button>
+                    <Button variant="secondary" size="lg" block disabled={disableClick} onClick={pointclick}>{ressources.Core.ClickButton}</Button>
                 </p>
                 <h6 className="text-center">{ressources.Core.PointsPC} {gPPS}</h6>
             </Container>
