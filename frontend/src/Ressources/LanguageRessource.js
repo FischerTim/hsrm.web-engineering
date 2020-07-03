@@ -2,14 +2,18 @@
 export const LanguageRessources = {
     EN: {
         LoginRessource: {
+            RegisterButton : "Register",
+            ButtonColor: "primary",
             LoginHeader: "Welcome!",
             UserField: "Username",
             PasswordField: "Password",
-            LoginButton: "Login",
             LoginWarning: "Login failed.",
+            LoginButton: "Login",
             Register: "Not registered jet?",
         },
         RegisterRessource: {
+            LoginButton: "Login",
+            ButtonColor : "primary",
             RegisterHeader: "Register",
             RegisterText: "Create your Account. It's free and only takes a minute.",
             UserField: "Username",
@@ -20,6 +24,8 @@ export const LanguageRessources = {
             LoginLink: "To the login"
         },
         CorePageRessource: {
+            LogoutButton : "Logout",
+            ButtonColor: "danger",
             Points: "Points",
             PointsPC: "Points you get per click: ",
             ClickButton: "CLick me!",
@@ -34,14 +40,18 @@ export const LanguageRessources = {
     },
     DE: {
         LoginRessource: {
+            ButtonColor : "primary",
+            RegisterButton : "Regstrieren",
+            ButtonColor: "primary",
             LoginHeader: "Wilkommen!",
             UserField: "Benutzername",
             PasswordField: "Passwort",
-            LoginButton: "Anmelden",
             LoginWarning: "Login fehlgeschlagen.",
+            LoginButton: "Anmelden",
             Register: "Noch nicht Registriert?",
         },
         RegisterRessource: {
+            LoginButton: "Anmelden",
             RegisterHeader: "Registrieren",
             RegisterText: "Erstelle deinen Account. Es ist kostenlos und dauert nur eine Minute!",
             UserField: "Benutzername",
@@ -52,6 +62,8 @@ export const LanguageRessources = {
             LoginLink: "Zum Login"
         },
         CorePageRessource: {
+            LogoutButton : "Abmelden",
+            ButtonColor: "danger",
             Points: "Punkte",
             PointsPC: "Punkte die du per Klick bekommst: ",
             ClickButton: "Klick mich!",

@@ -15,6 +15,8 @@ import { UpdatesContext } from '../../Context/Lists/UpdatesContext';
 import { PointsContext } from '../../Context/Statistics/PointsContext';
 import { GPPSContext } from '../../Context/Statistics/GPPSContext';
 
+import { useLocation } from 'react-router-dom';
+
 export function CustomNavBar() {
 
     const pathHistory = useHistory()
@@ -32,12 +34,17 @@ export function CustomNavBar() {
     let buttonText = ''
     let buttonColor = ''
 
-    if (!user.LogedIn) {
-        buttonText = ressources.Login.LoginButton
-        buttonColor = 'primary'
-    } else {
+    let location = useLocation();
+
+    if (user.LogedIn) {
         buttonText = ressources.Core.LogoutButton
-        buttonColor = 'danger'
+        buttonColor = ressources.Core.ButtonColor
+    } else if (location.pathname === '/sign-up') {
+        buttonText = ressources.Register.LoginButton
+        buttonColor = ressources.Register.ButtonColor
+    } else {
+        buttonText = ressources.Login.RegisterButton
+        buttonColor = ressources.Login.ButtonColor
     }
 
     const updateLanguage = (key) => {
@@ -76,8 +83,13 @@ export function CustomNavBar() {
                 // remove points
                 setPoints(0)
 
-                // go to login page
-                pathHistory.push(ressources.Path.Login)
+                if (location.pathname === '/sign-up') {
+                    // go to login page
+                    pathHistory.push(ressources.Path.Login)
+                } else if (location.pathname === '/sign-in') {
+                    // go to register page
+                    pathHistory.push(ressources.Path.Register)
+                }
 
                 // set user 
                 setUser(newUser)
