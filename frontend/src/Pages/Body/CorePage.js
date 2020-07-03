@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext , useState} from 'react'
 
 import { useHistory } from 'react-router-dom'
 import { Jumbotron, Button, Container, Row, Col, Image } from 'react-bootstrap';
@@ -14,8 +14,9 @@ import { GeneratorList } from '../../Components/Generator/GeneratorList';
 import { UpdateList } from '../../Components/Update/UpdateList';
 
 import { UserService } from '../../Services/UserService';
+import { SlideAnimation } from '../../Components/Animation/SlideAnimation';
 
-import Slide from '@material-ui/core/Slide';
+
 
 
 
@@ -30,6 +31,8 @@ export function CorePage() {
     const { points } = useContext(PointsContext)
     const { gPPS } = useContext(GPPSContext)
     const { ressources } = useContext(RessourcesContext)
+    const [animationList, setAnimationList] = useState([])
+
 
     // Prohibit page for users not logged in
     if (!user.LogedIn) {
@@ -63,15 +66,24 @@ export function CorePage() {
     }
 
   
-    const [checked, setChecked] = React.useState(false);
+  const animationKill=()=>{
+      test()
+  }
 
+  const test=()=>{
+    animationList.shift()
+    var newAnimationList=[...animationList]
+    setAnimationList(newAnimationList)
+  }
 
     const pointclick = () => {
         if (user.Connections.Click !== null) {
             user.Connections.Click.send("")
-            setChecked((prev) => !prev);
+            animationList.push(<SlideAnimation path={ressources.Game.ImagePath.UpdatePath  + updates.SelectImage + ".png"} animationKill={animationKill} key={Date.now()}></SlideAnimation>)
+            var newAnimationList=[...animationList]
+            setAnimationList(newAnimationList)
+            console.log(animationList)
             
-            console.log(checked)
           
 
             // TODO KLICKT!!!!!!!!!
@@ -96,10 +108,7 @@ export function CorePage() {
                             <h1>{points}</h1>
                             {ressources.Core.Points}<br />
                         </Jumbotron><br />
-                        
-                        <Slide direction="right" timeout={1000} exit={false} in={checked} mountOnEnter unmountOnExit>
-                        <Image src={ressources.Game.ImagePath.UpdatePath  + updates.SelectImage + ".png"}fluid/> 
-                        </Slide>
+                        {animationList}
                        
                         <Image src={ressources.Game.ImagePath.GeneratorPath + generators.SelectImage-2 + ".png"}fluid/>
                         
