@@ -1,4 +1,6 @@
-import React, { useContext,useState } from 'react'
+
+import React, { useContext , useState} from 'react'
+
 
 import { useHistory } from 'react-router-dom'
 import { Jumbotron, Button, Container, Row, Col, Image } from 'react-bootstrap';
@@ -14,7 +16,10 @@ import GeneratorList from '../../Components/Generator/GeneratorList';
 import UpdateList from '../../Components/Update/UpdateList';
 
 import { UserService } from '../../Services/UserService';
-import { Test } from '../../Components/Test/Test';
+
+import { SlideAnimation } from '../../Components/Animation/SlideAnimation';
+
+
 
 
 
@@ -31,6 +36,7 @@ export function CorePage() {
     const [disableClick, setDisableClick] = useState(true)
     const [animationList, setAnimationList] = useState([])
 
+  
 
     
     // Prohibit page for users not logged in
@@ -79,26 +85,37 @@ export function CorePage() {
         }
 
     }
+  
+  const animationKill=()=>{
+      test()
+  }
 
-    const shiftAnimation = () => {
-        animationList.shift()
-        var newAnimationList = [...animationList]
-        setAnimationList(newAnimationList)
-    }
+  const test=()=>{
+    animationList.shift()
+    var newAnimationList=[...animationList]
+    setAnimationList(newAnimationList)
+  }
 
     const pointclick = () => {
 
         if (isClickConnected(user.Connections.Click)) {
             user.Connections.Click.send("")
 
-            //push new Animation
-            animationList.push(<Test key={Date.now()} shiftAnimation={shiftAnimation}></Test>)
-            var newAnimationList = [...animationList]
+
+            animationList.push(<SlideAnimation path={ressources.Game.ImagePath.UpdatePath  + updates.SelectImage + ".png"} animationKill={animationKill} key={Date.now()}></SlideAnimation>)
+            var newAnimationList=[...animationList]
             setAnimationList(newAnimationList)
+            console.log(animationList)
+            
+          
+
+            // TODO KLICKT!!!!!!!!!
         } 
-        
     }
     
+
+
+  
 
     return (
         <div>
@@ -113,7 +130,10 @@ export function CorePage() {
                             <h1>{points}</h1>
                             {ressources.Core.Points}<br />
                         </Jumbotron><br />
-                        <Image src={ressources.Game.ImagePath + "/Image" + updates.SelectImage + ".png"} thumbnail />
+                        {animationList}
+                       
+                        <Image src={ressources.Game.ImagePath.GeneratorPath + generators.SelectImage-2 + ".png"}fluid/>
+                        
                     </Col>
                     <Col>
                         <UpdateList points={points} onBuyHook={updateUpgrades} updatesList={updates} gameRessources={ressources.Game} />

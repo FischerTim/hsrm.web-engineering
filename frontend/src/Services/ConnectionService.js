@@ -113,6 +113,7 @@ export class ConnectionService {
                             if (newUpdates.SelectImage < currentId) {
                                 newUpdates.SelectImage = currentId
                             }
+                            
                         }
                         const newSafeUpdates = { ...UpdatesState }
                         newSafeUpdates.SelectImage = newUpdates.SelectImage
@@ -156,6 +157,10 @@ export class ConnectionService {
                         Id: currentId,
                         Buy: buyFunction
                     }
+                    if (newGenerators.SelectImage < newGenerators[currentId].Order) {
+                        newGenerators.SelectImage = newGenerators[currentId].Order
+                    }
+                   
 
                     if (i === availableGenerators.length - 1) {
 
@@ -183,8 +188,11 @@ export class ConnectionService {
                                             // set amount for generator with current id
                                             newGenerators[currentId].Amount = ownedGenerators[j].amount
                                         }
+                                        const newSafeGenerators= { ...GeneratorsState }
+                                        newSafeGenerators.SelectImage = newGenerators.SelectImage
+                                       
                                         
-                                        return ConnectionService.sortByOrder(newGenerators,(a)=>{return newGenerators[a].Order},GeneratorsState)
+                                        return ConnectionService.sortByOrder(newGenerators,(a)=>{return newGenerators[a].Order},newSafeGenerators)
                                     })
                             })
 

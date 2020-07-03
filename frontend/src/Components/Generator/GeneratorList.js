@@ -1,50 +1,39 @@
 import React from 'react'
-import Generator from './Generator'
+
+import { Generator } from './Generator'
+import { Accordion } from 'react-bootstrap'
 
 export default function GeneratorList({ points, generatorsList, onBuyHook, gameRessources }) {
     const generators = []
 
     for (const ele in generatorsList) {
-        const currentGenerator = { ...generatorsList[ele] }
-        if (points >= currentGenerator.Price) {
-            const rawBuy = currentGenerator.Buy
-            const buyFunction = () => {
-                rawBuy()
-                onBuyHook()
+        if (ele !== "SelectImage") {
+            const currentGenerator = { ...generatorsList[ele] }
+            if (points >= currentGenerator.Price) {
+                const rawBuy = currentGenerator.Buy
+                const buyFunction = () => {
+                    rawBuy()
+                    onBuyHook()
+                }
+                currentGenerator.Buy = buyFunction
+            } else {
+                currentGenerator.Buy = null
             }
-            currentGenerator.Buy = buyFunction
-        } else {
-            currentGenerator.Buy = null
+            generators.push(<Generator
+                key={ele}
+                generator={currentGenerator}
+                ressource={gameRessources} />)
         }
-        generators.push(<Generator
-            key={ele}
-            generator={currentGenerator}
-            ressource={gameRessources} />)
     }
-    return (<div>
-        <table>
-            <thead>
-                <tr className='genListTableHead'>
-                    <th colSpan="10" >{gameRessources.Generators.HeadText}</th>
-                </tr>
-                <tr className='genListTableBody'>
-                    <th>
-                        {gameRessources.Generators.CpsText}
-                    </th>
-                    <th>
-                        {gameRessources.Generators.IdText}
-                    </th>
-                    <th>
-                        {gameRessources.Generators.PriceText}
-                    </th>
-                    <th>
-                        {gameRessources.Generators.AmountText}
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
+
+
+    return (
+        <div>
+            <h4>{gameRessources.Generators.HeadText}</h4>
+            <Accordion>
                 {generators}
-            </tbody>
-        </table>
-    </div>)
+            </Accordion>
+        </div>
+    )
+
 }

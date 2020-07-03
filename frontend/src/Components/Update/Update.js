@@ -1,27 +1,49 @@
 import React from 'react'
+import { Card, Accordion, Button, Table, Image } from 'react-bootstrap'
 
-export default function Update({ update ,ressource}) {
-    // const buybutton = buy !== null ? <button onClick={buy}>Buy</button> : <button disabled={true}>Buy</button>
-    // const cpsLabel = <label>{CPS}</label>
-    // const idLabel = <label>{id}</label>
-    // const priceLabel = <label>{price}</label>
-    // const amountLabel = <label>{amount}</label>
-    // return (<tr><td>CPS:  {cpsLabel} |  id:  {idLabel} |  price: {priceLabel} |  amount:  {amountLabel} {buybutton}</td></tr>)
+
+export function Update({ update, ressource }) {
 
     return (
-        <tr className='updateTable'>
-            <td>
-                {update.Multiplier}
-            </td>
-            <td>
-                {update.Id}
-            </td>
-            <td>
-                {update.Price}
-            </td>
-            <td>
-                <input type="checkbox" value="male" onClick={update.Buy} disabled={update.Buy == null} defaultChecked={update.Bought}></input>
-            </td>
-        </tr>
+        <Card>
+
+                <Accordion.Toggle as={Button} variant="link" eventKey={update.Id}>
+                    <Table className="table table-borderless">
+                        <thead>
+                            <tr>
+                                <td>
+                                    Update Nr. {update.Id}
+                                </td>
+                                <td>
+                                    <input type="checkbox" value="male" onClick={update.Buy} disabled={update.Buy == null} defaultChecked={update.Bought}></input>
+                                </td>
+                                <td> <Image src={ressource.ImagePath.UpdatePath + update.Id + ".png"} fluid /></td>
+                            </tr>
+                        </thead>
+                    </Table>
+                </Accordion.Toggle>
+  
+        
+                <Accordion.Collapse eventKey={update.Id}>
+
+                    <Table borderless>
+                        <thead>
+                            <tr>
+                                <th>{ressource.Updates.MultiplierText}</th>
+                                <th> {ressource.Updates.IdText}</th>
+                                <th>{ressource.Updates.PriceText}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{update.Multiplier}</td>
+                                <td>{update.Id}</td>
+                                <td>{update.Price}</td>
+                            </tr>
+                        </tbody>
+                    </Table>
+
+                </Accordion.Collapse>
+        </Card>
     )
 }
