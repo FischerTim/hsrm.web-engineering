@@ -29,8 +29,7 @@ export const LanguageRessources = {
             Points: "Points",
             PointsPC: "Points you get per click: ",
             ClickButton: "CLick me!",
-            Generators: "Generators",
-            LogoutButton: "Logout"
+            Generators: "Generators"
         },
         LanguageRessource: {
             Id: "EN",
@@ -42,7 +41,6 @@ export const LanguageRessources = {
         LoginRessource: {
             ButtonColor : "primary",
             RegisterButton : "Regstrieren",
-            ButtonColor: "primary",
             LoginHeader: "Wilkommen!",
             UserField: "Benutzername",
             PasswordField: "Passwort",
@@ -68,7 +66,7 @@ export const LanguageRessources = {
             PointsPC: "Punkte die du per Klick bekommst: ",
             ClickButton: "Klick mich!",
             Generators: "Generatoren",
-            LogoutButton: "Abmelden"
+        
         },
         LanguageRessource: {
             Id: "DE",
