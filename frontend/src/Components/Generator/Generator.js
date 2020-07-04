@@ -6,9 +6,8 @@ export function Generator({ generator, ressource }) {
 
     return (
         <Card>
- 
+            
                 <Accordion.Toggle as={Button} variant="link" eventKey={generator.Order}>
-                
                     <Table className="table table-borderless">
                         <tbody>
                             <tr>
@@ -25,7 +24,7 @@ export function Generator({ generator, ressource }) {
                     </Table>
                 </Accordion.Toggle>
 
-      
+
                 <Accordion.Collapse eventKey={generator.Order}>
 
                     <Table borderless>
@@ -55,7 +54,7 @@ export function Generator({ generator, ressource }) {
                     </Table>
   
                 </Accordion.Collapse>
-        
+          
         </Card>
     )
 

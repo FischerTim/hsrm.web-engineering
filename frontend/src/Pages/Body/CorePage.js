@@ -1,5 +1,5 @@
 
-import React, { useContext , useState} from 'react'
+import React, { useContext, useState } from 'react'
 
 
 import { useHistory } from 'react-router-dom'
@@ -20,13 +20,9 @@ import { UserService } from '../../Services/UserService';
 import { SlideAnimation } from '../../Components/Animation/SlideAnimation';
 
 
-
-
-
 export function CorePage() {
 
     const pathHistory = useHistory()
-
     const { generators, setGenerators } = useContext(GeneratorsContext)
     const { updates, setUpdates } = useContext(UpdatesContext)
     const { user } = useContext(UserContext)
@@ -36,27 +32,20 @@ export function CorePage() {
     const [disableClick, setDisableClick] = useState(true)
     const [animationList, setAnimationList] = useState([])
 
-  
-
-    
-    // Prohibit page for users not logged in
-    if (!user.LogedIn) {
-        pathHistory.push(ressources.Path.Login)
-    }
-    const isClickConnected = (con)=> {
-        if(con != null){
-            if ( con.readyState === 1){
-                if(disableClick === true){
+    const isClickConnected = (con) => {
+        if (con != null) {
+            if (con.readyState === 1) {
+                if (disableClick === true) {
                     setDisableClick(false)
                 }
                 return true
             }
         }
-        if(disableClick === false){
+        if (disableClick === false) {
             setDisableClick(true)
         }
         return false
-    
+
     }
     isClickConnected(user.Connections.Click)
 
@@ -85,16 +74,16 @@ export function CorePage() {
         }
 
     }
-  
-  const animationKill=()=>{
-      test()
-  }
 
-  const test=()=>{
-    animationList.shift()
-    var newAnimationList=[...animationList]
-    setAnimationList(newAnimationList)
-  }
+    const animationKill = () => {
+        test()
+    }
+
+    const test = () => {
+        animationList.shift()
+        var newAnimationList = [...animationList]
+        setAnimationList(newAnimationList)
+    }
 
     const pointclick = () => {
 
@@ -102,50 +91,51 @@ export function CorePage() {
             user.Connections.Click.send("")
 
 
-            animationList.push(<SlideAnimation path={ressources.Game.ImagePath.UpdatePath  + updates.SelectImage + ".png"} animationKill={animationKill} key={Date.now()}></SlideAnimation>)
-            var newAnimationList=[...animationList]
+            animationList.push(<SlideAnimation path={ressources.Game.ImagePath.UpdatePath + updates.SelectImage + ".png"} animationKill={animationKill} key={Date.now()}></SlideAnimation>)
+            var newAnimationList = [...animationList]
             setAnimationList(newAnimationList)
             console.log(animationList)
-            
-          
+
+
 
             // TODO KLICKT!!!!!!!!!
-        } 
+        }
     }
-    
 
 
-  
+
+
 
     return (
-        <div>
+        <div >
             <br /><br />
-            <Container>
+            <Container >
                 <Row>
                     <Col>
                         <GeneratorList points={points} onBuyHook={updateGenerators} generatorsList={generators} gameRessources={ressources.Game} />
                     </Col>
                     <Col xs={5}>
+
                         <Jumbotron className="text-center">
                             <h1>{points}</h1>
                             {ressources.Core.Points}<br />
                         </Jumbotron><br />
                         {animationList}
-                       
-                        <Image src={ressources.Game.ImagePath.GeneratorPath + generators.SelectImage-2 + ".png"}fluid/>
-                        
+
+                        <Image src={ressources.Game.ImagePath.GeneratorPath + generators.SelectImage + ".png"} fluid />
+
                     </Col>
                     <Col>
                         <UpdateList points={points} onBuyHook={updateUpgrades} updatesList={updates} gameRessources={ressources.Game} />
                     </Col>
                 </Row>
-                <br /><br />
-                <p>
+                <Row>
                     <Button variant="secondary" size="lg" block disabled={disableClick} onClick={pointclick}>{ressources.Core.ClickButton}</Button>
-                </p>
-                <h6 className="text-center">{ressources.Core.PointsPC} {gPPS}</h6>
+                    <h6 className="text-center">{ressources.Core.PointsPC} {gPPS}</h6>
+
+                </Row>
+
             </Container>
-{animationList}
         </div>
     )
 }

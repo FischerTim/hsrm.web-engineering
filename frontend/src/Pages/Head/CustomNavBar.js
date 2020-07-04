@@ -31,18 +31,22 @@ export function CustomNavBar() {
     const { setGenerators } = useContext(GeneratorsContext)
     const { setUpdates } = useContext(UpdatesContext)
 
-    let buttonText = ''
-    let buttonColor = ''
+    var buttonText = ''
+    var buttonColor = ''
 
-    let location = useLocation();
+    var location = useLocation();
+    var currentPageState
 
     if (user.LogedIn) {
+        currentPageState = "Core"
         buttonText = ressources.Core.LogoutButton
         buttonColor = ressources.Core.ButtonColor
     } else if (location.pathname === '/sign-up') {
+        currentPageState = "Register"
         buttonText = ressources.Register.LoginButton
         buttonColor = ressources.Register.ButtonColor
     } else {
+        currentPageState = "Login"
         buttonText = ressources.Login.RegisterButton
         buttonColor = ressources.Login.ButtonColor
     }
@@ -60,7 +64,7 @@ export function CustomNavBar() {
     }
 
     const test = async () => {
-        if (true) {
+        if (currentPageState === "Core") {
             try {
 
                 // remove generators
@@ -83,29 +87,20 @@ export function CustomNavBar() {
                 // remove points
                 setPoints(0)
 
-                if (location.pathname === '/sign-up') {
-                    // go to login page
-                    pathHistory.push(ressources.Path.Login)
-                } else if (location.pathname === '/sign-in') {
-                    // go to register page
-                    pathHistory.push(ressources.Path.Register)
-                }
-
                 // set user 
                 setUser(newUser)
+
+                pathHistory.push(ressources.Path.Login)
 
             } catch (e) {
                 //TODO error handling !!!
                 console.log(await e)
             }
-        }
-
-        if (true) {
-            // push Path
-        } else if (false) {
-
-            //push Path
-
+        }else if(currentPageState === "Register"){
+            pathHistory.push(ressources.Path.Login)
+            
+        }else if(currentPageState === "Login"){
+            pathHistory.push(ressources.Path.Register)
         }
     }
 
