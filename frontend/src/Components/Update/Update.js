@@ -2,7 +2,7 @@ import React from 'react'
 import { Card, Accordion, Button, Table, Image } from 'react-bootstrap'
 
 
-export function Update({ update, ressource }) {
+export default function Update({ update, ressource }) {
 
     return (
         <Card>
@@ -28,7 +28,7 @@ export function Update({ update, ressource }) {
 
                     <Table borderless>
                         <thead>
-                            <tr>
+                            <tr className='updateTableHead'>
                                 <th>{ressource.Updates.MultiplierText}</th>
                                 <th> {ressource.Updates.IdText}</th>
                                 <th>{ressource.Updates.PriceText}</th>

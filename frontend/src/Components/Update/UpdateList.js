@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Update } from './Update'
+import Update from './Update'
 import { Accordion } from 'react-bootstrap'
 
 export default function UpdateList({ points, updatesList, onBuyHook, gameRessources }) {
