@@ -49,7 +49,7 @@ export const GameRessources = {
                 }
             },     
             Points: "Eggs",
-            CPSText: "your Eggs per sekond",
+            CPSText: "your Eggs per second",
             ClickButtonText: "lay eggs",
 
         },
@@ -102,7 +102,7 @@ export const GameRessources = {
                 }
             },
             Points: "Eggs",
-            CPSText: "your Points",
+            CPSText: "your Eggs per second",
             ClickButtonText: "Back Pizza",
         }
     },
@@ -157,7 +157,7 @@ export const GameRessources = {
                 }
             },
             Points: "Eggs",
-            CPSText: "your Points",
+            CPSText: "your Eggs per second",
             ClickButtonText: "Eier Legen",
 
         },
@@ -210,7 +210,7 @@ export const GameRessources = {
                 }
             },
             Points: "Eggs",
-            CPSText: "your Points",
+            CPSText: "your Eggs per second",
             ClickButtonText: "Pizzen machen",
         }
     }
