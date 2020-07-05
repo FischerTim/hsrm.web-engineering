@@ -1,8 +1,6 @@
 
 import React, { useContext, useState } from 'react'
 
-
-import { useHistory } from 'react-router-dom'
 import { Jumbotron, Button, Container, Row, Col, Image } from 'react-bootstrap';
 
 import { PointsContext } from '../../Context/Statistics/PointsContext';
@@ -22,7 +20,6 @@ import { SlideAnimation } from '../../Components/Animation/SlideAnimation';
 
 export function CorePage() {
 
-    const pathHistory = useHistory()
     const { generators, setGenerators } = useContext(GeneratorsContext)
     const { updates, setUpdates } = useContext(UpdatesContext)
     const { user } = useContext(UserContext)
@@ -63,6 +60,8 @@ export function CorePage() {
         }
     }
 
+
+
     const updateUpgrades = async () => {
         try {
 
@@ -74,37 +73,20 @@ export function CorePage() {
         }
 
     }
-
-    const animationKill = () => {
-        test()
-    }
-
-    const test = () => {
-        animationList.shift()
-        var newAnimationList = [...animationList]
-        setAnimationList(newAnimationList)
-    }
-
     const pointclick = () => {
 
         if (isClickConnected(user.Connections.Click)) {
             user.Connections.Click.send("")
 
 
-            animationList.push(<SlideAnimation path={ressources.Game.ImagePath.UpdatePath + updates.SelectImage + ".png"} animationKill={animationKill} key={Date.now()}></SlideAnimation>)
+            animationList.push(<SlideAnimation path={ressources.Game.ImagePath.UpdatePath + updates.SelectImage + ".png"} key={Date.now()}></SlideAnimation>)
             var newAnimationList = [...animationList]
             setAnimationList(newAnimationList)
-            console.log(animationList)
-
-
+            
 
             // TODO KLICKT!!!!!!!!!
         }
     }
-
-
-
-
 
     return (
         <div >
@@ -118,10 +100,10 @@ export function CorePage() {
 
                         <Jumbotron className="text-center">
                             <h1>{points}</h1>
-                            {ressources.Core.Points}<br />
+                            {ressources.Game.Points}<br />
                         </Jumbotron><br />
                         {animationList}
-
+                        <Image src={ressources.Game.ImagePath.UpdatePath + updates.SelectImage + ".png"} fluid />
                         <Image src={ressources.Game.ImagePath.GeneratorPath + generators.SelectImage + ".png"} fluid />
 
                     </Col>
@@ -130,12 +112,12 @@ export function CorePage() {
                     </Col>
                 </Row>
                 <Row>
-                    <Button variant="secondary" size="lg" block disabled={disableClick} onClick={pointclick}>{ressources.Core.ClickButton}</Button>
-                    <h6 className="text-center">{ressources.Core.PointsPC} {gPPS}</h6>
+                    <Button variant="secondary" size="lg" block disabled={disableClick} onClick={pointclick}>{ressources.Game.ClickButtonText}</Button>
+                    <h6 className="text-center">{ressources.Game.CPSText} {gPPS}</h6>
 
                 </Row>
 
             </Container>
         </div>
     )
-}
+} 

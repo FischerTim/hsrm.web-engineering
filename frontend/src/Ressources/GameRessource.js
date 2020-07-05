@@ -47,7 +47,9 @@ export const GameRessources = {
                     10: "Farm10",
                     11: "Farm11"
                 }
-            },
+            },     
+            Points: "Eggs",
+            CPSText: "your Eggs per sekond",
             ClickButtonText: "lay eggs",
 
         },
@@ -99,6 +101,8 @@ export const GameRessources = {
                     11: "Farm11"
                 }
             },
+            Points: "Eggs",
+            CPSText: "your Points",
             ClickButtonText: "Back Pizza",
         }
     },
@@ -152,6 +156,8 @@ export const GameRessources = {
                     11: "Farm11"
                 }
             },
+            Points: "Eggs",
+            CPSText: "your Points",
             ClickButtonText: "Eier Legen",
 
         },
@@ -203,6 +209,8 @@ export const GameRessources = {
                     11: "Farm11"
                 }
             },
+            Points: "Eggs",
+            CPSText: "your Points",
             ClickButtonText: "Pizzen machen",
         }
     }
