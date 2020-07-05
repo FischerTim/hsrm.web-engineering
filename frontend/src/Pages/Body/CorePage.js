@@ -1,7 +1,7 @@
 
 import React, { useContext, useState } from 'react'
 
-import { Jumbotron, Button, Container, Row, Col, Image } from 'react-bootstrap';
+import { Jumbotron, Button, Container, Row, Col, Image, Table } from 'react-bootstrap';
 
 import { PointsContext } from '../../Context/Statistics/PointsContext';
 import { GPPSContext } from '../../Context/Statistics/GPPSContext';
@@ -16,7 +16,6 @@ import UpdateList from '../../Components/Update/UpdateList';
 import { UserService } from '../../Services/UserService';
 
 import { SlideAnimation } from '../../Components/Animation/SlideAnimation';
-
 
 export function CorePage() {
 
@@ -82,14 +81,14 @@ export function CorePage() {
             animationList.push(<SlideAnimation path={ressources.Game.ImagePath.UpdatePath + updates.SelectImage + ".png"} key={Date.now()}></SlideAnimation>)
             var newAnimationList = [...animationList]
             setAnimationList(newAnimationList)
-            
+
 
             // TODO KLICKT!!!!!!!!!
         }
     }
 
     return (
-        <div >
+        <div>
             <br /><br />
             <Container >
                 <Row>
@@ -98,23 +97,31 @@ export function CorePage() {
                     </Col>
                     <Col xs={5}>
 
-                        <Jumbotron className="text-center">
-                            <h1>{points}</h1>
-                            {ressources.Game.Points}<br />
-                        </Jumbotron><br />
-                        {animationList}
-                        <Image src={ressources.Game.ImagePath.UpdatePath + updates.SelectImage + ".png"} fluid />
-                        <Image src={ressources.Game.ImagePath.GeneratorPath + generators.SelectImage + ".png"} fluid />
+                            <Jumbotron className="text-center">
+                                <h1>{points}</h1>
+                                {ressources.Game.Points}<br />
 
+                                <h6 className="text-center">{ressources.Game.CPSText} {gPPS}</h6>
+                            </Jumbotron><br />
+     
+                            <Image src={ressources.Game.ImagePath.UpdatePath + updates.SelectImage + ".png"} fluid />
                     </Col>
                     <Col>
                         <UpdateList points={points} onBuyHook={updateUpgrades} updatesList={updates} gameRessources={ressources.Game} />
                     </Col>
                 </Row>
                 <Row>
+                    <Col>
+                        {animationList}
+                    </Col>
+                    <Col>
+                    </Col>
+                    <Col>
+                        <Image src={ressources.Game.ImagePath.GeneratorPath + generators.SelectImage + ".png"} fluid />
+                    </Col>
+                </Row>
+                <Row>
                     <Button variant="secondary" size="lg" block disabled={disableClick} onClick={pointclick}>{ressources.Game.ClickButtonText}</Button>
-                    <h6 className="text-center">{ressources.Game.CPSText} {gPPS}</h6>
-
                 </Row>
 
             </Container>
