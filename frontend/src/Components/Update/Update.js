@@ -13,7 +13,7 @@ export function Update({ update, ressource }) {
                     <tr>
                         <td> <Image src={ressource.ImagePath.UpdatePath + update.Id + ".png"} fluid /></td>
                         <td>
-                            {ressource.Updates.IdText} {update.Id}
+                            {ressource.Updates.List[update.Id]} 
                         </td>
                         <td>
                             <input type="checkbox" value="male" onClick={update.Buy} disabled={update.Buy == null} defaultChecked={update.Bought}></input>
