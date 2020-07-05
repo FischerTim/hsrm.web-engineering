@@ -20,7 +20,7 @@ export function Update({ update, ressource }) {
                         </td>
                         <td>
                             <Accordion.Toggle as={Button} variant="link" eventKey={update.Id}>
-                                <label>into v</label>
+                                <Image src={ "information.png"} fluid />
                             </Accordion.Toggle>
                         </td>
                     </tr>

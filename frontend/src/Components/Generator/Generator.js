@@ -31,8 +31,8 @@ export function Generator({ generator, ressource }) {
                                     <tr>
                                         <td>
                                         <Accordion.Toggle as={Button} variant="link" eventKey={generator.Order}>
-                                           <label>Infos v</label>
-                                           
+                                
+                                        < Image src={ "information.png"} fluid />
                                         </Accordion.Toggle>
                                     </td>
                                     </tr>
