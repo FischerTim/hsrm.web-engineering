@@ -16,23 +16,27 @@ export function RegisterPage() {
   const { handleSubmit } = useForm();
   const { ressources } = useContext(RessourcesContext)
 
-  let registerUsername = React.useRef(null)
+  let registerUsername = React.useRef("Hallo")
   let registerPassword = React.useRef(null)
   let confirmPassword = React.useRef(null)
 
   const [warnText, setText] = useState('');
 
   const onRegister = async () => {
-
-    if (registerPassword.current.value === confirmPassword.current.value) {
+    if (registerUsername.current.value == "") {
+      setText(ressources.Register.EnterUsernameWarning)
+    } else if (registerPassword.current.value === "" || confirmPassword.current.value === "") {
+      setText(ressources.Register.EnterPasswordWarning)
+    } else if (registerPassword.current.value === confirmPassword.current.value) {
       try {
-
         // register account
-        UserService.register(registerUsername.current.value, registerPassword.current.value)
+        if (!UserService.register(registerUsername.current.value, registerPassword.current.value).ok) {
+          setText("Registration Failed")
+        } else {
 
-        // go to login page
-        pathHistory.push(ressources.Path.Login)
-
+          // go to login page
+          pathHistory.push(ressources.Path.Login)
+        }
       } catch (e) {
 
         //TODO error handling !!!
@@ -66,7 +70,7 @@ export function RegisterPage() {
             <Form.Group>
               <Form.Control type="password" placeholder={ressources.Register.PasswordField} className="text-center" ref={registerPassword} />
               <Form.Control type="password" placeholder={ressources.Register.PasswordConfirm} className="text-center" ref={confirmPassword} /><br />
-              <h6 style={{color : 'red'}}>{warnText}</h6>
+              <h6 style={{ color: 'red' }}>{warnText}</h6>
             </Form.Group><br />
             <Button variant="primary" type="submit">
               {ressources.Register.RegisterButton}

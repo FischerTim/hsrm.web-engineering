@@ -21,8 +21,6 @@ export function Generator({ generator, ressource }) {
                         <td>
                             <Table className="table table-borderless">
                                 <tbody>
-                                    <td>
-                                    </td>
                                     <tr className="float-right">
                                         <td>
                                             <Accordion.Toggle as={Button} variant="link" eventKey={generator.Order}>

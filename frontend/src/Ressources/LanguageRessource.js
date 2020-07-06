@@ -22,7 +22,9 @@ export const LanguageRessources = {
             PasswordConfirm: "Confirm Password",
             RegisterButton: "Register Now",
             LoginLink: "To the login",
-            RegisterWarningPassword: "Passwords do not match. Try again."
+            RegisterWarningPassword: "Passwords do not match. Try again.",
+            EnterUsernameWarning: "Please select a username.",
+            EnterPasswordWarning: "Please enter a Password"
         },
         CorePageRessource: {
             LogoutButton : "Logout",
@@ -55,7 +57,9 @@ export const LanguageRessources = {
             PasswordConfirm: "Passwort wiederholen",
             RegisterButton: "Registrieren",
             LoginLink: "Zum Login",
-            RegisterWarningPassword: "Passwörter stimmen nicht überein. Versuche es erneut."
+            RegisterWarningPassword: "Passwörter stimmen nicht überein. Versuche es erneut.",
+            EnterUsernameWarning: "Bitte wähle einen Usernamen",
+            EnterPasswordWarning: "Bitte gib ein passwort ein"
         },
         CorePageRessource: {
             LogoutButton : "Abmelden",

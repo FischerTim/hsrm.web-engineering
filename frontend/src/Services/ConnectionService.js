@@ -14,7 +14,7 @@ export class ConnectionService {
         return fetch(url, { method, headers, body, })
             .then((response) => {
                 if (!response.ok) {
-                    throw new Error()
+                    return response
                 } else {
                     return response.json()
                 }
@@ -29,7 +29,7 @@ export class ConnectionService {
         return fetch(url, { method, headers, body, })
             .then((response) => {
                 if (!response.ok) {
-                    throw new Error()
+                    return response
                 } else {
                     return response.json()
                 }

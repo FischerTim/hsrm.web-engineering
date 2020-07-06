@@ -35,7 +35,7 @@ export function LoginPage() {
   const onSendButtonPressed = async () => {
 
     try {
-
+      
       // get login token
       const response = await UserService.login(loginUserName.current.value, loginPassword.current.value)
       const newUser = UserService.getUserObject(loginUserName.current.value, await response.access_token, true)
