@@ -1,10 +1,12 @@
 import React from "react";
 import { MDBAnimation } from "mdbreact";
 
-const AnimationPage = ({ path }) => {
+let settings = 'infinite'
+
+const AnimationPage = ({ path, width, id }) => {
     return (
-        <MDBAnimation type="bounce" infinite>
-            <img className="rounded mx-auto d-block" alt="" src={path} />
+        <MDBAnimation type="pulse" infinite slower> 
+            <img width={width} className="rounded mx-auto d-block" alt="" src={path} id={id}/>
         </MDBAnimation>
     );
 };

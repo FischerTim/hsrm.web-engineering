@@ -14,37 +14,27 @@ export function Generator({ generator, ressource }) {
                 <tbody>
                     <tr>
                         <td>
-                            <br />
-                            <h5>{ressource.Generators.List[generator.Order]}</h5>
                             <Image src={ressource.ImagePath.GeneratorPath + generator.Order + ".png"} fluid />
                         </td>
                         <td>
-                            <Table className="table table-borderless">
-                                <tbody>
-                                    <tr className="float-right">
-                                        <td>
-                                            <Accordion.Toggle as={Button} variant="link" eventKey={generator.Order}>
-                                                <label><Image 
-                                                onMouseOut={() => setHover(false)}
-                                                onMouseOver={() => setHover(true)}
-                                                style={{transform: `${hoverImg ? 'scale(1.2,1.2)' : 'scale(1.0,1.0)'}`}}
-                                                width="25" className="rounded mx-auto d-block" src="https://cdn2.iconfinder.com/data/icons/app-types-in-grey/512/info_512pxGREY.png" fluid />Info</label>
+                            <h5>{ressource.Generators.List[generator.Order]}</h5>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <Button disabled={generator.Buy == null} onClick={generator.Buy} variant="secondary">
+                                {ressource.Generators.BuyText}
+                            </Button>
+                        </td>
+                        <td>
+                            <Accordion.Toggle as={Button} variant="link" eventKey={generator.Order}>
+                                <label><Image
+                                    onMouseOut={() => setHover(false)}
+                                    onMouseOver={() => setHover(true)}
+                                    style={{ transform: `${hoverImg ? 'scale(1.1,1.1)' : 'scale(1.0,1.0)'}` }}
+                                    width="35" className="rounded mx-auto d-block" src="https://cdn2.iconfinder.com/data/icons/app-types-in-grey/512/info_512pxGREY.png" fluid />Info</label>
 
-                                            </Accordion.Toggle>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                        </td>
-                                        <td>
-                                            <Button disabled={generator.Buy == null} onClick={generator.Buy} variant="secondary">
-                                                {ressource.Generators.BuyText}
-                                            </Button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </Table>
-
+                            </Accordion.Toggle>
                         </td>
                     </tr>
                 </tbody>
@@ -84,3 +74,33 @@ export function Generator({ generator, ressource }) {
     )
 
 }
+
+/**
+ <td>
+                            <Table className="table table-borderless">
+                                <tbody>
+                                    <tr>
+
+                                        <td>
+                                            <Accordion.Toggle as={Button} variant="link" eventKey={generator.Order}>
+                                                <label><Image
+                                                    onMouseOut={() => setHover(false)}
+                                                    onMouseOver={() => setHover(true)}
+                                                    style={{ transform: `${hoverImg ? 'scale(1.1,1.1)' : 'scale(1.0,1.0)'}` }}
+                                                    width="35" className="rounded mx-auto d-block" src="https://cdn2.iconfinder.com/data/icons/app-types-in-grey/512/info_512pxGREY.png" fluid />Info</label>
+
+                                            </Accordion.Toggle>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <Button disabled={generator.Buy == null} onClick={generator.Buy} variant="secondary">
+                                                {ressource.Generators.BuyText}
+                                            </Button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </Table>
+                        </td>
+ */

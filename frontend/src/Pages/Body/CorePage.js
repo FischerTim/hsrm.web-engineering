@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react'
+import $ from "jquery"
 
 import { Jumbotron, Button, Container, Row, Col, Image, Accordion, Card } from 'react-bootstrap';
 
@@ -84,9 +85,15 @@ export function CorePage() {
             setAnimationList(newAnimationList)
 
 
-            // TODO KLICKT!!!!!!!!!
-
         }
+
+        // TODO KLICKT!!!!!!!!!
+        $('#egg-animation').removeClass().addClass('animated shake').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+            $('#egg-animation').removeClass();
+        });
+        $('#farm-animation').removeClass().addClass('animated wobble slow').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+            $('#farm-animation').removeClass();
+        });
     }
 
     const divStyle = {
@@ -97,85 +104,85 @@ export function CorePage() {
     return (
         <div>
             <br />
-            <Container>
-                <Row>
-                    <Col md={3}>
-
-                    </Col>
-                    <Col md={6}>
-                        <Jumbotron className="text-center">
-                            <h4>{ressources.Game.Points}:</h4>
-                            <h1>{points}</h1>
-                            <br />
-
-                            <h6 className="text-center">{ressources.Game.CPSText} {gPPS}</h6>
-                        </Jumbotron>
-                    </Col>
-                    <Col md={3}>
-
-                    </Col>
-                </Row>
-            </Container>
-            <Container>
-                <Row>
-                    <Col md={6}>
-                    </Col>
-                    <Col md={2}>
-                        {animationList}
-                    </Col>
-                    <Col mf={4}>
-
-                        <Image width="275" src={ressources.Game.ImagePath.GeneratorPath + generators.SelectImage + ".png"} fluid />
-                    </Col>
-                </Row>
-            </Container>
-            <Container>
-                <Row>
-                    <Button variant="secondary" size="lg" block disabled={disableClick} onClick={pointclick}>{ressources.Game.ClickButtonText}</Button>
-                </Row>
-            </Container><br /><br /><br />
-            <Container>
-                <Row>
-                    <Col>
-                        <Accordion>
-                            <Card>
-                                <Card.Header className="text-center">
-                                    <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                                        <Image width="100" className="rounded mx-auto d-block" src={ressources.Game.ImagePath.GeneratorPath + generators.SelectImage + ".png"} fluid />
+            <Row>
+                <Col md={2}>
+                <br /><br />
+                    <Accordion>
+                        <Card>
+                            <Card.Header className="text-center">
+                                <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                                    <Image width="100" className="rounded mx-auto d-block" src={ressources.Game.ImagePath.GeneratorPath + generators.SelectImage + ".png"} fluid />
                                         Klicke hier um alle Farmen zu sehen.
                                     </Accordion.Toggle>
-                                </Card.Header>
-                                <Accordion.Collapse eventKey="0">
-                                    <GeneratorList points={points} onBuyHook={updateGenerators} generatorsList={generators} gameRessources={ressources.Game} />
-                                </Accordion.Collapse>
-                            </Card>
-                        </Accordion>
-                    </Col>
-                    <Col>
-                        <Container style={divStyle}>
-                            <br /><br />
-                            <ImageAnimation path={ressources.Game.ImagePath.UpdatePath + updates.SelectImage + ".png"} />
-                            <br /><br />
-                        </Container>
-                        <br /><br />
-                    </Col>
-                    <Col>
-                        <Accordion>
-                            <Card>
-                                <Card.Header className="text-center">
-                                    <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                                        <Image width="100" className="rounded mx-auto d-block" src={ressources.Game.ImagePath.UpdatePath + updates.SelectImage + ".png"} fluid />
+                            </Card.Header>
+                            <Accordion.Collapse eventKey="0">
+                                <GeneratorList points={points} onBuyHook={updateGenerators} generatorsList={generators} gameRessources={ressources.Game} />
+                            </Accordion.Collapse>
+                        </Card>
+                    </Accordion>
+                </Col>
+
+                <Col md={8}>
+                    <Container>
+                        <Row>
+                            <Col md={3}>
+
+                            </Col>
+                            <Col md={6}>
+                                <Jumbotron className="text-center">
+                                    <h4>{ressources.Game.Points}:</h4>
+                                    <h1>{points}</h1>
+                                    <br />
+
+                                    <h6 className="text-center">{ressources.Game.CPSText} {gPPS}</h6>
+                                </Jumbotron>
+                            </Col>
+                            <Col md={3}>
+
+                            </Col>
+                        </Row>
+                    </Container>
+                    
+                    <br /><br /><br /><br />
+                    <Row>
+                        <Col md={1}>
+                            <ImageAnimation width='300' className="rounded mx-auto d-block" path={ressources.Game.ImagePath.UpdatePath + updates.SelectImage + ".png"} id="egg-animation" />
+                        </Col>
+                        <Col md={6}>
+
+                        </Col>
+                        <Col md={1}>
+                            {animationList}
+                        </Col>
+                        <Col md={4}>
+                            <ImageAnimation width='350' path={ressources.Game.ImagePath.GeneratorPath + generators.SelectImage + ".png"} id="farm-animation" />
+                        </Col>
+                    </Row>
+
+                    <Container>
+                        <Row>
+                            <Button variant="btn btn-secondary" size="lg" block disabled={disableClick} onClick={pointclick}>{ressources.Game.ClickButtonText}</Button>
+                        </Row>
+                    </Container><br /><br /><br />
+                </Col>
+
+                <Col md={2}>
+                <br /><br />
+                    <Accordion>
+                        <Card>
+                            <Card.Header className="text-center">
+                                <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                                    <Image width="100" className="rounded mx-auto d-block" src={ressources.Game.ImagePath.UpdatePath + updates.SelectImage + ".png"} fluid />
                                         Klicke hier um alle Eier zu sehen.
                                     </Accordion.Toggle>
-                                </Card.Header>
-                                <Accordion.Collapse eventKey="0">
-                                    <UpdateList points={points} onBuyHook={updateUpgrades} updatesList={updates} gameRessources={ressources.Game} />
-                                </Accordion.Collapse>
-                            </Card>
-                        </Accordion>
-                    </Col>
-                </Row>
-            </Container>
+                            </Card.Header>
+                            <Accordion.Collapse eventKey="0">
+                                <UpdateList points={points} onBuyHook={updateUpgrades} updatesList={updates} gameRessources={ressources.Game} />
+                            </Accordion.Collapse>
+                        </Card>
+                    </Accordion>
+                </Col>
+            </Row>
         </div>
     )
 }

@@ -25,8 +25,8 @@ export default function Update({ update, ressource }) {
                             <label><Image
                             onMouseOut={() => setHover(false)}
                             onMouseOver={() => setHover(true)}
-                            style={{transform: `${hoverImg ? 'scale(1.2,1.2)' : 'scale(1.0,1.0)'}`}}
-                            width="20" className="rounded mx-auto d-block" src="https://cdn2.iconfinder.com/data/icons/app-types-in-grey/512/info_512pxGREY.png" fluid />Info</label>
+                            style={{transform: `${hoverImg ? 'scale(1.1,1.1)' : 'scale(1.0,1.0)'}`}}
+                            width="50" className="rounded mx-auto d-block" src="https://cdn2.iconfinder.com/data/icons/app-types-in-grey/512/info_512pxGREY.png" fluid />Info</label>
 
                             </Accordion.Toggle>
                         </td>
