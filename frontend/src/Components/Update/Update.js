@@ -22,6 +22,7 @@ export default function Update({ update, ressource }) {
                             <Accordion.Toggle as={Button} variant="link" eventKey={update.Id}>
                             <label><Image width="15" className="rounded mx-auto d-block" src="https://cdn2.iconfinder.com/data/icons/app-types-in-grey/512/info_512pxGREY.png" fluid />Info</label>
 
+                                
                             </Accordion.Toggle>
                         </td>
                     </tr>
@@ -53,3 +54,5 @@ export default function Update({ update, ressource }) {
         </Card>
     )
 }
+
+//<Image src={ "information.png"} fluid />
