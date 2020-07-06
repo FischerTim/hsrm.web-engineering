@@ -1,5 +1,5 @@
 
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 
 import { useForm } from "react-hook-form";
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
@@ -19,6 +19,8 @@ export function RegisterPage() {
   let registerUsername = React.useRef(null)
   let registerPassword = React.useRef(null)
   let confirmPassword = React.useRef(null)
+
+  const [warnText, setText] = useState('');
 
   const onRegister = async () => {
 
@@ -40,7 +42,7 @@ export function RegisterPage() {
     } else {
 
       // TODO error handlinh 
-
+      setText(ressources.Register.RegisterWarningPassword)
     }
   }
 
@@ -63,7 +65,8 @@ export function RegisterPage() {
             </Form.Group>
             <Form.Group>
               <Form.Control type="password" placeholder={ressources.Register.PasswordField} className="text-center" ref={registerPassword} />
-              <Form.Control type="password" placeholder={ressources.Register.PasswordConfirm} className="text-center" ref={confirmPassword} />
+              <Form.Control type="password" placeholder={ressources.Register.PasswordConfirm} className="text-center" ref={confirmPassword} /><br />
+              <h6 style={{color : 'red'}}>{warnText}</h6>
             </Form.Group><br />
             <Button variant="primary" type="submit">
               {ressources.Register.RegisterButton}

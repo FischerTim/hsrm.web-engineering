@@ -25,11 +25,9 @@ export function SlideAnimation({ path }) {
     return (
       <div>
         <Slide direction="right" timeout={timeout} in={true} mountOnEnter unmountOnExit>
-          <Image width="250" src={path} fluid />
+          <Image width="125" src={path} fluid />
         </Slide>
       </div>
     )
   }
-
-
 }

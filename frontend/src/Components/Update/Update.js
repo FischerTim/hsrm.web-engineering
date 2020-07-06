@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Card, Accordion, Button, Table, Image } from 'react-bootstrap'
 
 
 export default function Update({ update, ressource }) {
+
+    const [hoverImg, setHover] = useState(false);
 
     return (
         <Card>
@@ -20,9 +22,12 @@ export default function Update({ update, ressource }) {
                         </td>
                         <td>
                             <Accordion.Toggle as={Button} variant="link" eventKey={update.Id}>
-                            <label><Image width="15" className="rounded mx-auto d-block" src="https://cdn2.iconfinder.com/data/icons/app-types-in-grey/512/info_512pxGREY.png" fluid />Info</label>
+                            <label><Image
+                            onMouseOut={() => setHover(false)}
+                            onMouseOver={() => setHover(true)}
+                            style={{transform: `${hoverImg ? 'scale(1.2,1.2)' : 'scale(1.0,1.0)'}`}}
+                            width="20" className="rounded mx-auto d-block" src="https://cdn2.iconfinder.com/data/icons/app-types-in-grey/512/info_512pxGREY.png" fluid />Info</label>
 
-                                
                             </Accordion.Toggle>
                         </td>
                     </tr>

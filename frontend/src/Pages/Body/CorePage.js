@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react'
 
 import { Jumbotron, Button, Container, Row, Col, Image, Accordion, Card } from 'react-bootstrap';
-import { MDBAnimation } from "mdbreact";
 
 import { PointsContext } from '../../Context/Statistics/PointsContext';
 import { GPPSContext } from '../../Context/Statistics/GPPSContext';
@@ -16,6 +15,8 @@ import UpdateList from '../../Components/Update/UpdateList';
 import { UserService } from '../../Services/UserService';
 
 import { SlideAnimation } from '../../Components/Animation/SlideAnimation';
+
+import ImageAnimation from '../../Components/Animation/ImageAnimation'
 
 export function CorePage() {
 
@@ -90,12 +91,31 @@ export function CorePage() {
 
     const divStyle = {
         color: 'blue',
-        backgroundImage: 'url(' + 'https://www.gartencenter.de/wp-content/uploads/2019/01/rasen-675x330.jpeg' + ')',
-      };
+        backgroundImage: "url(" + "" + ")"
+    };
 
     return (
         <div>
             <br />
+            <Container>
+                <Row>
+                    <Col md={3}>
+
+                    </Col>
+                    <Col md={6}>
+                        <Jumbotron className="text-center">
+                            <h4>{ressources.Game.Points}:</h4>
+                            <h1>{points}</h1>
+                            <br />
+
+                            <h6 className="text-center">{ressources.Game.CPSText} {gPPS}</h6>
+                        </Jumbotron>
+                    </Col>
+                    <Col md={3}>
+
+                    </Col>
+                </Row>
+            </Container>
             <Container>
                 <Row>
                     <Col md={6}>
@@ -104,6 +124,7 @@ export function CorePage() {
                         {animationList}
                     </Col>
                     <Col mf={4}>
+
                         <Image width="275" src={ressources.Game.ImagePath.GeneratorPath + generators.SelectImage + ".png"} fluid />
                     </Col>
                 </Row>
@@ -132,18 +153,11 @@ export function CorePage() {
                     </Col>
                     <Col>
                         <Container style={divStyle}>
-                        <br /><br />
-                        <Image className="rounded mx-auto d-block" src={ressources.Game.ImagePath.UpdatePath + updates.SelectImage + ".png"} fluid />
-                        <br /><br />
+                            <br /><br />
+                            <ImageAnimation path={ressources.Game.ImagePath.UpdatePath + updates.SelectImage + ".png"} />
+                            <br /><br />
                         </Container>
                         <br /><br />
-                        <Jumbotron className="text-center">
-                            <h4>{ressources.Game.Points}:</h4>
-                            <h1>{points}</h1>
-                            <br />
-
-                            <h6 className="text-center">{ressources.Game.CPSText} {gPPS}</h6>
-                        </Jumbotron>
                     </Col>
                     <Col>
                         <Accordion>

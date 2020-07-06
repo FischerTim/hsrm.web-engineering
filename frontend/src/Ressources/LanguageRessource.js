@@ -7,7 +7,7 @@ export const LanguageRessources = {
             LoginHeader: "Welcome!",
             UserField: "Username",
             PasswordField: "Password",
-            LoginWarning: "Login failed.",
+            LoginWarning: "Login failed. Try it again.",
             LoginButton: "Login",
             Register: "Not registered jet?",
         },
@@ -21,7 +21,8 @@ export const LanguageRessources = {
             PasswordField: "Password",
             PasswordConfirm: "Confirm Password",
             RegisterButton: "Register Now",
-            LoginLink: "To the login"
+            LoginLink: "To the login",
+            RegisterWarningPassword: "Passwords do not match. Try again."
         },
         CorePageRessource: {
             LogoutButton : "Logout",
@@ -53,7 +54,8 @@ export const LanguageRessources = {
             PasswordField: "Passwort",
             PasswordConfirm: "Passwort wiederholen",
             RegisterButton: "Registrieren",
-            LoginLink: "Zum Login"
+            LoginLink: "Zum Login",
+            RegisterWarningPassword: "Passwörter stimmen nicht überein. Versuche es erneut."
         },
         CorePageRessource: {
             LogoutButton : "Abmelden",

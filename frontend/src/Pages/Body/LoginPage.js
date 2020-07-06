@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 
 import { useHistory, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -29,6 +29,8 @@ export function LoginPage() {
 
   let loginUserName = React.useRef(null)
   let loginPassword = React.useRef(null)
+
+  const [warnText, setText] = useState('');
 
   const onSendButtonPressed = async () => {
 
@@ -64,6 +66,7 @@ export function LoginPage() {
     } catch (e) {
       //TODO error handling !!!
       console.log(await e)
+      setText(ressources.Login.LoginWarning)
     }
 
     //--------------------old
@@ -86,7 +89,8 @@ export function LoginPage() {
               <Form.Text className="text-muted">
               </Form.Text><br /><br />
               <Form.Control type="text" placeholder={ressources.Login.UserField} className="text-center" ref={loginUserName} />
-              <Form.Control type="password" placeholder={ressources.Login.PasswordField} className="text-center" ref={loginPassword} />
+              <Form.Control type="password" placeholder={ressources.Login.PasswordField} className="text-center" ref={loginPassword} /><br />
+              <h6 style={{ color: 'red' }}>{warnText}</h6>
             </Form.Group><br />
             <Button variant="primary" type="submit">
               {ressources.Login.LoginButton}

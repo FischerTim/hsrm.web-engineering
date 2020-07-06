@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Accordion, Card, Image, Button, Table } from 'react-bootstrap'
 
 
 export function Generator({ generator, ressource }) {
+
+    const [hoverImg, setHover] = useState(false);
 
     return (
         <Card>
@@ -24,7 +26,11 @@ export function Generator({ generator, ressource }) {
                                     <tr className="float-right">
                                         <td>
                                             <Accordion.Toggle as={Button} variant="link" eventKey={generator.Order}>
-                                                <label><Image width="25" className="rounded mx-auto d-block" src="https://cdn2.iconfinder.com/data/icons/app-types-in-grey/512/info_512pxGREY.png" fluid />Info</label>
+                                                <label><Image 
+                                                onMouseOut={() => setHover(false)}
+                                                onMouseOver={() => setHover(true)}
+                                                style={{transform: `${hoverImg ? 'scale(1.2,1.2)' : 'scale(1.0,1.0)'}`}}
+                                                width="25" className="rounded mx-auto d-block" src="https://cdn2.iconfinder.com/data/icons/app-types-in-grey/512/info_512pxGREY.png" fluid />Info</label>
 
                                             </Accordion.Toggle>
                                         </td>
