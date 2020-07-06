@@ -30,9 +30,10 @@ export default function UpdateList({ points, updatesList, onBuyHook, gameRessour
 
     return (
         <div>
-            <h4>{gameRessources.Updates.HeadText}</h4>
             <Accordion>
                 {updates}
             </Accordion>
         </div>)
 }
+
+//<h4>{gameRessources.Updates.HeadText}</h4>

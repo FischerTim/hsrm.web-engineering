@@ -1,9 +1,7 @@
+import React, { useContext, useState } from 'react'
 
-import React, { useContext , useState} from 'react'
-
-
-import { useHistory } from 'react-router-dom'
-import { Jumbotron, Button, Container, Row, Col, Image } from 'react-bootstrap';
+import { Jumbotron, Button, Container, Row, Col, Image, Accordion, Card } from 'react-bootstrap';
+import { MDBAnimation } from "mdbreact";
 
 import { PointsContext } from '../../Context/Statistics/PointsContext';
 import { GPPSContext } from '../../Context/Statistics/GPPSContext';
@@ -19,13 +17,7 @@ import { UserService } from '../../Services/UserService';
 
 import { SlideAnimation } from '../../Components/Animation/SlideAnimation';
 
-
-
-
-
 export function CorePage() {
-
-    const pathHistory = useHistory()
 
     const { generators, setGenerators } = useContext(GeneratorsContext)
     const { updates, setUpdates } = useContext(UpdatesContext)
@@ -36,27 +28,20 @@ export function CorePage() {
     const [disableClick, setDisableClick] = useState(true)
     const [animationList, setAnimationList] = useState([])
 
-  
-
-    
-    // Prohibit page for users not logged in
-    if (!user.LogedIn) {
-        pathHistory.push(ressources.Path.Login)
-    }
-    const isClickConnected = (con)=> {
-        if(con != null){
-            if ( con.readyState === 1){
-                if(disableClick === true){
+    const isClickConnected = (con) => {
+        if (con != null) {
+            if (con.readyState === 1) {
+                if (disableClick === true) {
                     setDisableClick(false)
                 }
                 return true
             }
         }
-        if(disableClick === false){
+        if (disableClick === false) {
             setDisableClick(true)
         }
         return false
-    
+
     }
     isClickConnected(user.Connections.Click)
 
@@ -74,6 +59,8 @@ export function CorePage() {
         }
     }
 
+
+
     const updateUpgrades = async () => {
         try {
 
@@ -85,67 +72,98 @@ export function CorePage() {
         }
 
     }
-  
-  const animationKill=()=>{
-      test()
-  }
-
-  const test=()=>{
-    animationList.shift()
-    var newAnimationList=[...animationList]
-    setAnimationList(newAnimationList)
-  }
-
     const pointclick = () => {
 
         if (isClickConnected(user.Connections.Click)) {
             user.Connections.Click.send("")
 
 
-            animationList.push(<SlideAnimation path={ressources.Game.ImagePath.UpdatePath  + updates.SelectImage + ".png"} animationKill={animationKill} key={Date.now()}></SlideAnimation>)
-            var newAnimationList=[...animationList]
+            animationList.push(<SlideAnimation path={ressources.Game.ImagePath.UpdatePath + updates.SelectImage + ".png"} key={Date.now()}></SlideAnimation>)
+            var newAnimationList = [...animationList]
             setAnimationList(newAnimationList)
-            console.log(animationList)
-            
-          
+
 
             // TODO KLICKT!!!!!!!!!
-        } 
+
+        }
     }
-    
 
-
-  
+    const divStyle = {
+        color: 'blue',
+        backgroundImage: 'url(' + 'https://www.gartencenter.de/wp-content/uploads/2019/01/rasen-675x330.jpeg' + ')',
+      };
 
     return (
         <div>
-            <br /><br />
+            <br />
+            <Container>
+                <Row>
+                    <Col md={6}>
+                    </Col>
+                    <Col md={2}>
+                        {animationList}
+                    </Col>
+                    <Col mf={4}>
+                        <Image width="275" src={ressources.Game.ImagePath.GeneratorPath + generators.SelectImage + ".png"} fluid />
+                    </Col>
+                </Row>
+            </Container>
+            <Container>
+                <Row>
+                    <Button variant="secondary" size="lg" block disabled={disableClick} onClick={pointclick}>{ressources.Game.ClickButtonText}</Button>
+                </Row>
+            </Container><br /><br /><br />
             <Container>
                 <Row>
                     <Col>
-                        <GeneratorList points={points} onBuyHook={updateGenerators} generatorsList={generators} gameRessources={ressources.Game} />
-                    </Col>
-                    <Col xs={5}>
-                        <Jumbotron className="text-center">
-                            <h1>{points}</h1>
-                            {ressources.Core.Points}<br />
-                        </Jumbotron><br />
-                        {animationList}
-                       
-                        <Image src={ressources.Game.ImagePath.GeneratorPath + generators.SelectImage-2 + ".png"}fluid/>
-                        
+                        <Accordion>
+                            <Card>
+                                <Card.Header className="text-center">
+                                    <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                                        <Image width="100" className="rounded mx-auto d-block" src={ressources.Game.ImagePath.GeneratorPath + generators.SelectImage + ".png"} fluid />
+                                        Klicke hier um alle Farmen zu sehen.
+                                    </Accordion.Toggle>
+                                </Card.Header>
+                                <Accordion.Collapse eventKey="0">
+                                    <GeneratorList points={points} onBuyHook={updateGenerators} generatorsList={generators} gameRessources={ressources.Game} />
+                                </Accordion.Collapse>
+                            </Card>
+                        </Accordion>
                     </Col>
                     <Col>
-                        <UpdateList points={points} onBuyHook={updateUpgrades} updatesList={updates} gameRessources={ressources.Game} />
+                        <Container style={divStyle}>
+                        <br /><br />
+                        <Image className="rounded mx-auto d-block" src={ressources.Game.ImagePath.UpdatePath + updates.SelectImage + ".png"} fluid />
+                        <br /><br />
+                        </Container>
+                        <br /><br />
+                        <Jumbotron className="text-center">
+                            <h4>{ressources.Game.Points}:</h4>
+                            <h1>{points}</h1>
+                            <br />
+
+                            <h6 className="text-center">{ressources.Game.CPSText} {gPPS}</h6>
+                        </Jumbotron>
+                    </Col>
+                    <Col>
+                        <Accordion>
+                            <Card>
+                                <Card.Header className="text-center">
+                                    <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                                        <Image width="100" className="rounded mx-auto d-block" src={ressources.Game.ImagePath.UpdatePath + updates.SelectImage + ".png"} fluid />
+                                        Klicke hier um alle Eier zu sehen.
+                                    </Accordion.Toggle>
+                                </Card.Header>
+                                <Accordion.Collapse eventKey="0">
+                                    <UpdateList points={points} onBuyHook={updateUpgrades} updatesList={updates} gameRessources={ressources.Game} />
+                                </Accordion.Collapse>
+                            </Card>
+                        </Accordion>
                     </Col>
                 </Row>
-                <br /><br />
-                <p>
-                    <Button variant="secondary" size="lg" block disabled={disableClick} onClick={pointclick}>{ressources.Core.ClickButton}</Button>
-                </p>
-                <h6 className="text-center">{ressources.Core.PointsPC} {gPPS}</h6>
             </Container>
-{animationList}
         </div>
     )
 }
+
+//<h1 className="text-center">{ressources.Game.Generators.HeadText}</h1><br /><br />

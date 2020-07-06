@@ -32,7 +32,7 @@ export const GameRessources = {
                 PriceText: "Costs: ",
                 AmountText: "Owned: ",
                 BuyText: "Buy Farm: ",
-                HeadText: "Welcomen in to the Farm store, hier you can buy new Farms",
+                HeadText: "Welcomen in to the Farm store, hier you can buy new Farms.",
                 List: {
                     0: "Farm0",
                     1: "Farm1",
@@ -47,7 +47,9 @@ export const GameRessources = {
                     10: "Farm10",
                     11: "Farm11"
                 }
-            },
+            },     
+            Points: "Eggs",
+            CPSText: "Your Eggs per second:",
             ClickButtonText: "lay eggs",
 
         },
@@ -83,7 +85,7 @@ export const GameRessources = {
                 PriceText: "Costs: ",
                 AmountText: "Owned: ",
                 BuyText: "Buy Delicery: ",
-                HeadText: "Welcomen in to the Delicery store, hier you can buy new Delicerys",
+                HeadText: "Welcomen in to the Delicery store, hier you can buy new Delicerys.",
                 List: {
                     0: "Farm0",
                     1: "Farm1",
@@ -99,6 +101,8 @@ export const GameRessources = {
                     11: "Farm11"
                 }
             },
+            Points: "Eggs",
+            CPSText: "Your Eggs per second:",
             ClickButtonText: "Back Pizza",
         }
     },
@@ -118,7 +122,7 @@ export const GameRessources = {
                 IdText: "Huhn Nr.: ",
                 PriceText: "Kosten: ",
                 BuyText: "Huhn Kaufen: ",
-                HeadText: "deine Hühner Updates",
+                HeadText: "Deine Hühner Updates.",
                 List: {
                     0: "Chicken0",
                     1: "Chicken1",
@@ -136,7 +140,7 @@ export const GameRessources = {
                 PriceText: "Kosten: ",
                 AmountText: "In Besitz: ",
                 BuyText: "Farm kaufen",
-                HeadText: "Wilkomen im Farm Store, hier kannst du new Farms kaufen",
+                HeadText: "Wilkomen im Farm Store, hier kannst du neue Farms kaufen.",
                 List: {
                     0: "Farm0",
                     1: "Farm1",
@@ -152,6 +156,8 @@ export const GameRessources = {
                     11: "Farm11"
                 }
             },
+            Points: "Eggs",
+            CPSText: "Your Eggs per second:",
             ClickButtonText: "Eier Legen",
 
         },
@@ -187,7 +193,7 @@ export const GameRessources = {
                 PriceText: "Kosten: ",
                 AmountText: "In besitz: ",
                 BuyText: "Anstellen: ",
-                HeadText: "wilkommen bei der Jobbörse hier kannst du neue Lieferanten kaufen",
+                HeadText: "Wilkommen bei der Jobbörse hier kannst du neue Lieferanten kaufen.",
                 List: {
                     0: "Farm0",
                     1: "Farm1",
@@ -203,6 +209,8 @@ export const GameRessources = {
                     11: "Farm11"
                 }
             },
+            Points: "Eggs",
+            CPSText: "Your Eggs per second:",
             ClickButtonText: "Pizzen machen",
         }
     }

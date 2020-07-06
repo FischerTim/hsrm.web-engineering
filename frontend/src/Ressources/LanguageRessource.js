@@ -26,10 +26,6 @@ export const LanguageRessources = {
         CorePageRessource: {
             LogoutButton : "Logout",
             ButtonColor: "danger",
-            Points: "Points",
-            PointsPC: "Points you get per click: ",
-            ClickButton: "CLick me!",
-            Generators: "Generators"
         },
         LanguageRessource: {
             Id: "EN",
@@ -62,10 +58,6 @@ export const LanguageRessources = {
         CorePageRessource: {
             LogoutButton : "Abmelden",
             ButtonColor: "danger",
-            Points: "Punkte",
-            PointsPC: "Punkte die du per Klick bekommst: ",
-            ClickButton: "Klick mich!",
-            Generators: "Generatoren",
         
         },
         LanguageRessource: {

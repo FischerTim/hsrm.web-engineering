@@ -1,32 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Slide from '@material-ui/core/Slide';
 import { Image } from 'react-bootstrap';
 
 
-export function SlideAnimation({animationKill, path}){
-    console.log("erstellt")
-    const timer=1000
-   
-    const sleep = (milliseconds) => {
-        return new Promise(resolve => setTimeout(resolve, milliseconds))
-      }
+export function SlideAnimation({ path }) {
+  const timeout = 1000
+  const [showComponent, setShowComponent] = useState(false)
 
-    const doSomething = async () => {
-        await sleep(timer)
-        animationKill()
-        console.log("test")
-      }
-      
-      doSomething()
-      
+  const sleep = (milliseconds) => {
+    return new Promise(resolve => setTimeout(resolve, milliseconds))
+  }
 
-    
+  const deleteAfterTimeout = async () => {
+    await sleep(timeout)
+    setShowComponent(true)
+  }
 
-    return(
-        <div>
-        <Slide direction="right" timeout={timer} in={true} mountOnEnter unmountOnExit>
-            <Image src={path} fluid/> 
+  deleteAfterTimeout()
+
+
+  if (showComponent) {
+    return <div></div>
+  } else {
+    return (
+      <div>
+        <Slide direction="right" timeout={timeout} in={true} mountOnEnter unmountOnExit>
+          <Image width="250" src={path} fluid />
         </Slide>
-        </div>
+      </div>
     )
+  }
+
+
 }

@@ -29,7 +29,6 @@ export default function GeneratorList({ points, generatorsList, onBuyHook, gameR
 
     return (
         <div>
-            <h4>{gameRessources.Generators.HeadText}</h4>
             <Accordion>
                 {generators}
             </Accordion>
@@ -37,3 +36,5 @@ export default function GeneratorList({ points, generatorsList, onBuyHook, gameR
     )
 
 }
+
+//<h4>{gameRessources.Generators.HeadText}</h4>
