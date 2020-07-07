@@ -80,12 +80,12 @@ export function CorePage() {
             user.Connections.Click.send("")
 
 
-            animationList.push(<SlideAnimation path={ressources.Game.ImagePath.UpdatePath + updates.SelectImage + ".png"} key={Date.now()}></SlideAnimation>)
+            animationList.push(<SlideAnimation style={{position: 'absolute',left: 0,top: 0,zIndex: animationList.length,}} path={ressources.Game.ImagePath.UpdatePath + updates.SelectImage + ".png"} key={Date.now()}></SlideAnimation>)
             var newAnimationList = [...animationList]
             setAnimationList(newAnimationList)
 
-
         }
+
 
         // TODO KLICKT!!!!!!!!!
         $('#egg-animation').removeClass().addClass('animated shake').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
@@ -152,7 +152,7 @@ export function CorePage() {
 
                         </Col>
                         <Col md={1}>
-                            {animationList}
+                            {animationList.map(function(item) { return item;})}
                         </Col>
                         <Col md={4}>
                             <ImageAnimation width='350' path={ressources.Game.ImagePath.GeneratorPath + generators.SelectImage + ".png"} id="farm-animation" />

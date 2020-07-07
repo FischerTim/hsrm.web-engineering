@@ -3,8 +3,8 @@ import Slide from '@material-ui/core/Slide';
 import { Image } from 'react-bootstrap';
 
 
-export function SlideAnimation({ path }) {
-  const timeout = 1000
+export function SlideAnimation({ path ,style}) {
+  const timeout = 5000
   const [showComponent, setShowComponent] = useState(false)
 
   const sleep = (milliseconds) => {
@@ -20,10 +20,10 @@ export function SlideAnimation({ path }) {
 
 
   if (showComponent) {
-    return <div></div>
+    return <div ></div>
   } else {
     return (
-      <div>
+      <div style={style} >
         <Slide direction="right" timeout={timeout} in={true} mountOnEnter unmountOnExit>
           <Image width="40" src={path} fluid />
         </Slide>

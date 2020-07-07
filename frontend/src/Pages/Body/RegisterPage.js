@@ -23,7 +23,7 @@ export function RegisterPage() {
   const [warnText, setText] = useState('');
 
   const onRegister = async () => {
-    if (registerUsername.current.value == "") {
+    if (registerUsername.current.value === "") {
       setText(ressources.Register.EnterUsernameWarning)
     } else if (registerPassword.current.value === "" || confirmPassword.current.value === "") {
       setText(ressources.Register.EnterPasswordWarning)
