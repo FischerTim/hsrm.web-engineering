@@ -62,7 +62,7 @@ export const GameRessources = {
             ImagePath: {
                 GeneratorPath: "PizzaDeliveryImg/Image1_",
                 UpdatePath: "PizzaDeliveryImg/Image0_",
-                Background: "EggFarmImg/Background.png "
+                Background: "PizzaDeliveryImg/Background.png "
             },
             Updates: {
                 MultiplierText: "cook Value Multiplier: ",
@@ -172,7 +172,7 @@ export const GameRessources = {
             ImagePath: {
                 GeneratorPath: "PizzaDeliveryImg/Image1_",
                 UpdatePath: "PizzaDeliveryImg/Image0_",
-                Background: "EggFarmImg/Background.png "
+                Background: "PizzaDeliveryImg/Background.png "
             },
             Updates: {
                 MultiplierText: "Koch Multiplikator: ",
