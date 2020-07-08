@@ -112,7 +112,7 @@ export function CorePage() {
                             <Card.Header className="text-center">
                                 <Accordion.Toggle as={Button} variant="link" eventKey="0">
                                     <Image width="100" className="rounded mx-auto d-block" src={ressources.Game.ImagePath.GeneratorPath + generators.SelectImage + ".png"} fluid />
-                                        Klicke hier um alle Farmen zu sehen.
+                                       {ressources.Game.Generators.HeadText}
                                     </Accordion.Toggle>
                             </Card.Header>
                             <Accordion.Collapse eventKey="0">
@@ -179,7 +179,7 @@ export function CorePage() {
                             <Card.Header className="text-center">
                                 <Accordion.Toggle as={Button} variant="link" eventKey="0">
                                     <Image width="100" className="rounded mx-auto d-block" src={ressources.Game.ImagePath.UpdatePath + updates.SelectImage + ".png"} fluid />
-                                        Klicke hier um alle Eier zu sehen.
+                                    {ressources.Game.Updates.HeadText}
                                     </Accordion.Toggle>
                             </Card.Header>
                             <Accordion.Collapse eventKey="0">
