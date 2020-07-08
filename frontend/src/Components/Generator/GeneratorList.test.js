@@ -1,4 +1,5 @@
 import React from "react";
+import { render, fireEvent } from '@testing-library/react';
 
 import Enzyme from 'enzyme';
 import { mount } from 'enzyme';
@@ -9,11 +10,11 @@ import GeneratorList from "./GeneratorList";
 
 const gameres = {
     Generators: {
-        HeadText : 'HeadText',
-        CpsText : 'CpsText',
-        IdText : 'IdText',
-        PriceText : 'PriceText',
-        AmountText : 'AmountText'
+        HeadText: 'HeadText',
+        CpsText: 'CpsText',
+        IdText: 'IdText',
+        PriceText: 'PriceText',
+        AmountText: 'AmountText'
     }
 }
 
@@ -21,17 +22,20 @@ const gameres = {
 let wrapper = mount(
     <GeneratorList gameRessources={gameres} />
 )
-test('GeneratorList table content', () => {
-    const rowsHead = wrapper.find('.genListTableHead')
-    expect(rowsHead.length).toEqual(1)
-    const rowsHeadCol = rowsHead.first().find('th').map(column => column.text())
-    expect(rowsHeadCol[0]).toEqual('HeadText')
+test('GeneratorList accordion test', () => {
+    const hats = { title: 'Favorite Hats', contents: 'Fedoras are classy', };
+    const footware = {
+        title: 'Favorite Footware',
+        contents: 'Flipflops are the best',
+    };
 
-    const rowsBody = wrapper.find('.genListTableBody')
-    expect(rowsBody.length).toEqual(1)
-    const rowsBodyCol = rowsBody.first().find('th').map(column => column.text())
-    expect(rowsBodyCol[0]).toEqual('CpsText')
-    expect(rowsBodyCol[1]).toEqual('IdText')
-    expect(rowsBodyCol[2]).toEqual('PriceText')
-    expect(rowsBodyCol[3]).toEqual('AmountText')
+    const { getByText, queryByText, } = render(
+        <GeneratorList gameRessources={gameres} />
+    );
+
+    //expect(getByText(gameres.Generators.HeadText)).toBeInTheDocument();
+    expect(queryByText(footware.contents)).toBeNull();
+    //fireEvent.click(getByText(gameres.Generators.HeadText));
+    //expect(getByText(footware.contents)).toBeInTheDocument();
+    expect(queryByText(hats.contents)).toBeNull();
 });

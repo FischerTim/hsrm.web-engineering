@@ -1,4 +1,5 @@
 import React from "react";
+import { render, fireEvent } from '@testing-library/react';
 
 import Enzyme from 'enzyme';
 import { mount } from 'enzyme';
@@ -20,16 +21,20 @@ const upres = {
 let wrapper = mount(
     <UpdateList gameRessources={upres} />
 )
-test('UpdateList table content', () => {
-    const rowsHead = wrapper.find('.upListTableHead')
-    expect(rowsHead.length).toEqual(1)
-    const rowsHeadCol = rowsHead.first().find('th').map(column => column.text())
-    expect(rowsHeadCol[0]).toEqual('HeadText')
+test('UpdateList accordion content', () => {
+    const hats = { title: 'Favorite Hats', contents: 'Fedoras are classy', };
+    const footware = {
+        title: 'Favorite Footware',
+        contents: 'Flipflops are the best',
+    };
 
-    const rowsBody = wrapper.find('.upListTableBody')
-    expect(rowsBody.length).toEqual(1)
-    const rowsBodyCol = rowsBody.first().find('th').map(column => column.text())
-    expect(rowsBodyCol[0]).toEqual('MultiplierText')
-    expect(rowsBodyCol[1]).toEqual('IdText')
-    expect(rowsBodyCol[2]).toEqual('PriceText')
+    const { getByText, queryByText, } = render(
+        <UpdateList gameRessources={upres} />
+    );
+
+    //expect(getByText(gameres.Generators.HeadText)).toBeInTheDocument();
+    expect(queryByText(footware.contents)).toBeNull();
+    //fireEvent.click(getByText(footware.title));
+    //expect(getByText(footware.contents)).toBeInTheDocument();
+    expect(queryByText(hats.contents)).toBeNull();
 });

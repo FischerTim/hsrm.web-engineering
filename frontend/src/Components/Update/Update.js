@@ -40,14 +40,14 @@ export default function Update({ update, ressource }) {
 
                 <Table borderless>
                     <thead>
-                        <tr>
+                        <tr className="updateTableHead">
                             <th>{ressource.Updates.MultiplierText}</th>
-                            <th> {ressource.Updates.IdText}</th>
+                            <th>{ressource.Updates.IdText}</th>
                             <th>{ressource.Updates.PriceText}</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr className="updateTableBody">
                             <td>{update.Multiplier}</td>
                             <td>{update.Id}</td>
                             <td>{update.Price}</td>

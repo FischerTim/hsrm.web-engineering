@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Generator } from './Generator'
+import Generator from './Generator'
 import { Accordion } from 'react-bootstrap'
 
 export default function GeneratorList({ points, generatorsList, onBuyHook, gameRessources }) {
