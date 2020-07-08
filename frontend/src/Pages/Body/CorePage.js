@@ -80,7 +80,7 @@ export function CorePage() {
             user.Connections.Click.send("")
 
 
-            animationList.push(<SlideAnimation style={{ position: 'absolute', left: 0, top: 0, zIndex: animationList.length, }} path={ressources.Game.ImagePath.UpdatePath + updates.SelectImage + ".png"} key={Date.now()}></SlideAnimation>)
+            animationList.push(<SlideAnimation style={{ position: 'absolute', left: -243, top: -120, zIndex: animationList.length }} path={ressources.Game.ImagePath.UpdatePath + updates.SelectImage + ".png"} key={Date.now()}></SlideAnimation>)
             var newAnimationList = [...animationList]
             setAnimationList(newAnimationList)
 
@@ -97,7 +97,7 @@ export function CorePage() {
     }
 
     const divStyle = {
-        backgroundImage: "url("+ ressources.Game.ImagePath.Background +")",
+        backgroundImage: "url(" + ressources.Game.ImagePath.Background + ")",
         backgroundSize: "100%"
     };
 
@@ -111,12 +111,12 @@ export function CorePage() {
                         <Card>
                             <Card.Header className="text-center">
                                 <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                                    <Image width="100" className="rounded mx-auto d-block" src={ressources.Game.ImagePath.GeneratorPath + generators.SelectImage + ".png"} fluid />
-                                        Klicke hier um alle Farmen zu sehen.
+                                    <Image width="100" className="rounded mx-auto d-block" src={ressources.Game.ImagePath.UpdatePath + updates.SelectImage + ".png"} fluid />
+                                        Klicke hier um alle Eier zu sehen.
                                     </Accordion.Toggle>
                             </Card.Header>
                             <Accordion.Collapse eventKey="0">
-                                <GeneratorList points={points} onBuyHook={updateGenerators} generatorsList={generators} gameRessources={ressources.Game} />
+                                <UpdateList points={points} onBuyHook={updateUpgrades} updatesList={updates} gameRessources={ressources.Game} />
                             </Accordion.Collapse>
                         </Card>
                     </Accordion>
@@ -145,7 +145,7 @@ export function CorePage() {
 
                     <Row>
                         <Col md={1}>
-                            <ImageAnimation width='300' className="rounded mx-auto d-block" path={ressources.Game.ImagePath.UpdatePath + updates.SelectImage + ".png"} id="egg-animation" />
+                            <ImageAnimation width='230' className="rounded mx-auto d-block" path={ressources.Game.ImagePath.UpdatePath + updates.SelectImage + ".png"} id="egg-animation" />
                         </Col>
                         <Col md={7}>
 
@@ -163,7 +163,7 @@ export function CorePage() {
                             <Col md={1}>
                                 {animationList.map(function (item) { return item; })}
                             </Col>
-                        </Row><br /><br /><br /><br />
+                        </Row>
                         <Row>
                             <Col>
                                 <Button variant="btn btn-secondary" size="lg" block disabled={disableClick} onClick={pointclick}>{ressources.Game.ClickButtonText}</Button>
@@ -178,15 +178,16 @@ export function CorePage() {
                         <Card>
                             <Card.Header className="text-center">
                                 <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                                    <Image width="100" className="rounded mx-auto d-block" src={ressources.Game.ImagePath.UpdatePath + updates.SelectImage + ".png"} fluid />
-                                        Klicke hier um alle Eier zu sehen.
+                                    <Image width="100" className="rounded mx-auto d-block" src={ressources.Game.ImagePath.GeneratorPath + generators.SelectImage + ".png"} fluid />
+                                        Klicke hier um alle Farmen zu sehen.
                                     </Accordion.Toggle>
                             </Card.Header>
                             <Accordion.Collapse eventKey="0">
-                                <UpdateList points={points} onBuyHook={updateUpgrades} updatesList={updates} gameRessources={ressources.Game} />
+                                <GeneratorList points={points} onBuyHook={updateGenerators} generatorsList={generators} gameRessources={ressources.Game} />
                             </Accordion.Collapse>
                         </Card>
                     </Accordion>
+
                 </Col>
             </Row>
         </div>
