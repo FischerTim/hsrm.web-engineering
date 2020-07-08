@@ -80,7 +80,7 @@ export function CorePage() {
             user.Connections.Click.send("")
 
 
-            animationList.push(<SlideAnimation style={{ position: 'absolute', left: -243, top: -120, zIndex: animationList.length }} path={ressources.Game.ImagePath.UpdatePath + updates.SelectImage + ".png"} key={Date.now()}></SlideAnimation>)
+            animationList.push(<SlideAnimation style={{ position: 'absolute', left: -180, top: -120, zIndex: animationList.length }} path={ressources.Game.ImagePath.UpdatePath + updates.SelectImage + ".png"} key={Date.now()}></SlideAnimation>)
             var newAnimationList = [...animationList]
             setAnimationList(newAnimationList)
 
@@ -105,7 +105,7 @@ export function CorePage() {
         <div style={divStyle}>
             <br />
             <Row>
-                <Col md={2}>
+                <Col md={3}>
                     <br /><br />
                     <Accordion>
                         <Card>
@@ -122,7 +122,7 @@ export function CorePage() {
                     </Accordion>
                 </Col>
 
-                <Col md={8}>
+                <Col md={6}>
                     <Container>
                         <Row>
                             <Col md={3}>
@@ -170,6 +170,10 @@ export function CorePage() {
                             </Col>
                         </Row>
                     </Container><br /><br /><br />
+                </Col>
+
+                <Col md={1}>
+
                 </Col>
 
                 <Col md={2}>
