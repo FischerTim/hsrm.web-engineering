@@ -80,7 +80,7 @@ export function CorePage() {
             user.Connections.Click.send("")
 
 
-            animationList.push(<SlideAnimation style={{position: 'absolute',left: 0,top: 0,zIndex: animationList.length,}} path={ressources.Game.ImagePath.UpdatePath + updates.SelectImage + ".png"} key={Date.now()}></SlideAnimation>)
+            animationList.push(<SlideAnimation style={{ position: 'absolute', left: 0, top: 0, zIndex: animationList.length, }} path={ressources.Game.ImagePath.UpdatePath + updates.SelectImage + ".png"} key={Date.now()}></SlideAnimation>)
             var newAnimationList = [...animationList]
             setAnimationList(newAnimationList)
 
@@ -106,7 +106,7 @@ export function CorePage() {
             <br />
             <Row>
                 <Col md={2}>
-                <br /><br />
+                    <br /><br />
                     <Accordion>
                         <Card>
                             <Card.Header className="text-center">
@@ -142,18 +142,15 @@ export function CorePage() {
                             </Col>
                         </Row>
                     </Container>
-                    
-                    <br /><br /><br /><br />
+
                     <Row>
                         <Col md={1}>
                             <ImageAnimation width='300' className="rounded mx-auto d-block" path={ressources.Game.ImagePath.UpdatePath + updates.SelectImage + ".png"} id="egg-animation" />
                         </Col>
-                        <Col md={6}>
+                        <Col md={7}>
 
                         </Col>
-                        <Col md={1}>
-                            {animationList.map(function(item) { return item;})}
-                        </Col>
+
                         <Col md={4}>
                             <ImageAnimation width='350' path={ressources.Game.ImagePath.GeneratorPath + generators.SelectImage + ".png"} id="farm-animation" />
                         </Col>
@@ -161,13 +158,22 @@ export function CorePage() {
 
                     <Container>
                         <Row>
-                            <Button variant="btn btn-secondary" size="lg" block disabled={disableClick} onClick={pointclick}>{ressources.Game.ClickButtonText}</Button>
+                            <Col md={11}>
+                            </Col>
+                            <Col md={1}>
+                                {animationList.map(function (item) { return item; })}
+                            </Col>
+                        </Row><br /><br /><br /><br />
+                        <Row>
+                            <Col>
+                                <Button variant="btn btn-secondary" size="lg" block disabled={disableClick} onClick={pointclick}>{ressources.Game.ClickButtonText}</Button>
+                            </Col>
                         </Row>
                     </Container><br /><br /><br />
                 </Col>
 
                 <Col md={2}>
-                <br /><br />
+                    <br /><br />
                     <Accordion>
                         <Card>
                             <Card.Header className="text-center">

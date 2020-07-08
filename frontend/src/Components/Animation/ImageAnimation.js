@@ -1,8 +1,6 @@
 import React from "react";
 import { MDBAnimation } from "mdbreact";
 
-let settings = 'infinite'
-
 const AnimationPage = ({ path, width, id }) => {
     return (
         <MDBAnimation type="pulse" infinite > 
