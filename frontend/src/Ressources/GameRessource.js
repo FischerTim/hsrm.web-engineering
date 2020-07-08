@@ -7,7 +7,8 @@ export const GameRessources = {
             },
             ImagePath: {
                 GeneratorPath: "EggFarmImg/Image1_",
-                UpdatePath: "EggFarmImg//Image0_"
+                UpdatePath: "EggFarmImg/Image0_",
+                Background: "EggFarmImg/Background.png "
             },
             Updates: {
                 MultiplierText: "Egg Value Multiplier: ",
@@ -60,7 +61,8 @@ export const GameRessources = {
             },
             ImagePath: {
                 GeneratorPath: "PizzaDeliveryImg/Image1_",
-                UpdatePath: "PizzaDeliveryImg/Image0_"
+                UpdatePath: "PizzaDeliveryImg/Image0_",
+                Background: "PizzaDeliveryImg/Background.png "
             },
             Updates: {
                 MultiplierText: "cook Value Multiplier: ",
@@ -114,7 +116,8 @@ export const GameRessources = {
             },
             ImagePath: {
                 GeneratorPath: "EggFarmImg/Image1_",
-                UpdatePath: "EggFarmImg/Image0_"
+                UpdatePath: "EggFarmImg/Image0_",
+                Background: "EggFarmImg/Background.png "
             },
 
             Updates: {
@@ -168,7 +171,8 @@ export const GameRessources = {
             },
             ImagePath: {
                 GeneratorPath: "PizzaDeliveryImg/Image1_",
-                UpdatePath: "PizzaDeliveryImg/Image0_"
+                UpdatePath: "PizzaDeliveryImg/Image0_",
+                Background: "PizzaDeliveryImg/Background.png "
             },
             Updates: {
                 MultiplierText: "Koch Multiplikator: ",

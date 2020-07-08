@@ -97,12 +97,12 @@ export function CorePage() {
     }
 
     const divStyle = {
-        color: 'blue',
-        backgroundImage: "url(" + "" + ")"
+        backgroundImage: "url("+ ressources.Game.ImagePath.Background +")",
+        backgroundSize: "100%"
     };
 
     return (
-        <div>
+        <div style={divStyle}>
             <br />
             <Row>
                 <Col md={2}>
