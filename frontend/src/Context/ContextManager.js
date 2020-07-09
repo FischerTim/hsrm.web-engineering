@@ -10,6 +10,7 @@ import { UpdatesContextProvider } from './Lists/UpdatesContext'
 import { UserProvider } from './UserContext'
 import { GameContextProvider } from './Ressource/GameContext'
 import { LanguageContextProvider } from './Ressource/LanguageContext'
+import { AnimationsContextProvider } from './Animation/AnimationContext'
 export const ContextManager = createContext()
 export const ContextManagerProvider = ({ children }) => {
 
@@ -20,13 +21,15 @@ export const ContextManagerProvider = ({ children }) => {
                <LanguageContextProvider>
                   <RessourcesContextProvider>
                      <GeneratorsContextProvider>
-                        <UpdatesContextProvider>
-                           <PointsContextProvider>
-                              <GPPSContextProvider>
-                                 {children}
-                              </GPPSContextProvider>
-                           </PointsContextProvider>
-                        </UpdatesContextProvider>
+                        <AnimationsContextProvider>
+                           <UpdatesContextProvider>
+                              <PointsContextProvider>
+                                 <GPPSContextProvider>
+                                    {children}
+                                 </GPPSContextProvider>
+                              </PointsContextProvider>
+                           </UpdatesContextProvider>
+                        </AnimationsContextProvider>
                      </GeneratorsContextProvider>
                   </RessourcesContextProvider>
                </LanguageContextProvider>

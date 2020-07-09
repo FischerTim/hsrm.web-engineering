@@ -18,6 +18,7 @@ import { UserService } from '../../Services/UserService';
 import { SlideAnimation } from '../../Components/Animation/SlideAnimation';
 
 import ImageAnimation from '../../Components/Animation/ImageAnimation'
+import { AnimationContext } from '../../Context/Animation/AnimationContext';
 
 export function CorePage() {
 
@@ -28,7 +29,11 @@ export function CorePage() {
     const { gPPS } = useContext(GPPSContext)
     const { ressources } = useContext(RessourcesContext)
     const [disableClick, setDisableClick] = useState(true)
-    const [animationList, setAnimationList] = useState([])
+    const { animationList, setAnimationList } = useContext(AnimationContext)
+
+    if(!user.LogedIn){
+        setAnimationList([])
+    }
 
     const isClickConnected = (con) => {
         if (con != null) {
