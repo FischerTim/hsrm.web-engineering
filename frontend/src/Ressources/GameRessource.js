@@ -11,6 +11,7 @@ export const GameRessources = {
                 Background: "EggFarmImg/Background.png "
             },
             Updates: {
+                Description: "test",
                 MultiplierText: "Egg Value Multiplier: ",
                 IdText: "Egg No.: ",
                 PriceText: "Costs: ",
@@ -66,6 +67,7 @@ export const GameRessources = {
                 Background: "PizzaDeliveryImg/Background.png "
             },
             Updates: {
+                Description: "test",
                 MultiplierText: "Pizza multiplier: ",
                 IdText: "Pizza No.: ",
                 PriceText: "Costs: ",
@@ -124,6 +126,7 @@ export const GameRessources = {
             },
 
             Updates: {
+                Description: "test",
                 MultiplierText: "Ei Wert Multiplikator: ",
                 IdText: "Ei Nr.: ",
                 PriceText: "Preis: ",
@@ -179,6 +182,7 @@ export const GameRessources = {
                 Background: "PizzaDeliveryImg/Background.png "
             },
             Updates: {
+                Description: "test",
                 MultiplierText: "Pizza Multiplicator: ",
                 IdText: "Pizza Nr.: ",
                 PriceText: "Preis: ",

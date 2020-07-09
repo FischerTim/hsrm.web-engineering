@@ -8,7 +8,6 @@ export function SlideAnimation({ path, style }) {
   const timeout = 5000
   const [showComponent, setShowComponent] = useState(false)
 
-
   var id = 0;
   const sleep = (milliseconds) => {
     return new Promise(resolve => {
