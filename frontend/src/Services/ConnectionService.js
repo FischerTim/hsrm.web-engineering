@@ -181,7 +181,7 @@ export class ConnectionService {
 
                                         for (var j = 0; j < ownedGenerators.length; j++) {
 
-                                            const currentId = ownedGenerators[j].generator.Order
+                                            const currentId = ownedGenerators[j].generator.id
 
                                             // set amount for generator with current id
                                             newGenerators[currentId].Amount = ownedGenerators[j].amount
