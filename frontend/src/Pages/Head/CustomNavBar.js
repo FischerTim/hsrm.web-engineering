@@ -16,7 +16,6 @@ import { PointsContext } from '../../Context/Statistics/PointsContext';
 import { GPPSContext } from '../../Context/Statistics/GPPSContext';
 
 import { useLocation } from 'react-router-dom';
-import { AnimationContext } from '../../Context/Animation/AnimationContext';
 
 export function CustomNavBar() {
 
@@ -31,8 +30,6 @@ export function CustomNavBar() {
 
     const { setGenerators } = useContext(GeneratorsContext)
     const { setUpdates } = useContext(UpdatesContext)
-
-    const { setAnimationList } = useContext(AnimationContext)
 
     var buttonText = ''
     var buttonColor = ''
@@ -92,7 +89,6 @@ export function CustomNavBar() {
 
                 // set user 
                 setUser(newUser)
-                setAnimationList([])
 
                 pathHistory.push(ressources.Path.Login)
 
