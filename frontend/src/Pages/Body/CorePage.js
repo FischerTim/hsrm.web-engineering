@@ -27,8 +27,11 @@ export function CorePage() {
     const { points } = useContext(PointsContext)
     const { gPPS } = useContext(GPPSContext)
     const { ressources } = useContext(RessourcesContext)
+
     const [disableClick, setDisableClick] = useState(true)
     const [animationList, setAnimationList] = useState([])
+    const [show, setShow] = useState(false);
+    const target = useRef(null);
 
     const isClickConnected = (con) => {
         if (con != null) {
@@ -86,8 +89,6 @@ export function CorePage() {
 
         }
 
-
-        // TODO KLICKT!!!!!!!!!
         $('#egg-animation').removeClass().addClass('animated shake').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
             $('#egg-animation').removeClass();
         });
@@ -95,25 +96,6 @@ export function CorePage() {
             $('#farm-animation').removeClass();
         });
     }
-    /** 
-        const popover = (
-            <Popover id="popover-basic">
-                <Popover.Title as="h3">{ressources.Game.Updates.updateInfoHeader}</Popover.Title>
-                <Popover.Content>
-                    {ressources.Game.Updates.updateInfoText}
-                </Popover.Content>
-            </Popover>
-        );
-    
-        const updateInfoButton = () => (
-            <OverlayTrigger trigger="click" placement="right" overlay={popover}>
-                <Button variant="success">{ressources.Game.Updates.updateInfoButton}</Button>
-            </OverlayTrigger>
-        );
-    */
-
-    const [show, setShow] = useState(false);
-    const target = useRef(null);
 
     const divStyle = {
         backgroundImage: "url(" + ressources.Game.ImagePath.Background + ")",
@@ -129,29 +111,31 @@ export function CorePage() {
                     <Accordion>
                         <Card>
                             <Card.Header className="text-center">
-                                <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                                    <Row>
+
+                                <Row>
+                                    <Accordion.Toggle as={Button} variant="link" eventKey="0">
                                         <Col md={10}>
                                             <Image width="100" className="rounded mx-auto d-block" src={ressources.Game.ImagePath.UpdatePath + updates.SelectImage + ".png"} fluid />
                                             {ressources.Game.Updates.HeadText}
                                         </Col>
-                                        <Col md={2}>
-                                            <>
-                                                <Button ref={target} onClick={() => setShow(!show)}>
-                                                    {ressources.Game.Updates.UpdateInfoButton}
-                                                </Button>
-                                                <Overlay target={target.current} show={show} placement="right">
-                                                    {(props) => (
-                                                        <Tooltip id="overlay-example" {...props}>
-                                                            {ressources.Game.Updates.UpdateInfoText}
-                                                        </Tooltip>
-                                                    )}
-                                                </Overlay>
-                                            </>
-                                        </Col>
-                                    </Row>
+                                    </Accordion.Toggle>
+                                    <Col md={2}>
 
-                                </Accordion.Toggle>
+                                        <Button ref={target} onClick={() => setShow(!show)}>
+                                            {ressources.Game.Updates.UpdateInfoButton}
+                                        </Button>
+                                        <Overlay target={target.current} show={show} placement="right">
+                                            {(props) => (
+                                                <Tooltip id="overlay-example" {...props}>
+                                                    {ressources.Game.Updates.UpdateInfoText}
+                                                </Tooltip>
+                                            )}
+                                        </Overlay>
+
+                                    </Col>
+                                </Row>
+
+
                             </Card.Header>
                             <Accordion.Collapse eventKey="0">
                                 <UpdateList points={points} onBuyHook={updateUpgrades} updatesList={updates} gameRessources={ressources.Game} />
