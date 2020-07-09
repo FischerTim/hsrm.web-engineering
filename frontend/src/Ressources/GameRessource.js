@@ -11,6 +11,9 @@ export const GameRessources = {
                 Background: "EggFarmImg/Background.png "
             },
             Updates: {
+                UpdateInfoButton: "No Eggs?",
+                UpdateInfoHeader: "How to get eggs?",
+                UpdateInfoText: "blahblahblah.",
                 MultiplierText: "Egg Value Multiplier: ",
                 IdText: "Egg No.: ",
                 PriceText: "Costs: ",
@@ -66,6 +69,9 @@ export const GameRessources = {
                 Background: "PizzaDeliveryImg/Background.png "
             },
             Updates: {
+                UpdateInfoButton: "No Pizza?",
+                UpdateInfoHeader: "How to get pizza?",
+                UpdateInfoText: "blahblahblah.",
                 MultiplierText: "cook Value Multiplier: ",
                 IdText: "cook No.: ",
                 PriceText: "Costs: ",
@@ -123,6 +129,9 @@ export const GameRessources = {
             },
 
             Updates: {
+                UpdateInfoButton: "Keine Eier?",
+                UpdateInfoHeader: "Wie du Eier bekommst.",
+                UpdateInfoText: "blahblahblah.",
                 MultiplierText: "Ei Wert Multiplikator: ",
                 IdText: "Ei Nr.: ",
                 PriceText: "Preis: ",
@@ -178,6 +187,9 @@ export const GameRessources = {
                 Background: "PizzaDeliveryImg/Background.png "
             },
             Updates: {
+                UpdateInfoButton: "Keine Pizza?",
+                UpdateInfoHeader: "Wie du Pizza bekommst?",
+                UpdateInfoText: "blahblahblah.",
                 MultiplierText: "Pizza wert Multiplicator: ",
                 IdText: "Pizza Nr.: ",
                 PriceText: "Preis: ",

@@ -1,7 +1,7 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useRef } from 'react'
 import $ from "jquery"
 
-import { Jumbotron, Button, Container, Row, Col, Image, Accordion, Card } from 'react-bootstrap';
+import { Jumbotron, Button, Container, Row, Col, Image, Accordion, Card, Popover, OverlayTrigger, Overlay, Tooltip } from 'react-bootstrap';
 
 import { PointsContext } from '../../Context/Statistics/PointsContext';
 import { GPPSContext } from '../../Context/Statistics/GPPSContext';
@@ -95,6 +95,25 @@ export function CorePage() {
             $('#farm-animation').removeClass();
         });
     }
+    /** 
+        const popover = (
+            <Popover id="popover-basic">
+                <Popover.Title as="h3">{ressources.Game.Updates.updateInfoHeader}</Popover.Title>
+                <Popover.Content>
+                    {ressources.Game.Updates.updateInfoText}
+                </Popover.Content>
+            </Popover>
+        );
+    
+        const updateInfoButton = () => (
+            <OverlayTrigger trigger="click" placement="right" overlay={popover}>
+                <Button variant="success">{ressources.Game.Updates.updateInfoButton}</Button>
+            </OverlayTrigger>
+        );
+    */
+
+    const [show, setShow] = useState(false);
+    const target = useRef(null);
 
     const divStyle = {
         backgroundImage: "url(" + ressources.Game.ImagePath.Background + ")",
@@ -111,8 +130,27 @@ export function CorePage() {
                         <Card>
                             <Card.Header className="text-center">
                                 <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                                    <Image width="100" className="rounded mx-auto d-block" src={ressources.Game.ImagePath.UpdatePath + updates.SelectImage + ".png"} fluid />
-                                    {ressources.Game.Updates.HeadText}
+                                    <Row>
+                                        <Col md={10}>
+                                            <Image width="100" className="rounded mx-auto d-block" src={ressources.Game.ImagePath.UpdatePath + updates.SelectImage + ".png"} fluid />
+                                            {ressources.Game.Updates.HeadText}
+                                        </Col>
+                                        <Col md={2}>
+                                            <>
+                                                <Button ref={target} onClick={() => setShow(!show)}>
+                                                    {ressources.Game.Updates.UpdateInfoButton}
+                                                </Button>
+                                                <Overlay target={target.current} show={show} placement="right">
+                                                    {(props) => (
+                                                        <Tooltip id="overlay-example" {...props}>
+                                                            {ressources.Game.Updates.UpdateInfoText}
+                                                        </Tooltip>
+                                                    )}
+                                                </Overlay>
+                                            </>
+                                        </Col>
+                                    </Row>
+
                                 </Accordion.Toggle>
                             </Card.Header>
                             <Accordion.Collapse eventKey="0">
