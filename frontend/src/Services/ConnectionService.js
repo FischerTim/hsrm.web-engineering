@@ -157,9 +157,7 @@ export class ConnectionService {
                         Id: currentId,
                         Buy: buyFunction
                     }
-                    if (newGenerators.SelectImage < newGenerators[currentId].Order) {
-                        newGenerators.SelectImage = newGenerators[currentId].Order
-                    }
+     
                    
 
                     if (i === availableGenerators.length - 1) {
@@ -187,6 +185,9 @@ export class ConnectionService {
 
                                             // set amount for generator with current id
                                             newGenerators[currentId].Amount = ownedGenerators[j].amount
+                                            if (newGenerators.SelectImage < newGenerators[currentId].Order && newGenerators[currentId].Amount >0) {
+                                                newGenerators.SelectImage = newGenerators[currentId].Order
+                                            }
                                         }
                                         const newSafeGenerators= { ...GeneratorsState }
                                         newSafeGenerators.SelectImage = newGenerators.SelectImage

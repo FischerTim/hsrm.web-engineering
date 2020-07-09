@@ -1,7 +1,7 @@
 import React, { useContext, useState, useRef } from 'react'
 import $ from "jquery"
 
-import { Jumbotron, Button, Container, Row, Col, Image, Accordion, Card, Popover, OverlayTrigger, Overlay, Tooltip } from 'react-bootstrap';
+import { Jumbotron, Button, Container, Row, Col, Image, Accordion, Card, Overlay, Tooltip } from 'react-bootstrap';
 
 import { PointsContext } from '../../Context/Statistics/PointsContext';
 import { GPPSContext } from '../../Context/Statistics/GPPSContext';

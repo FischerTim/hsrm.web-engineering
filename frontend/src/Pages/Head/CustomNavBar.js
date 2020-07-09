@@ -105,7 +105,7 @@ export function CustomNavBar() {
     }
 
     return (<Navbar bg="dark" expand="lg" variant="dark">
-        <Navbar.Brand href="/">Web-Engineering</Navbar.Brand>
+        <Navbar.Brand href="/">Nameless</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">

@@ -30,7 +30,8 @@ export function RegisterPage() {
     } else if (registerPassword.current.value === confirmPassword.current.value) {
       try {
         // register account
-        if (!UserService.register(registerUsername.current.value, registerPassword.current.value).ok) {
+        const response = await UserService.register(registerUsername.current.value, registerPassword.current.value)
+        if (response.ok !== undefined && ! response.ok ) {
           setText("Registration Failed")
         } else {
 

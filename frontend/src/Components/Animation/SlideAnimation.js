@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Slide from '@material-ui/core/Slide';
 //import { MDBAnimation } from "mdbreact";
 import { Image, Container } from 'react-bootstrap';
@@ -8,8 +8,12 @@ export function SlideAnimation({ path, style }) {
   const timeout = 5000
   const [showComponent, setShowComponent] = useState(false)
 
+  var id = 0;
   const sleep = (milliseconds) => {
-    return new Promise(resolve => setTimeout(resolve, milliseconds))
+    return new Promise(resolve => {
+      
+      id = setTimeout(resolve, milliseconds)
+    })   
   }
 
   const deleteAfterTimeout = async () => {
@@ -17,7 +21,15 @@ export function SlideAnimation({ path, style }) {
     setShowComponent(true)
   }
 
-  deleteAfterTimeout()
+  useEffect(() => {
+    deleteAfterTimeout()
+    return function cleanup() {
+
+      clearTimeout(id)
+    };
+  });
+
+ 
 
   const slideStyle = {
     display: "flex",
